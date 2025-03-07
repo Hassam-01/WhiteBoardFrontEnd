@@ -76,7 +76,7 @@ export const SmallClassPage = withClassroomStore<SmallClassPageProps>(
                             "is-fold": !classroomStore.isAvatarsVisible(),
                         })}
                     >
-                        {windowsBtn ? (
+                        {/* {windowsBtn ? (
                             <TopBar
                                 center={renderTopBarCenter()}
                                 left={renderTopBarLeft()}
@@ -91,7 +91,7 @@ export const SmallClassPage = withClassroomStore<SmallClassPageProps>(
                                 left={renderTopBarLeft()}
                                 right={renderTopBarRight()}
                             />
-                        )}
+                        )} */}
                         {renderAvatars()}
                         <div className="small-class-realtime-content">
                             <div className="small-class-realtime-content-container">

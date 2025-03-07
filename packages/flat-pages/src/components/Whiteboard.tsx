@@ -8,7 +8,7 @@ import {
     DarkModeContext,
     PresetsModal,
     RaiseHand,
-    RaisingHand,
+    // RaisingHand,
     SaveAnnotationModal,
     SaveAnnotationModalProps,
 } from "flat-components";
@@ -26,6 +26,9 @@ import { createCloudFile } from "../utils/create-cloud-file";
 import { UserWindows } from "./UserWindows";
 import { PreferencesStoreContext } from "./StoreProvider";
 import { generateAvatar } from "../utils/generate-avatar";
+import CustomToolbarMain from "./CustomTool/CustomToolbarMain";
+import CustomToolbarLeft from "./CustomTool/CustomToolbarleft";
+import CustomToolbarRight from "./CustomTool/CustomToolbarRight";
 
 export interface WhiteboardProps {
     whiteboardStore: WhiteboardStore;
@@ -240,7 +243,7 @@ export const Whiteboard = observer<WhiteboardProps>(function Whiteboard({
                                 />
                             </div>
                         )}
-                    {!classRoomStore.isAIRoom && whiteboardStore.isCreator && (
+                    {/* {!classRoomStore.isAIRoom && whiteboardStore.isCreator && (
                         <div className="raise-hand-container">
                             <RaisingHand
                                 active={handRaisingCount > 0}
@@ -248,7 +251,7 @@ export const Whiteboard = observer<WhiteboardProps>(function Whiteboard({
                                 onClick={() => classRoomStore.onToggleHandRaisingPanel()}
                             />
                         </div>
-                    )}
+                    )} */}
                     <div
                         className={classNames("whiteboard-scroll-page", {
                             "is-active": showPage,
@@ -256,6 +259,19 @@ export const Whiteboard = observer<WhiteboardProps>(function Whiteboard({
                     >
                         {renderScrollPage(t, page, maxPage)}
                     </div>
+                    {!classRoomStore.isAIRoom && (
+                        <div className="custom-toolbar">
+                            <div className="custom-toolbar-left-bar">
+                                <CustomToolbarLeft />
+                            </div>
+                            <div className="custom-toolbar-main-bar">
+                                <CustomToolbarMain />
+                            </div>
+                            <div className="custom-toolbar-right-bar">
+                                <CustomToolbarRight />
+                            </div>
+                        </div>
+                    )}
                     {!classRoomStore.isAIRoom && (
                         <div
                             className={classNames("hand-raising-panel", {

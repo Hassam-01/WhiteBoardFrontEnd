@@ -13,6 +13,7 @@ import { ReadonlyVal, Val, combine } from "value-enhancer";
 
 import { registerColorShortcut } from "./color-shortcut";
 import { injectCursor } from "./inject-cursor";
+import fastboardSingleton from "./fastboardSingleton";
 
 export { replayFastboard, register, stockedApps } from "@netless/fastboard";
 export { FastboardFileInsert } from "./file-insert";
@@ -140,6 +141,12 @@ export class Fastboard extends IServiceWhiteboard {
                         app: this._app$.value,
                         config: {
                             // Hide zoom control
+                            toolbar: {
+                                enable: true,
+                                apps: { enable: true },
+                            },
+                            redo_undo: { enable: false },
+                            page_control: { enable: false },
                             zoom_control: { enable: false },
                         },
                     });
@@ -278,7 +285,7 @@ export class Fastboard extends IServiceWhiteboard {
                 },
             },
         });
-
+        fastboardSingleton.setFastboardApp(fastboardAPP);
         this._app$.setValue(fastboardAPP);
 
         this.sideEffect.push(registerColorShortcut(fastboardAPP), "color-shortcut");

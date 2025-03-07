@@ -86,7 +86,7 @@ export const BigClassPage = withClassroomStore<BigClassPageProps>(
                                     whiteboardStore={whiteboardStore}
                                 />
                             </div>
-                            {renderRealtimePanel()}
+                            {/* {renderRealtimePanel()} */}
                         </div>
                         <Shortcuts classroom={classroomStore} location="top-right" />
                         <Rewards classroom={classroomStore} />
@@ -154,9 +154,9 @@ export const BigClassPage = withClassroomStore<BigClassPageProps>(
                             }}
                         />
                     )}
-                    {classroomStore.whiteboardStore.allowDrawing && (
+                    {/* {classroomStore.whiteboardStore.allowDrawing && (
                         <CloudStorageButton classroom={classroomStore} />
-                    )}
+                    )} */}
                     <InviteButton roomInfo={classroomStore.roomInfo} />
                     {/* TODO: open users sub window */}
                     <UsersButton classroom={classroomStore} />
