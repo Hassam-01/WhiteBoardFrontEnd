@@ -6,17 +6,18 @@ import "./CustomToolbarRight.less";
 import FastboardSingleton from "../../../../../service-providers/fastboard/src/fastboardSingleton";
 import { RoomPhase } from "white-web-sdk";
 
-const app = FastboardSingleton.getFastboardApp();
-
 const CustomToolbarRight: React.FC = () => {
     const [prevDisabled, setPrevDisabled] = useState(true);
     const [nextDisabled, setNextDisabled] = useState(true);
     const [pageNumber, setPageNumber] = useState(1);
     const [totalPages, setTotalPages] = useState(0);
-    const [updateTrigger, setUpdateTrigger] = useState(0); // Used to force re-run of useEffect
+    const [updateTrigger, setUpdateTrigger] = useState(0);
 
+    let app = FastboardSingleton.getFastboardApp();
     useEffect(() => {
+        app = FastboardSingleton.getFastboardApp();
         if (!app) {
+            console.log("app", app);
             return;
         }
 
@@ -27,14 +28,15 @@ const CustomToolbarRight: React.FC = () => {
         const currentPage =
             (typeof app?.pageIndex.value === "number" ? app.pageIndex.value : 0) + 1;
         const total = typeof app?.pageLength.value === "number" ? app.pageLength.value : 0;
-
+        console.log("total pages", total);
         setPageNumber(currentPage);
         setTotalPages(total);
         setPrevDisabled(disable || total === 0 || currentPage <= 1);
         setNextDisabled(disable || total === 0 || currentPage >= total);
-    }, [app?.pageIndex, app?.pageLength, app?.phase, app?.writable, app, updateTrigger]);
+    }, [app?.pageIndex.value, app?.pageLength.value, app?.phase?.value, updateTrigger]);
 
     const handleAddPage = (): void => {
+        console.log("clicked add page", app?.pageLength);
         app?.addPage();
         setUpdateTrigger(prev => prev + 1);
     };
