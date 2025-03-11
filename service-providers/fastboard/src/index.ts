@@ -142,7 +142,7 @@ export class Fastboard extends IServiceWhiteboard {
                         config: {
                             // Hide zoom control
                             toolbar: {
-                                enable: true,
+                                enable: false,
                                 apps: { enable: true },
                             },
                             redo_undo: { enable: false },

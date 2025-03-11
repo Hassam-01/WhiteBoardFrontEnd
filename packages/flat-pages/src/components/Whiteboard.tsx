@@ -27,7 +27,7 @@ import { UserWindows } from "./UserWindows";
 import { PreferencesStoreContext } from "./StoreProvider";
 import { generateAvatar } from "../utils/generate-avatar";
 import CustomToolbarMain from "./CustomTool/CustomToolbarMain";
-import CustomToolbarLeft from "./CustomTool/CustomToolbarleft";
+import CustomToolbarLeft from "./CustomTool/CustomToolbarLeft";
 import CustomToolbarRight from "./CustomTool/CustomToolbarRight";
 
 export interface WhiteboardProps {

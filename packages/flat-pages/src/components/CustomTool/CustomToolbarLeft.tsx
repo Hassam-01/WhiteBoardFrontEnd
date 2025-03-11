@@ -8,12 +8,12 @@ const CustomToolbarLeft: React.FC = () => {
     return (
         <div className="toolbar-left">
             <div className="toolbar-left-item-box" onClick={() => app?.undo()}>
-                <img src={SVGCustomUndoSVG} alt="Undo" />
-                Undo
+                <img className="toolbar-left-item" src={SVGCustomUndoSVG} alt="Undo" />
+                <span className="toolbar-left-item-label">Undo</span>
             </div>
             <div className="toolbar-left-item-box" onClick={() => app?.redo()}>
-                <img src={SVGCustomRedoSVG} alt="Redo" />
-                Redo
+                <img className="toolbar-left-item" src={SVGCustomRedoSVG} alt="Redo" />
+                <span className="toolbar-left-item-label">Redo</span>
             </div>
         </div>
     );

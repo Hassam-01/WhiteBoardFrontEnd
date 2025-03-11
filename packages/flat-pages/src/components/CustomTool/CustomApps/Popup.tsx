@@ -7,7 +7,9 @@ interface PopupProps {
 }
 
 const Popup: React.FC<PopupProps> = ({ children, position, onClose }) => {
-    if (!position) return null;
+    if (!position) {
+        return null;
+    }
 
     return (
         <div
@@ -24,7 +26,7 @@ const Popup: React.FC<PopupProps> = ({ children, position, onClose }) => {
             }}
         >
             {children}
-            <button onClick={onClose} style={{ display: "block", marginTop: "5px" }}>
+            <button style={{ display: "block", marginTop: "5px" }} onClick={onClose}>
                 Close
             </button>
         </div>

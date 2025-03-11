@@ -25,6 +25,11 @@
     font-size: 11px;
     align-items: center;
     justify-content: center;
+    padding: 4px 4px;
+    &:hover {
+        background-color: #e1e1e1;
+        border-radius: 11px;
+    }
 }
 
 .popup {
@@ -34,25 +39,8 @@
     background: white;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    // padding: 10px;
     z-index: 100;
     padding: 8px 22px;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
     gap: 20px;
-    // flex-grow: 1;
     width: fit-content;
-}
-
-.toolbar-apps {
-    height: 26px;
-    width: 26px;
-}
-.toolbar-apps-box {
-    display: flex;
-    flex-direction: column;
-    font-size: 8px;
-    align-items: center;
-    justify-content: center;
-    font-family: 500;
 }

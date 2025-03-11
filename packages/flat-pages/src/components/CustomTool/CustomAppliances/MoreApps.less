@@ -1,0 +1,27 @@
+.toolbar-apps-container{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+
+
+}
+.toolbar-apps {
+    height: 30px;
+    width: 30px;
+    
+}
+.toolbar-apps-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    padding: 4px 2px;
+    &:hover {
+        background-color: #e1e1e1;
+        border-radius: 11px;
+    }
+}
+.toolbar-apps-label{
+    font-size: 11px;
+    font-family: 500;
+}

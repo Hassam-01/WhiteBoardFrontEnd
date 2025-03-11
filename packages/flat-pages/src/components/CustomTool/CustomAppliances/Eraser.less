@@ -1,0 +1,30 @@
+.eraser-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+
+    .eraser-type-box {
+        display: flex;
+        gap: 10px;
+
+        .eraser-type {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #ffffff;
+            border: 1px solid #ccc;
+            cursor: pointer;
+            font-size: 18px;
+            color: #333;
+            transition: background-color 0.3s ease;
+
+            &:hover {
+                background-color: #e0e0e0;
+            }
+        }
+    }
+}

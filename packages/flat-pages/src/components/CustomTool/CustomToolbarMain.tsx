@@ -7,15 +7,11 @@ import SVGCustomEraserSVG from "./CustomIcons/SVGCustomEraser.svg";
 import SVGCustomMoreSVG from "./CustomIcons/SVGCustomMore.svg";
 import SVGCustomSelectSVG from "./CustomIcons/SVGCustomSelect.svg";
 import SVGCustomClickSVG from "./CustomIcons/SVGCustomClick.svg";
-import CodeSVG from "./CustomIcons/Code.svg";
-import DiceSVG from "./CustomIcons/Dice.svg";
-import GeoGebraSVG from "./CustomIcons/GeoGebra.svg";
-import MindMapSVG from "./CustomIcons/MindMap.svg";
-import PresetsSVG from "./CustomIcons/Presets.svg";
-import SelectorSVG from "./CustomIcons/Selector.svg";
-import StopWatchSVG from "./CustomIcons/StopWatch.svg";
-import SaveAnnotationsSVG from "./CustomIcons/SaveAnnotations.svg";
 import fastboardSingleton from "../../../../../service-providers/fastboard/src/fastboardSingleton";
+import Pencil from "./CustomAppliances/Pencil";
+import MoreApps from "./CustomAppliances/MoreApps";
+import Eraser from "./CustomAppliances/Eraser";
+import Shape from "./CustomAppliances/Shapes";
 
 const app = fastboardSingleton.getFastboardApp();
 
@@ -47,7 +43,6 @@ const CustomToolbarMain: React.FC = () => {
     );
     const toolbarRef = useRef<HTMLDivElement>(null);
 
-    // Handle popup toggle and positioning
     const handlePopupToggle = (tool: string, event: React.MouseEvent): void => {
         if (activePopup === tool) {
             setActivePopup(null);
@@ -64,7 +59,6 @@ const CustomToolbarMain: React.FC = () => {
         }
     };
 
-    // Dynamically adjust popup position based on its height
     useEffect(() => {
         if (activePopup && popupPosition && toolbarRef.current) {
             const popupElement = document.querySelector(".popup") as HTMLElement;
@@ -100,7 +94,7 @@ const CustomToolbarMain: React.FC = () => {
 
     // Update popup position on window resize or scroll
     useEffect(() => {
-        const updatePopupPosition = () => {
+        const updatePopupPosition = (): void => {
             if (activePopup && popupPosition && toolbarRef.current) {
                 const toolbarRect = toolbarRef.current.getBoundingClientRect();
                 const newBottom = toolbarRect.top - 10;
@@ -135,7 +129,13 @@ const CustomToolbarMain: React.FC = () => {
             </div>
 
             {/* Pencil Tool */}
-            <div className="toolbar-item-box" onClick={e => handlePopupToggle("pencil", e)}>
+            <div
+                className="toolbar-item-box"
+                onClick={e => {
+                    handlePopupToggle("pencil", e);
+                    app?.setAppliance("pencil");
+                }}
+            >
                 <img alt="Pencil" className="toolbar-item" src={SVGCustomPencilSVG} />
                 Pencil
             </div>
@@ -147,13 +147,25 @@ const CustomToolbarMain: React.FC = () => {
             </div>
 
             {/* Shape Tool */}
-            <div className="toolbar-item-box" onClick={e => handlePopupToggle("shape", e)}>
+            <div
+                className="toolbar-item-box"
+                onClick={e => {
+                    handlePopupToggle("shape", e);
+                    app?.setAppliance("shape");
+                }}
+            >
                 <img alt="Shape" className="toolbar-item" src={SVGCustomShapeSVG} />
                 Shape
             </div>
 
             {/* Eraser Tool */}
-            <div className="toolbar-item-box" onClick={e => handlePopupToggle("eraser", e)}>
+            <div
+                className="toolbar-item-box"
+                onClick={e => {
+                    handlePopupToggle("eraser", e);
+                    app?.setAppliance("eraser");
+                }}
+            >
                 <img alt="Eraser" className="toolbar-item" src={SVGCustomEraserSVG} />
                 Eraser
             </div>
@@ -164,66 +176,27 @@ const CustomToolbarMain: React.FC = () => {
                 More
             </div>
 
-            {/* Popups */}
             {activePopup === "pencil" && popupPosition && (
                 <Popup position={popupPosition}>
-                    <input type="range" min="1" max="10" />
-                    <input type="color" />
-                    <div className="pencil-type-box">
-                        <div className="pencil-type">1</div>
-                        <div className="pencil-type">2</div>
-                    </div>
+                    <Pencil app={app} />
                 </Popup>
             )}
 
             {activePopup === "shape" && popupPosition && (
                 <Popup position={popupPosition}>
-                    <div className="shape-box"></div>
-                    <div className="shape-stroke-width-box"></div>
-                    <div className="shape-stroke-color-box"></div>
+                    <Shape app={app} />
                 </Popup>
             )}
 
             {activePopup === "eraser" && popupPosition && (
                 <Popup position={popupPosition}>
-                    <div className="eraser-type-box"></div>
+                    <Eraser app={app} />
                 </Popup>
             )}
 
             {activePopup === "more" && popupPosition && (
                 <Popup position={popupPosition}>
-                    <div className="toolbar-apps-box">
-                        <img className="toolbar-apps" src={CodeSVG} alt="" />
-                        Code
-                    </div>
-                    <div className="toolbar-apps-box">
-                        <img className="toolbar-apps" src={DiceSVG} alt="" />
-                        Dice
-                    </div>
-                    <div className="toolbar-apps-box">
-                        <img className="toolbar-apps" src={GeoGebraSVG} alt="" />
-                        Geo Gebra
-                    </div>
-                    <div className="toolbar-apps-box">
-                        <img className="toolbar-apps" src={MindMapSVG} alt="" />
-                        MindMap
-                    </div>
-                    <div className="toolbar-apps-box">
-                        <img className="toolbar-apps" src={PresetsSVG} alt="" />
-                        Presets
-                    </div>
-                    <div className="toolbar-apps-box">
-                        <img className="toolbar-apps" src={SaveAnnotationsSVG} alt="" />
-                        Save Annotations
-                    </div>
-                    <div className="toolbar-apps-box">
-                        <img className="toolbar-apps" src={SelectorSVG} alt="" />
-                        Selector
-                    </div>
-                    <div className="toolbar-apps-box">
-                        <img className="toolbar-apps" src={StopWatchSVG} alt="" />
-                        Stop Watch
-                    </div>
+                    <MoreApps app={app} />
                 </Popup>
             )}
         </div>
