@@ -12,7 +12,22 @@ import SaveAnnotationsSVG from "../CustomIcons/SaveAnnotations.svg";
 import { FlatServices } from "@netless/flat-services";
 import { type FastboardApp } from "@netless/fastboard";
 const flatServices = FlatServices.getInstance();
-const service = await flatServices.requestService("whiteboard");
+let service = await flatServices.requestService("whiteboard");
+
+const handleEmitEvent = async (eventName: string): Promise<void> => {
+    service = await flatServices.requestService("whiteboard");
+    switch (eventName) {
+        case "insertPresets":
+            service?.events.emit("insertPresets");
+            break;
+        case "exportAnnotations":
+            service?.events.emit("exportAnnotations");
+            break;
+        default:
+            break;
+    }
+};
+
 interface MoreProps {
     app: FastboardApp | null;
 }
@@ -56,14 +71,11 @@ const MoreApps: React.FC<MoreProps> = ({ app }) => {
                 <img className="toolbar-apps" src={MindMapSVG} alt="" />
                 <span className="toolbar-apps-label">MindMap</span>
             </div>
-            <div className="toolbar-apps-box" onClick={() => service?.events.emit("insertPresets")}>
+            <div className="toolbar-apps-box" onClick={() => handleEmitEvent("insertPresets")}>
                 <img className="toolbar-apps" src={PresetsSVG} alt="" />
                 <span className="toolbar-apps-label">Presets</span>
             </div>
-            <div
-                className="toolbar-apps-box"
-                onClick={() => service?.events.emit("exportAnnotations")}
-            >
+            <div className="toolbar-apps-box" onClick={() => handleEmitEvent("exportAnnotations")}>
                 <img className="toolbar-apps" src={SaveAnnotationsSVG} alt="" />
                 <span className="toolbar-apps-label">Save Annotations</span>
             </div>

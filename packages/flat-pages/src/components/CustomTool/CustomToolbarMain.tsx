@@ -13,7 +13,7 @@ import MoreApps from "./CustomAppliances/MoreApps";
 import Eraser from "./CustomAppliances/Eraser";
 import Shape from "./CustomAppliances/Shapes";
 
-const app = fastboardSingleton.getFastboardApp();
+let app = fastboardSingleton.getFastboardApp();
 
 interface PopupProps {
     children: React.ReactNode;
@@ -113,17 +113,41 @@ const CustomToolbarMain: React.FC = () => {
             window.removeEventListener("scroll", updatePopupPosition);
         };
     }, [activePopup, popupPosition]);
-
+    const handleAppliance = (appliance: string) => {
+        app = fastboardSingleton.getFastboardApp();
+        switch (appliance) {
+            case "clicker":
+                app?.setAppliance("clicker");
+                break;
+            case "selector":
+                app?.setAppliance("selector");
+                break;
+            case "text":
+                app?.setAppliance("text");
+                break;
+            case "pencil":
+                app?.setAppliance("pencil");
+                break;
+            case "eraser":
+                app?.setAppliance("eraser");
+                break;
+            case "shape":
+                app?.setAppliance("shape");
+                break;
+            default:
+                break;
+        }
+    };
     return (
         <div ref={toolbarRef} className="toolbar" style={{ position: "relative" }}>
             {/* Click Tool */}
-            <div className="toolbar-item-box" onClick={() => app?.setAppliance("clicker")}>
+            <div className="toolbar-item-box" onClick={() => handleAppliance("click")}>
                 <img alt="Click" className="toolbar-item" src={SVGCustomClickSVG} />
                 Click
             </div>
 
             {/* Selector Tool */}
-            <div className="toolbar-item-box" onClick={() => app?.setAppliance("selector")}>
+            <div className="toolbar-item-box" onClick={() => handleAppliance("selector")}>
                 <img alt="Selector" className="toolbar-item" src={SVGCustomSelectSVG} />
                 Selector
             </div>
@@ -133,7 +157,7 @@ const CustomToolbarMain: React.FC = () => {
                 className="toolbar-item-box"
                 onClick={e => {
                     handlePopupToggle("pencil", e);
-                    app?.setAppliance("pencil");
+                    handleAppliance("pencil");
                 }}
             >
                 <img alt="Pencil" className="toolbar-item" src={SVGCustomPencilSVG} />
@@ -141,7 +165,7 @@ const CustomToolbarMain: React.FC = () => {
             </div>
 
             {/* Text Tool */}
-            <div className="toolbar-item-box" onClick={() => app?.setAppliance("text")}>
+            <div className="toolbar-item-box" onClick={() => handleAppliance("text")}>
                 <img alt="Text" className="toolbar-item" src={TSVG} />
                 Text
             </div>
@@ -151,7 +175,7 @@ const CustomToolbarMain: React.FC = () => {
                 className="toolbar-item-box"
                 onClick={e => {
                     handlePopupToggle("shape", e);
-                    app?.setAppliance("shape");
+                    handleAppliance("shape");
                 }}
             >
                 <img alt="Shape" className="toolbar-item" src={SVGCustomShapeSVG} />
@@ -163,7 +187,7 @@ const CustomToolbarMain: React.FC = () => {
                 className="toolbar-item-box"
                 onClick={e => {
                     handlePopupToggle("eraser", e);
-                    app?.setAppliance("eraser");
+                    handleAppliance("eraser");
                 }}
             >
                 <img alt="Eraser" className="toolbar-item" src={SVGCustomEraserSVG} />
@@ -171,7 +195,13 @@ const CustomToolbarMain: React.FC = () => {
             </div>
 
             {/* More Options */}
-            <div className="toolbar-item-box" onClick={e => handlePopupToggle("more", e)}>
+            <div
+                className="toolbar-item-box"
+                onClick={e => {
+                    handlePopupToggle("more", e);
+                    handleAppliance("more");
+                }}
+            >
                 <img alt="More" className="toolbar-item" src={SVGCustomMoreSVG} />
                 More
             </div>
