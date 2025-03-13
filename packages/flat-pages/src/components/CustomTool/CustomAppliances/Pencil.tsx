@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import "./Pencil.less";
 import { type FastboardApp } from "@netless/fastboard";
+import { SVGDashed } from "../../../../../flat-components/src/components/FlatIcons/icons/SVGDashed";
+import { SVGNotDashed } from "../../../../../flat-components/src/components/FlatIcons/icons/SVGNotDashed";
 
 const hexToRgb = (hex: string): string => {
     const bigint = parseInt(hex.slice(1), 16);
@@ -20,6 +22,7 @@ const colorOptions = [
     "#FF2D55",
     "#8E8E93",
 ];
+
 interface PencilProps {
     app: FastboardApp | null;
 }
@@ -31,6 +34,22 @@ const Pencil: React.FC<PencilProps> = ({ app }) => {
     const [strokeWidth, setStrokeWidth] = useState(DefaultStrokeWidth || 2);
     const [strokeColor, setStrokeColor] = useState("#000000");
     const [isDotted, setIsDotted] = useState(false);
+
+    // Ref for the range input
+    const pencilStrokeSizeRef = useRef<HTMLInputElement>(null);
+
+    // Update the --range-progress CSS variable when strokeWidth changes
+    useEffect(() => {
+        const pencilStrokeSize = pencilStrokeSizeRef.current;
+        if (pencilStrokeSize) {
+            const progress =
+                ((strokeWidth - parseFloat(pencilStrokeSize.min)) /
+                    (parseFloat(pencilStrokeSize.max) - parseFloat(pencilStrokeSize.min))) *
+                100;
+            pencilStrokeSize.style.setProperty("--range-progress", `${progress}%`);
+        }
+    }, [strokeWidth]);
+
     const handleColorChange = (color: string): void => {
         setStrokeColor(color);
         const rgbColor = hexToRgb(color);
@@ -48,10 +67,12 @@ const Pencil: React.FC<PencilProps> = ({ app }) => {
         setIsDotted(true);
         app?.toggleDottedLine(true);
     };
+
     const handleSolidStroke = (): void => {
         setIsDotted(false);
         app?.toggleDottedLine(false);
     };
+
     return (
         <div className="pencil-box">
             <div className="pencil-type-box">
@@ -59,16 +80,17 @@ const Pencil: React.FC<PencilProps> = ({ app }) => {
                     className={`pencil-type ${isDotted ? "active" : ""}`}
                     onClick={handleDottedLineToggle}
                 >
-                    Dotted
+                    <SVGDashed active={isDotted} />
                 </div>
                 <div
                     className={`pencil-type ${isDotted ? "active" : ""}`}
                     onClick={handleSolidStroke}
                 >
-                    Solid
+                    <SVGNotDashed active={!isDotted} />
                 </div>
             </div>
             <input
+                ref={pencilStrokeSizeRef}
                 className="pencil-stroke-size"
                 max="32"
                 min="1"

@@ -29,7 +29,6 @@ const Popup: React.FC<PopupProps> = ({ children, position }) => {
                 zIndex: 100,
                 top: position.bottom,
                 left: position.left,
-                gap: "100px"
             }}
         >
             {children}

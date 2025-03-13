@@ -1,6 +1,15 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./Shapes.less";
 import { type FastboardApp } from "@netless/fastboard";
+import { SVGTriangle } from "../../../../../flat-components/src/components/FlatIcons/icons/SVGTriangle";
+import { SVGArrow } from "../../../../../flat-components/src/components/FlatIcons/icons/SVGArrow";
+import { SVGBalloon } from "../../../../../flat-components/src/components/FlatIcons/icons/SVGBalloon";
+import { SVGCircle } from "../../../../../flat-components/src/components/FlatIcons/icons/SVGCircle";
+import { SVGRhombus } from "../../../../../flat-components/src/components/FlatIcons/icons/SVGRhombus";
+import { SVGLine } from "../../../../../flat-components/src/components/FlatIcons/icons/SVGLine";
+import { SVGRectangle } from "../../../../../flat-components/src/components/FlatIcons/icons/SVGRectangle";
+import { SVGStar } from "../../../../../flat-components/src/components/FlatIcons/icons/SVGStar";
+
 const hexToRgb = (hex: string): string => {
     const bigint = parseInt(hex.slice(1), 16);
     const r = (bigint >> 16) & 255;
@@ -29,6 +38,7 @@ const Shape: React.FC<ShapeProps> = ({ app }) => {
     const FastboardMemberState = localItem ? JSON.parse(localItem) : {};
     const DefaultStrokeWidth = FastboardMemberState.strokeWidth;
     const [strokeWidth, setStrokeWidth] = useState(DefaultStrokeWidth || 2);
+    const [shape, setShape] = useState("");
     const [strokeColor, setStrokeColor] = useState("#000000");
     const handleColorChange = (color: string): void => {
         setStrokeColor(color);
@@ -42,40 +52,97 @@ const Shape: React.FC<ShapeProps> = ({ app }) => {
         setStrokeWidth(width);
         app?.setStrokeWidth(width);
     };
+    const shapeStrokeSizeRef = useRef<HTMLInputElement>(null);
+
+    useEffect(() => {
+        const shapeStrokeSize = shapeStrokeSizeRef.current;
+        if (shapeStrokeSize) {
+            const progress =
+                ((strokeWidth - parseFloat(shapeStrokeSize.min)) /
+                    (parseFloat(shapeStrokeSize.max) - parseFloat(shapeStrokeSize.min))) *
+                100;
+            shapeStrokeSize.style.setProperty("--range-progress", `${progress}%`);
+        }
+    }, [strokeWidth]);
 
     return (
         <div className="shape-box">
             <div className="shape-type-box">
-                {/* rectangle, circle, triangle, star, rhombus, line, balloon, arrow */}
-                <div className="shape-type" onClick={() => app?.setAppliance("rectangle")}>
-                    <img src="/path/to/rectangle.svg" alt="Rectangle" />
-                </div>
-                <div className="shape-type" onClick={() => app?.setAppliance("ellipse")}>
-                    <img src="/path/to/circle.svg" alt="Circle" />
-                </div>
-                <div className="shape-type" onClick={() => app?.setAppliance("shape", "triangle")}>
-                    <img src="/path/to/triangle.svg" alt="Triangle" />
-                </div>
-                <div className="shape-type" onClick={() => app?.setAppliance("shape", "pentagram")}>
-                    <img src="/path/to/star.svg" alt="Star" />
-                </div>
-                <div className="shape-type" onClick={() => app?.setAppliance("shape", "rhombus")}>
-                    <img src="/path/to/rhombus.svg" alt="Rhombus" />
-                </div>
-                <div className="shape-type" onClick={() => app?.setAppliance("straight")}>
-                    <img src="/path/to/line.svg" alt="Line" />
+                <div
+                    className="shape-type"
+                    onClick={() => {
+                        app?.setAppliance("rectangle");
+                        setShape("rectangle");
+                    }}
+                >
+                    <SVGRectangle active={"rectangle" === shape} />
                 </div>
                 <div
                     className="shape-type"
-                    onClick={() => app?.setAppliance("shape", "speechBalloon")}
+                    onClick={() => {
+                        app?.setAppliance("ellipse");
+                        setShape("ellipse");
+                    }}
                 >
-                    <img src="/path/to/balloon.svg" alt="Balloon" />
+                    <SVGCircle active={"ellipse" === shape} />
                 </div>
-                <div className="shape-type" onClick={() => app?.setAppliance("arrow")}>
-                    <img src="/path/to/arrow.svg" alt="Arrow" />
+                <div
+                    className="shape-type"
+                    onClick={() => {
+                        app?.setAppliance("shape", "triangle");
+                        setShape("triangle");
+                    }}
+                >
+                    <SVGTriangle active={"triangle" === shape} />
+                </div>
+                <div
+                    className="shape-type"
+                    onClick={() => {
+                        app?.setAppliance("shape", "pentagram");
+                        setShape("pentagram");
+                    }}
+                >
+                    <SVGStar active={"star" === shape} />
+                </div>
+                <div
+                    className="shape-type"
+                    onClick={() => {
+                        app?.setAppliance("shape", "rhombus");
+                        setShape("rhombus");
+                    }}
+                >
+                    <SVGRhombus active={"rhombus" === shape} />
+                </div>
+                <div
+                    className="shape-type"
+                    onClick={() => {
+                        app?.setAppliance("straight");
+                        setShape("straight");
+                    }}
+                >
+                    <SVGLine active={"straight" === shape} />
+                </div>
+                <div
+                    className="shape-type"
+                    onClick={() => {
+                        app?.setAppliance("shape", "speechBalloon");
+                        setShape("speechBalloon");
+                    }}
+                >
+                    <SVGBalloon active={"speechBalloon" === shape} />
+                </div>
+                <div
+                    className="shape-type"
+                    onClick={() => {
+                        app?.setAppliance("arrow");
+                        setShape("arrow");
+                    }}
+                >
+                    <SVGArrow active={"arrow" === shape} color="#B620E0" />
                 </div>
             </div>
             <input
+                ref={shapeStrokeSizeRef}
                 className="shape-stroke-size"
                 max="32"
                 min="1"

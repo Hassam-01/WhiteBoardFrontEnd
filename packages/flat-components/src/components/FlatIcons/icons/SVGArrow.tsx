@@ -2,7 +2,12 @@ import "../style.less";
 import React from "react";
 import { FlatIconProps } from "../types";
 
-export const SVGArrow: React.FC<FlatIconProps> = ({ active, className = "", ...restProps }) => {
+export const SVGArrow: React.FC<FlatIconProps> = ({
+    active,
+    className = "",
+    color = "#5D6066",
+    ...restProps
+}) => {
     return (
         <svg
             className={`${className} flat-icon ${active ? "is-active" : ""}`}
@@ -14,9 +19,9 @@ export const SVGArrow: React.FC<FlatIconProps> = ({ active, className = "", ...r
             {...restProps}
         >
             <path
-                className="flat-icon-stroke-color"
+                className="flat-icon-stroke-color flat-icon-fill-color"
                 d="M5 19 15.5 8.5M17 12l2-7-7 2 3.5 1.5L17 12Z"
-                stroke="#5D6066"
+                stroke={color}
                 strokeLinejoin="round"
                 strokeWidth="1.25"
             ></path>
