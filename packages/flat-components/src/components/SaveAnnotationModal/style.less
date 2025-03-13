@@ -11,15 +11,66 @@
         height: 480px - 54px;
         overflow-y: auto;
     }
-    .save-annotation-modal-save{
+    .save-annotation-modal-save {
         display: flex;
-        justify-content: center;
+        gap: 15px; 
         align-items: center;
-        gap: 10px;
-        // margin-top: 20px;
         position: absolute;
-        bottom: 20px;
-        right: 20px;
+        bottom: 16px;
+        right: 30px;
+    }
+    
+    .save-annotation-modal-format,
+    .save-annotation-modal-button {
+        background-color: #6F3393;
+        width: 84px;
+        color: white;
+        border-radius: 16px;
+        padding: 4px 12px;
+        cursor: pointer;
+        border: none; 
+        outline: none; 
+        font-family: inherit;
+        font-size: 11px;
+        font-weight: 400; 
+        transition: background-color 0.3s ease;
+    
+        &:hover {
+            background-color: #8F4EBF;
+        }
+
+    }
+    
+    .save-annotation-modal-format {
+        appearance: none; 
+        -webkit-appearance: none;
+        -moz-appearance: none; 
+        background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3e%3cpath d='M7 10l5 5 5-5z'/%3e%3c/svg%3e"); /* Custom dropdown arrow */
+        background-repeat: no-repeat;
+        background-position: right 10px center; 
+        background-size: 12px; 
+        padding-right: 15px;
+        // dropdown color
+        // gap
+        option{
+            background-color: #6F3393;
+            color: white;
+            padding: 8px;
+            font-size: 11px;
+            font-weight: 400;
+            border: none;
+            cursor: pointer;
+            &:hover{
+                background-color: #8F4EBF;
+            }
+        }
+        margin-top: 10px ;
+    }
+    
+    /* Focus state for accessibility */
+    .save-annotation-modal-format:focus,
+    .save-annotation-modal-button:focus {
+        box-shadow: 0 0 0 2px rgba(111, 51, 147, 0.5); /* Add a focus ring */
     }
 }
 
@@ -59,7 +110,6 @@
     justify-content: center;
     cursor: pointer;
     transition: background-color 0.2s ease;
-    color: red;
     z-index: 100;
     img {
         width: 12px;

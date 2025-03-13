@@ -1,36 +1,23 @@
 import "./style.less";
-import downloadSVG from "./icons/download.svg";
 import deleteSVG from "./icons/SVGDelete.svg";
 import classNames from "classnames";
-import React, {
-    forwardRef,
-    useCallback,
-    useEffect,
-    useImperativeHandle,
-    useRef,
-    useState,
-} from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useTranslate } from "@netless/flat-i18n";
-import { Modal, message, Spin } from "antd";
+import { Modal, message } from "antd";
 
 import { useSafePromise } from "../../utils/hooks";
-import { LoadingOutlined } from "@ant-design/icons";
+import jsPDF from "jspdf";
+import PPTXgen from "pptxgenjs";
+import JSZip from "jszip";
 let downloadFormat = "PNG";
 function download(
-    canvas: HTMLCanvasElement,
-    filename = "annotation",
     images: Array<Promise<HTMLCanvasElement | null>>,
     failText = "Save image failed",
 ): void {
     try {
-        console.log("download", downloadFormat);
-        const a = document.createElement("a");
-        a.download = filename;
-        a.href = canvas.toDataURL();
-        a.click();
-        // download the complete array of images
         switch (downloadFormat) {
-            case "PNG":
+            case "PNG": {
+                console.log("PNG");
                 Promise.all(images)
                     .then(canvases => {
                         canvases.forEach((canvas, index) => {
@@ -47,22 +34,67 @@ function download(
                         message.error(failText);
                     });
                 break;
-            case "PDF":
-
-                break;
-            case "PPTX":
-                break;
-            case "IWB":
-                // download the complete array of images
+            }
+            case "PDF": {
+                console.log("PDF");
+                console.log(images);
                 Promise.all(images)
                     .then(canvases => {
+                        const pdf = new jsPDF();
                         canvases.forEach((canvas, index) => {
                             if (canvas) {
-                                const a = document.createElement("a");
-                                a.download = `annotation-${index + 1}.iwb`;
-                                a.href = canvas.toDataURL();
-                                a.click();
+                                const imgData = canvas.toDataURL("image/png"); //
+                                if (index > 0) {
+                                    pdf.addPage();
+                                }
+                                pdf.addImage(imgData, "PNG", 10, 10, 190, 0); //
                             }
+                        });
+                        pdf.save("annotations.pdf"); //
+                    })
+                    .catch(err => {
+                        console.error(err);
+                        message.error(failText);
+                    });
+
+                break;
+            }
+            case "PPTX": {
+                console.log("PPTX");
+                console.log(images);
+                Promise.all(images)
+                    .then(canvases => {
+                        const pptx = new PPTXgen();
+                        canvases.forEach(canvas => {
+                            if (canvas) {
+                                const slide = pptx.addSlide();
+                                const imgData = canvas.toDataURL("image/png");
+                                slide.addImage({ data: imgData, x: 0.5, y: 0.5, w: 9, h: 5 });
+                            }
+                        });
+                        pptx.writeFile({ fileName: "annotations.pptx" });
+                    })
+                    .catch(err => {
+                        console.error(err);
+                        message.error(failText);
+                    });
+                break;
+            }
+            case "IWB": {
+                Promise.all(images)
+                    .then(canvases => {
+                        const zip = new JSZip();
+                        canvases.forEach((canvas, index) => {
+                            if (canvas) {
+                                const imgData = canvas.toDataURL("image/png").split(",")[1];
+                                zip.file(`annotation-${index + 1}.iwb`, imgData, { base64: true });
+                            }
+                        });
+                        zip.generateAsync({ type: "blob" }).then((content: Blob | MediaSource) => {
+                            const a = document.createElement("a");
+                            a.download = "annotations.zip";
+                            a.href = URL.createObjectURL(content);
+                            a.click();
                         });
                     })
                     .catch(err => {
@@ -70,8 +102,10 @@ function download(
                         message.error(failText);
                     });
                 break;
-            default:
+            }
+            default: {
                 break;
+            }
         }
     } catch (err) {
         console.error(err);
@@ -93,33 +127,29 @@ export const SaveAnnotationModal: React.FC<SaveAnnotationModalProps> = ({
     const [Downloadimages, setDownloadImages] = useState(images);
     const [saveFormat, setSaveFormat] = useState("PNG");
 
-    const handleFormatChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const handleFormatChange = (e: React.ChangeEvent<HTMLSelectElement>): void => {
         const format = e.target.value;
         setSaveFormat(format);
         downloadFormat = format;
     };
     const [removeIndex, setRemoveIndex] = useState<number[]>([]);
     const t = useTranslate();
-    const removeImage = (index: number) => {
+    const removeImage = (index: number): void => {
         images[index] = Promise.resolve(null);
+        // images[index] = Promise.reject(null);
         const _: number[] = [];
         _.push(index);
         setRemoveIndex([...removeIndex, ..._]);
         setDownloadImages([...Downloadimages]);
     };
-    const annotationRefs = useRef<Array<{ downloadImage: () => void } | null>>([]);
-    const handleDownloadAll = () => {
-        annotationRefs.current.forEach(ref => {
-            if (ref) {
-                ref.downloadImage();
-            }
-        });
+    const handleDownloadAll = (): void => {
+        download(Downloadimages);
     };
-    useEffect (() => {
-       if(visible) {
+    useEffect(() => {
+        if (visible) {
             setRemoveIndex([]);
             setDownloadImages(images);
-         }
+        }
     }, [visible, images]);
     return (
         <Modal
@@ -142,11 +172,6 @@ export const SaveAnnotationModal: React.FC<SaveAnnotationModalProps> = ({
                                 footerText={String(index + 1)}
                                 image={image}
                                 images={Downloadimages}
-                                ref={el =>
-                                    (annotationRefs.current[index] = el as {
-                                        downloadImage: () => void;
-                                    } | null)
-                                } // Assign ref to each Annotation
                                 onRemove={() => removeImage(index)}
                             />
                         )}
@@ -183,78 +208,41 @@ interface AnnotationProps {
     images: Array<Promise<HTMLCanvasElement | null>>;
 }
 
-const Annotation = forwardRef(
-    (
-        { image, footerText, failText = "Save image failed", onRemove, images }: AnnotationProps,
-        ref,
-    ) => {
-        const sp = useSafePromise();
-        const t = useTranslate();
-        const refDiv = useRef<HTMLDivElement>(null);
-        const [loading, setLoading] = useState(true);
-        const [canvas, setCanvas] = useState<HTMLCanvasElement | null>(null);
+const Annotation: React.FC<AnnotationProps> = ({ image, footerText, onRemove }) => {
+    const sp = useSafePromise();
+    const refDiv = useRef<HTMLDivElement>(null);
+    const [canvas, setCanvas] = useState<HTMLCanvasElement | null>(null);
 
-        useEffect(() => {
-            sp(image).then(canvas => {
-                setCanvas(canvas);
-                setLoading(false);
-            });
-        }, [image, sp]);
+    useEffect(() => {
+        sp(image).then(canvas => {
+            setCanvas(canvas);
+        });
+    }, [image, sp]);
 
-        useEffect(() => {
-            const div = refDiv.current;
-            if (!div) {
-                return;
-            }
-            if (canvas) {
-                div.appendChild(canvas);
-            } else if (div.firstChild) {
-                div.removeChild(div.firstChild);
-            }
-        }, [canvas]);
-
-        const downloadImage = useCallback(() => {
-            if (canvas) {
-                download(canvas, "annotation", images, failText);
-            }
-        }, [canvas, failText, images]);
-
-        // Expose the downloadImage function to the parent component
-        useImperativeHandle(ref, () => ({
-            downloadImage,
-        }));
-
-        return (
-            <div
-                className={classNames("save-annotation", {
-                    "is-loading": !canvas,
-                })}
-                title={t("save")}
-            >
-                <img
-                    alt="delete"
-                    className="save-annotation-delete"
-                    onClick={onRemove}
-                    src={deleteSVG}
-                />
-                {loading && (
-                    <div className="save-annotation-loader">
-                        <Spin indicator={<LoadingOutlined spin />} size="large" />
-                    </div>
-                )}
-                <div ref={refDiv} className="save-annotation-image" />
-                <div className="save-annotation-actions">
-                    <img
-                        alt="download"
-                        src={downloadSVG}
-                        title={t("save")}
-                        onClick={downloadImage}
-                    />
-                </div>
-                <div className="save-annotation-footer">{footerText}</div>
+    useEffect(() => {
+        const div = refDiv.current;
+        if (!div) {
+            return;
+        }
+        if (canvas) {
+            div.appendChild(canvas);
+        } else if (div.firstChild) {
+            div.removeChild(div.firstChild);
+        }
+    }, [canvas]);
+    return (
+        <div
+            className={classNames("save-annotation", {
+                "is-loading": !canvas,
+            })}
+        >
+            <div className="save-annotation-delete" onClick={onRemove}>
+                <img alt="delete" src={deleteSVG} />
             </div>
-        );
-    },
-);
 
+            <div ref={refDiv} className="save-annotation-image" />
+            <div className="save-annotation-footer">{footerText}</div>
+        </div>
+    );
+};
 export default Annotation;
