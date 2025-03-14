@@ -21,7 +21,7 @@ export const SVGCirclePlusFilled: React.FC<FlatIconProps> = ({
                 className="flat-icon-fill-color"
                 clipRule="evenodd"
                 d="M12 3.375a8.625 8.625 0 1 0 0 17.25 8.625 8.625 0 0 0 0-17.25Zm.625 8H16v1.25h-3.375V16h-1.25v-3.375H8v-1.25h3.375V8h1.25v3.375Z"
-                fill="#5D6066"
+                fill="#6F3393"
                 fillRule="evenodd"
             ></path>
         </svg>

@@ -24,7 +24,7 @@ export const SVGSound: React.FC<FlatIconProps> = ({ active, className = "", ...r
             <path
                 className="flat-icon-fill-color"
                 d="M14.512 7.39a7.379 7.379 0 0 1 0 9.22l.976.78a8.629 8.629 0 0 0 0-10.78l-.976.78Z"
-                fill="#5D6066"
+                fill="#6F3393"
             ></path>
         </svg>
     );

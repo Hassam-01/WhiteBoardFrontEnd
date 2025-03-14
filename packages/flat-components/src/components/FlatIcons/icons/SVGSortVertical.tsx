@@ -21,7 +21,7 @@ export const SVGSortVertical: React.FC<FlatIconProps> = ({
                 className="flat-icon-fill-color"
                 clipRule="evenodd"
                 d="m16 10-2-2-2-2-2 2-2 2h8Zm0 4-2 2-2 2-2-2-2-2h8Z"
-                fill="#5D6066"
+                fill="#6F3393"
                 fillRule="evenodd"
             ></path>
         </svg>

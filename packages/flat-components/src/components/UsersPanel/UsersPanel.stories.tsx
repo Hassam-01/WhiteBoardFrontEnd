@@ -38,9 +38,9 @@ Overview.args = {
     ownerUUID: isCreator ? currentUser.userUUID : chance.pickone(users).userUUID,
     userUUID: currentUser.userUUID,
     users,
-    getDeviceState: () => ({
-        camera: faker.datatype.boolean(),
-        mic: faker.datatype.boolean(),
-    }),
+    // getDeviceState: () => ({
+    //     camera: faker.datatype.boolean(),
+    //     mic: faker.datatype.boolean(),
+    // }),
     getVolumeLevel: () => faker.datatype.number({ min: 0, max: 1, precision: 0.01 }),
 };

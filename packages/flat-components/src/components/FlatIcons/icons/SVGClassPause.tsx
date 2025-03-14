@@ -21,7 +21,7 @@ export const SVGClassPause: React.FC<FlatIconProps> = ({
                 className="flat-icon-fill-color"
                 clipRule="evenodd"
                 d="M18 11h-2v7h2v-7Zm4 0h-2v7h2v-7Z"
-                fill="#5D6066"
+                fill="#6F3393"
                 fillRule="evenodd"
             ></path>
             <path

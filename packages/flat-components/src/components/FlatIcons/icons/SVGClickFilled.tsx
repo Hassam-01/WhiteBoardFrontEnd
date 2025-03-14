@@ -20,7 +20,7 @@ export const SVGClickFilled: React.FC<FlatIconProps> = ({
             <path
                 className="flat-icon-stroke-color flat-icon-fill-color"
                 d="M10 18 6 6l12 4-6 2-2 6Z"
-                fill="#5D6066"
+                fill="#6F3393"
                 stroke="#5D6066"
                 strokeLinejoin="round"
                 strokeWidth="1.25"

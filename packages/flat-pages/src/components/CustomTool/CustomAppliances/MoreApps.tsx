@@ -1,14 +1,14 @@
 import React from "react";
 import "./MoreApps.less";
-import CodeSVG from "../CustomIcons/Code.svg";
-import DiceSVG from "../CustomIcons/Dice.svg";
-import GeoGebraSVG from "../CustomIcons/GeoGebra.svg";
-import MindMapSVG from "../CustomIcons/MindMap.svg";
+import { SVGCode } from "../CustomIcons/Code";
+import { SVGDice } from "../CustomIcons/Dice";
+import { SVGGeoGebra } from "../CustomIcons/GeoGebra";
+import { SVGMindMap } from "../CustomIcons/MindMap";
 
-import PresetsSVG from "../CustomIcons/Presets.svg";
-import SelectorSVG from "../CustomIcons/Selector.svg";
-import StopWatchSVG from "../CustomIcons/StopWatch.svg";
-import SaveAnnotationsSVG from "../CustomIcons/SaveAnnotations.svg";
+import { SVGPresets } from "../CustomIcons/Presets";
+import { SVGSelectorApp } from "../CustomIcons/Selector";
+import { SVGStopWatch } from "../CustomIcons/StopWatch";
+import { SVGSaveAnnotation } from "../CustomIcons/SaveAnnotations";
 import { FlatServices } from "@netless/flat-services";
 import { type FastboardApp } from "@netless/fastboard";
 const flatServices = FlatServices.getInstance();
@@ -39,11 +39,11 @@ const MoreApps: React.FC<MoreProps> = ({ app }) => {
                 className="toolbar-apps-box"
                 onClick={() => app?.manager.addApp({ kind: "Monaco" })}
             >
-                <img className="toolbar-apps" src={CodeSVG} alt="" />
+                <SVGCode />
                 <span className="toolbar-apps-label">Code</span>
             </div>
             <div className="toolbar-apps-box" onClick={() => app?.manager.addApp({ kind: "Dice" })}>
-                <img className="toolbar-apps" src={DiceSVG} alt="" />
+                <SVGDice />
                 <span className="toolbar-apps-label">Dice</span>
             </div>
             <div
@@ -55,7 +55,7 @@ const MoreApps: React.FC<MoreProps> = ({ app }) => {
                     })
                 }
             >
-                <img className="toolbar-apps" src={GeoGebraSVG} alt="" />
+                <SVGGeoGebra />
                 <span className="toolbar-apps-label">Geo Gebra</span>
             </div>
             <div
@@ -68,29 +68,29 @@ const MoreApps: React.FC<MoreProps> = ({ app }) => {
                     console.log("1", (window as any).define);
                 }}
             >
-                <img className="toolbar-apps" src={MindMapSVG} alt="" />
+                <SVGMindMap />
                 <span className="toolbar-apps-label">MindMap</span>
             </div>
             <div className="toolbar-apps-box" onClick={() => handleEmitEvent("insertPresets")}>
-                <img className="toolbar-apps" src={PresetsSVG} alt="" />
+                <SVGPresets />
                 <span className="toolbar-apps-label">Presets</span>
             </div>
             <div className="toolbar-apps-box" onClick={() => handleEmitEvent("exportAnnotations")}>
-                <img className="toolbar-apps" src={SaveAnnotationsSVG} alt="" />
+                <SVGSaveAnnotation />
                 <span className="toolbar-apps-label">Save Annotations</span>
             </div>
             <div
                 className="toolbar-apps-box"
                 onClick={() => app?.manager.addApp({ kind: "Selector" })}
             >
-                <img className="toolbar-apps" src={SelectorSVG} alt="" />
+                <SVGSelectorApp />
                 <span className="toolbar-apps-label">Selector</span>
             </div>
             <div
                 className="toolbar-apps-box"
                 onClick={() => app?.manager.addApp({ kind: "Countdown" })}
             >
-                <img className="toolbar-apps" src={StopWatchSVG} alt="" />
+                <SVGStopWatch />
                 <span className="toolbar-apps-label">Stop Watch</span>
             </div>{" "}
         </div>

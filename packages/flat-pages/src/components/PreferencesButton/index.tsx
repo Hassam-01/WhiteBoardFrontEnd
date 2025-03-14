@@ -77,7 +77,7 @@ export const PreferencesButton = observer<PreferencesButtonProps>(function Prefe
                 onCancel={onCancel}
             >
                 <div className="preferences-modal-content" onClick={updateIndex}>
-                    <nav className="preferences-modal-nav">
+                    {/* <nav className="preferences-modal-nav">
                         <ul>
                             {menu.map(({ icon: Icon, text }, i) => (
                                 <li key={i}>
@@ -93,16 +93,16 @@ export const PreferencesButton = observer<PreferencesButtonProps>(function Prefe
                                 </li>
                             ))}
                         </ul>
-                    </nav>
+                    </nav> */}
                     <div className="preferences-modal-body">
                         <GeneralSettings classroom={classroom} />
                         <hr />
-                        <CameraSettings classroom={classroom} />
-                        <hr />
-                        <SpeakerSettings classroom={classroom} />
-                        <hr />
-                        <MicrophoneSettings classroom={classroom} />
-                        <hr />
+                        {/* <CameraSettings classroom={classroom} /> */}
+                        {/* <hr /> */}
+                        {/* <SpeakerSettings classroom={classroom} /> */}
+                        {/* <hr /> */}
+                        {/* <MicrophoneSettings classroom={classroom} /> */}
+                        {/* <hr /> */}
                         <ShortcutSettings />
                     </div>
                 </div>

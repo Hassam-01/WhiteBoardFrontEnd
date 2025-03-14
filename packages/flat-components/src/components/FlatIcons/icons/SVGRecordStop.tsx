@@ -33,7 +33,7 @@ export const SVGRecordStop: React.FC<FlatIconProps> = ({
                 strokeLinejoin="round"
                 strokeWidth="1.25"
             ></circle>
-            <path className="flat-icon-fill-color" d="M5 14h2v2H5z" fill="#5D6066"></path>
+            <path className="flat-icon-fill-color" d="M5 14h2v2H5z" fill="#6F3393"></path>
             <path
                 className="flat-icon-stroke-color"
                 clipRule="evenodd"

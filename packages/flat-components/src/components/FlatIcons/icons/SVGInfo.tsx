@@ -13,7 +13,7 @@ export const SVGInfo: React.FC<FlatIconProps> = ({ active, className = "", ...re
             xmlns="http://www.w3.org/2000/svg"
             {...restProps}
         >
-            <circle className="flat-icon-fill-color" cx="12" cy="6" fill="#5D6066" r="1"></circle>
+            <circle className="flat-icon-fill-color" cx="12" cy="6" fill="#6F3393" r="1"></circle>
             <path
                 className="flat-icon-stroke-color"
                 d="M12 19V9"

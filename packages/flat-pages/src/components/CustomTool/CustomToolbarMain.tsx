@@ -1,26 +1,28 @@
 import React, { useState, useRef, useEffect } from "react";
 import "./CustomToolbarMain.less";
-import SVGCustomPencilSVG from "./CustomIcons/SVGCustomPencil.svg";
-import TSVG from "./CustomIcons/T.svg";
-import SVGCustomShapeSVG from "./CustomIcons/SVGCustomShape.svg";
-import SVGCustomEraserSVG from "./CustomIcons/SVGCustomEraser.svg";
-import SVGCustomMoreSVG from "./CustomIcons/SVGCustomMore.svg";
-import SVGCustomSelectSVG from "./CustomIcons/SVGCustomSelect.svg";
-import SVGCustomClickSVG from "./CustomIcons/SVGCustomClick.svg";
 import fastboardSingleton from "../../../../../service-providers/fastboard/src/fastboardSingleton";
 import Pencil from "./CustomAppliances/Pencil";
 import MoreApps from "./CustomAppliances/MoreApps";
 import Eraser from "./CustomAppliances/Eraser";
 import Shape from "./CustomAppliances/Shapes";
+import { SVGPencil } from "../../../../flat-components/src/components/FlatIcons/icons/SVGPencil";
+import { SVGText } from "../../../../flat-components/src/components/FlatIcons/icons/SVGText";
+import { SVGShapes } from "../../../../flat-components/src/components/FlatIcons/icons/SVGShapes";
+import { SVGEraser } from "../../../../flat-components/src/components/FlatIcons/icons/SVGEraser";
+import { SVGInsert } from "../../../../flat-components/src/components/FlatIcons/icons/SVGInsert";
+import { SVGMore } from "../../../../flat-components/src/components/FlatIcons/icons/SVGMore";
+import { SVGSelector } from "../../../../flat-components/src/components/FlatIcons/icons/SVGSelector";
+import { SVGClick } from "../../../../flat-components/src/components/FlatIcons/icons/SVGClick";
 
 let app = fastboardSingleton.getFastboardApp();
 
 interface PopupProps {
     children: React.ReactNode;
     position: { bottom: number; left: number };
+    isMore: boolean;
 }
 
-const Popup: React.FC<PopupProps> = ({ children, position }) => {
+const Popup: React.FC<PopupProps> = ({ children, position, isMore }) => {
     return (
         <div
             className="popup"
@@ -32,6 +34,7 @@ const Popup: React.FC<PopupProps> = ({ children, position }) => {
             }}
         >
             {children}
+            <div className={`${isMore ? "popup-edge-more" : "popup-edge"}`}></div>
         </div>
     );
 };
@@ -53,8 +56,15 @@ const CustomToolbarMain: React.FC = () => {
         const toolbarRect = toolbarRef.current?.getBoundingClientRect();
 
         if (toolbarRect) {
-            const popupBottom = toolbarRect.top - 10;
-            setPopupPosition({ bottom: popupBottom, left: rect.left });
+            let popupLeft = rect.left;
+            const popupBottom = toolbarRect.top - 15;
+
+            if (tool === "more") {
+                const popupWidth = 280;
+                popupLeft = rect.left - popupWidth + rect.width;
+            }
+
+            setPopupPosition({ bottom: popupBottom, left: popupLeft });
             setActivePopup(tool);
         }
     };
@@ -65,7 +75,7 @@ const CustomToolbarMain: React.FC = () => {
             if (popupElement) {
                 const popupHeight = popupElement.offsetHeight;
                 const toolbarRect = toolbarRef.current.getBoundingClientRect();
-                const newBottom = toolbarRect.top - popupHeight - 20;
+                const newBottom = toolbarRect.top - popupHeight - 30;
 
                 // Only update if the position actually changes
                 if (newBottom !== popupPosition.bottom) {
@@ -92,7 +102,6 @@ const CustomToolbarMain: React.FC = () => {
         };
     }, []);
 
-    // Update popup position on window resize or scroll
     useEffect(() => {
         const updatePopupPosition = (): void => {
             if (activePopup && popupPosition && toolbarRef.current) {
@@ -113,43 +122,50 @@ const CustomToolbarMain: React.FC = () => {
             window.removeEventListener("scroll", updatePopupPosition);
         };
     }, [activePopup, popupPosition]);
-    const handleAppliance = (appliance: string) => {
+    const handleAppliance = (appliance: string): void => {
         app = fastboardSingleton.getFastboardApp();
         switch (appliance) {
-            case "clicker":
+            case "clicker": {
                 app?.setAppliance("clicker");
                 break;
-            case "selector":
+            }
+            case "selector": {
                 app?.setAppliance("selector");
                 break;
-            case "text":
+            }
+            case "text": {
                 app?.setAppliance("text");
                 break;
-            case "pencil":
+            }
+            case "pencil": {
                 app?.setAppliance("pencil");
                 break;
-            case "eraser":
+            }
+            case "eraser": {
                 app?.setAppliance("eraser");
                 break;
-            case "shape":
+            }
+            case "shape": {
                 app?.setAppliance("shape");
                 break;
-            default:
+            }
+            default: {
                 break;
+            }
         }
     };
     return (
         <div ref={toolbarRef} className="toolbar" style={{ position: "relative" }}>
             {/* Click Tool */}
             <div className="toolbar-item-box" onClick={() => handleAppliance("click")}>
-                <img alt="Click" className="toolbar-item" src={SVGCustomClickSVG} />
-                Click
+                <SVGClick />
+                <span>Clicker</span>
             </div>
 
             {/* Selector Tool */}
             <div className="toolbar-item-box" onClick={() => handleAppliance("selector")}>
-                <img alt="Selector" className="toolbar-item" src={SVGCustomSelectSVG} />
-                Selector
+                <SVGSelector />
+                <span>Selector</span>
             </div>
 
             {/* Pencil Tool */}
@@ -160,14 +176,14 @@ const CustomToolbarMain: React.FC = () => {
                     handleAppliance("pencil");
                 }}
             >
-                <img alt="Pencil" className="toolbar-item" src={SVGCustomPencilSVG} />
-                Pencil
+                <SVGPencil />
+                <span>Pencil</span>
             </div>
 
             {/* Text Tool */}
             <div className="toolbar-item-box" onClick={() => handleAppliance("text")}>
-                <img alt="Text" className="toolbar-item" src={TSVG} />
-                Text
+                <SVGText />
+                <span>Text</span>
             </div>
 
             {/* Shape Tool */}
@@ -178,8 +194,8 @@ const CustomToolbarMain: React.FC = () => {
                     handleAppliance("shape");
                 }}
             >
-                <img alt="Shape" className="toolbar-item" src={SVGCustomShapeSVG} />
-                Shape
+                <SVGShapes />
+                <span>Shape</span>
             </div>
 
             {/* Eraser Tool */}
@@ -190,8 +206,19 @@ const CustomToolbarMain: React.FC = () => {
                     handleAppliance("eraser");
                 }}
             >
-                <img alt="Eraser" className="toolbar-item" src={SVGCustomEraserSVG} />
-                Eraser
+                <SVGEraser />
+                <span>Eraser</span>
+            </div>
+
+            <div
+                className="toolbar-item-box"
+                onClick={e => {
+                    // handlePopupToggle("eraser", e);
+                    // handleAppliance("eraser");
+                }}
+            >
+                <SVGInsert />
+                <span>Insert</span>
             </div>
 
             {/* More Options */}
@@ -202,30 +229,30 @@ const CustomToolbarMain: React.FC = () => {
                     handleAppliance("more");
                 }}
             >
-                <img alt="More" className="toolbar-item" src={SVGCustomMoreSVG} />
-                More
+                <SVGMore />
+                <span>More</span>
             </div>
 
             {activePopup === "pencil" && popupPosition && (
-                <Popup position={popupPosition}>
+                <Popup isMore={false} position={popupPosition}>
                     <Pencil app={app} />
                 </Popup>
             )}
 
             {activePopup === "shape" && popupPosition && (
-                <Popup position={popupPosition}>
+                <Popup isMore={false} position={popupPosition}>
                     <Shape app={app} />
                 </Popup>
             )}
 
             {activePopup === "eraser" && popupPosition && (
-                <Popup position={popupPosition}>
+                <Popup isMore={false} position={popupPosition}>
                     <Eraser app={app} />
                 </Popup>
             )}
 
             {activePopup === "more" && popupPosition && (
-                <Popup position={popupPosition}>
+                <Popup isMore={true} position={popupPosition}>
                     <MoreApps app={app} />
                 </Popup>
             )}

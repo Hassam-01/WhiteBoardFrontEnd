@@ -17,7 +17,7 @@ export const SVGCircleExclamationO: React.FC<FlatIconProps> = ({
             xmlns="http://www.w3.org/2000/svg"
             {...restProps}
         >
-            <circle className="flat-icon-fill-color" cx="12" cy="16" fill="#5D6066" r="1"></circle>
+            <circle className="flat-icon-fill-color" cx="12" cy="16" fill="#6F3393" r="1"></circle>
             <circle
                 className="flat-icon-stroke-color"
                 cx="12"

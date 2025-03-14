@@ -28,7 +28,7 @@ export const SVGSelectorFilled: React.FC<FlatIconProps> = ({
             <path
                 className="flat-icon-stroke-color flat-icon-fill-color"
                 d="m15 20-2-7 7 2-3.5 1.5L15 20Z"
-                fill="#5D6066"
+                fill="#6F3393"
                 stroke="#5D6066"
                 strokeLinejoin="round"
                 strokeWidth="1.25"

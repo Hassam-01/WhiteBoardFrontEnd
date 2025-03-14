@@ -13,24 +13,48 @@ export const SVGSetting: React.FC<FlatIconProps> = ({ active, className = "", ..
             xmlns="http://www.w3.org/2000/svg"
             {...restProps}
         >
-            <path
-                className="flat-icon-stroke-color"
-                clipRule="evenodd"
-                d="M11.5 4.28868C11.8094 4.11004 12.1906 4.11004 12.5 4.28868L18.4282 7.71132C18.7376 7.88996 18.9282 8.22008 18.9282 8.57735V15.4226C18.9282 15.7799 18.7376 16.11 18.4282 16.2887L12.5 19.7113C12.1906 19.89 11.8094 19.89 11.5 19.7113L5.5718 16.2887C5.2624 16.11 5.0718 15.7799 5.0718 15.4226V8.57735C5.0718 8.22008 5.2624 7.88996 5.5718 7.71132L11.5 4.28868Z"
-                fillRule="evenodd"
-                stroke="#5D6066"
-                strokeLinejoin="round"
-                strokeWidth="1.25"
-            />
-            <circle
-                className="flat-icon-stroke-color"
-                cx="12"
-                cy="12"
-                r="2"
-                stroke="#5D6066"
-                strokeLinejoin="round"
-                strokeWidth="1.25"
-            />
+            <mask
+                height="24"
+                id="mask0_754_1119"
+                maskUnits="userSpaceOnUse"
+                style={{ maskType: "alpha" }}
+                width="24"
+                x="0"
+                y="0"
+            >
+                <rect
+                    className="flat-icon-stroke-color"
+                    fill="#6F3393"
+                    height="24"
+                    stroke="#6F3393"
+                    width="24"
+                />
+            </mask>
+            <g mask="url(#mask0_754_1119)">
+                <path
+                    className="flat-icon-stroke-color"
+                    d="M21.4246 11.501C21.7819 12.1198 21.7819 12.8822 21.4246 13.501L17.8288 19.7291C17.4715 20.3479 16.8113 20.7291 16.0968 20.7291H8.90519C8.19066 20.7291 7.5304 20.3479 7.17314 19.7291L3.57735 13.501C3.22008 12.8822 3.22008 12.1198 3.57735 11.501L7.17314 5.27289C7.5304 4.65409 8.19066 4.27289 8.90519 4.27289H16.0968C16.8113 4.27289 17.4715 4.65409 17.8288 5.27289L21.4246 11.501Z"
+                    stroke="#6F3393"
+                    strokeWidth="2"
+                />
+                <circle
+                    className="flat-icon-stroke-color"
+                    cx="12.5013"
+                    cy="12.5013"
+                    r="5.2435"
+                    stroke="#6F3393"
+                    strokeOpacity="0.1"
+                    strokeWidth="2"
+                />
+                <circle
+                    className="flat-icon-stroke-color"
+                    cx="12.5015"
+                    cy="12.5015"
+                    r="2.44286"
+                    stroke="#6F3393"
+                    strokeWidth="2"
+                />
+            </g>
         </svg>
     );
 };

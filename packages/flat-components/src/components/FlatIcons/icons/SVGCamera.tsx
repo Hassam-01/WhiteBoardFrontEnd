@@ -35,7 +35,7 @@ export const SVGCamera: React.FC<FlatIconProps> = ({ active, className = "", ...
                 className="flat-icon-fill-color"
                 cx="14.625"
                 cy="6.625"
-                fill="#5D6066"
+                fill="#6F3393"
                 r=".625"
             ></circle>
             <path

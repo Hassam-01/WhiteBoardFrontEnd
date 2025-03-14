@@ -5,7 +5,9 @@ import SVGCustomNextSVG from "./CustomIcons/SVGCustomNext.svg";
 import "./CustomToolbarRight.less";
 import FastboardSingleton from "../../../../../service-providers/fastboard/src/fastboardSingleton";
 import { RoomPhase } from "white-web-sdk";
-
+import { SVGWhiteboardAdd } from "../../../../flat-components/src/components/FlatIcons/icons/SVGWhiteboardAdd";
+import {SVGNextPage} from "../../../../flat-components/src/components/FlatIcons/icons/SVGNextPage";
+import {SVGPrevPage} from "../../../../flat-components/src/components/FlatIcons/icons/SVGPrevPage";
 const CustomToolbarRight: React.FC = () => {
     const [prevDisabled, setPrevDisabled] = useState(true);
     const [nextDisabled, setNextDisabled] = useState(true);
@@ -58,15 +60,15 @@ const CustomToolbarRight: React.FC = () => {
     return (
         <div className="toolbar-right">
             <div className="toolbar-right-item-box" onClick={handleAddPage}>
-                <img alt="Add" className="toolbar-right-item" src={SVGCustomAddSVG} />
-                Add
+                <SVGWhiteboardAdd />
+                <span>Add</span>
             </div>
             <div
                 className={`toolbar-right-item-box ${prevDisabled ? "disabled" : ""}`}
                 onClick={handlePrevPage}
             >
-                <img alt="Previous" className="toolbar-right-item" src={SVGCustomPreviousSVG} />
-                Previous
+                <SVGPrevPage />
+                <span>Previous</span>
             </div>
             <div className="toolbar-right-item-box">
                 <span className="page-number">
@@ -78,8 +80,8 @@ const CustomToolbarRight: React.FC = () => {
                 className={`toolbar-right-item-box ${nextDisabled ? "disabled" : ""}`}
                 onClick={handleNextPage}
             >
-                <img alt="Next" className="toolbar-right-item" src={SVGCustomNextSVG} />
-                Next
+                <SVGNextPage />
+                <span>Next</span>
             </div>
         </div>
     );

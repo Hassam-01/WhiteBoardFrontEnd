@@ -1,18 +1,35 @@
 import React from "react";
 import "./CustomToolbarLeft.less";
-import SVGCustomUndoSVG from "./CustomIcons/SVGCustomUndo.svg";
-import SVGCustomRedoSVG from "./CustomIcons/SVGCustomRedo.svg";
+import { SVGUndo } from "../../../../flat-components/src/components/FlatIcons/icons/SVGUndo";
+import { SVGRedo } from "../../../../flat-components/src/components/FlatIcons/icons/SVGRedo";
 import fastboardSingleton from "../../../../../service-providers/fastboard/src/fastboardSingleton";
-const app = fastboardSingleton.getFastboardApp();
+let app = fastboardSingleton.getFastboardApp();
+
 const CustomToolbarLeft: React.FC = () => {
+    const handleRedoUndo = (type: string): void => {
+        app = fastboardSingleton.getFastboardApp();
+        switch (type) {
+            case "undo": {
+                app?.undo();
+                break;
+            }
+            case "redo": {
+                app?.redo();
+                break;
+            }
+            default: {
+                break;
+            }
+        }
+    };
     return (
         <div className="toolbar-left">
-            <div className="toolbar-left-item-box" onClick={() => app?.undo()}>
-                <img className="toolbar-left-item" src={SVGCustomUndoSVG} alt="Undo" />
+            <div className="toolbar-left-item-box" onClick={() => handleRedoUndo("undo")}>
+                <SVGUndo />
                 <span className="toolbar-left-item-label">Undo</span>
             </div>
-            <div className="toolbar-left-item-box" onClick={() => app?.redo()}>
-                <img className="toolbar-left-item" src={SVGCustomRedoSVG} alt="Redo" />
+            <div className="toolbar-left-item-box" onClick={() => handleRedoUndo("redo")}>
+                <SVGRedo />
                 <span className="toolbar-left-item-label">Redo</span>
             </div>
         </div>

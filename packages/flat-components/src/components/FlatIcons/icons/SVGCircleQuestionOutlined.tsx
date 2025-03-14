@@ -30,7 +30,7 @@ export const SVGCircleQuestionOutlined: React.FC<FlatIconProps> = ({
                 className="flat-icon-fill-color"
                 clipRule="evenodd"
                 d="M13.942 7.424a2.746 2.746 0 1 0-3.884 3.884l.884-.884-.103-.113a1.496 1.496 0 1 1 2.22.113l-1.5 1.5-.065.075a.626.626 0 0 0-.119.367v2h1.25l-.001-1.742 1.318-1.316.128-.137a2.746 2.746 0 0 0-.128-3.747ZM12 17.366a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z"
-                fill="#5D6066"
+                fill="#6F3393"
                 fillRule="evenodd"
             ></path>
         </svg>

@@ -28,7 +28,7 @@ export const SVGTestFilled: React.FC<FlatIconProps> = ({
                 className="flat-icon-stroke-color flat-icon-fill-color"
                 clipRule="evenodd"
                 d="M7 4.375C5.55025 4.375 4.375 5.55025 4.375 7V14C4.375 15.4497 5.55025 16.625 7 16.625H17C18.4497 16.625 19.625 15.4497 19.625 14V7C19.625 5.55025 18.4497 4.375 17 4.375H7Z"
-                fill="#5D6066"
+                fill="#6F3393"
                 fillRule="evenodd"
             />
             <path

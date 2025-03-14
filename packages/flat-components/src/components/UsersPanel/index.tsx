@@ -7,7 +7,8 @@ import { observer } from "mobx-react-lite";
 import { FlatI18nTFunction, useTranslate } from "@netless/flat-i18n";
 import { User } from "../../types/user";
 import { IconMic } from "../ClassroomPage/VideoAvatar/IconMic";
-import { SVGCamera, SVGCameraMute, SVGHandUp, SVGMicrophoneMute } from "../FlatIcons";
+import { SVGHandUp, SVGMicrophoneMute } from "../FlatIcons";
+// import { SVGCamera, SVGCameraMute, SVGHandUp, SVGMicrophoneMute } from "../FlatIcons";
 
 export interface UsersPanelRoomInfo {
     ownerName?: string;
@@ -19,13 +20,13 @@ export interface UsersPanelProps {
     userUUID: string;
     users: User[];
     roomInfo?: UsersPanelRoomInfo;
-    getDeviceState?: (userUUID: string) => { camera: boolean; mic: boolean };
+    // getDeviceState?: (userUUID: string) => { camera: boolean; mic: boolean };
     getVolumeLevel?: (userUUID: string) => number;
     onOffStageAll?: () => void;
-    onMuteAll?: () => void;
+    // onMuteAll?: () => void;
     onStaging?: (userUUID: string, isOnStage: boolean) => void;
     onWhiteboard?: (userUUID: string, enabled: boolean) => void;
-    onDeviceState?: (userUUID: string, camera: boolean, mic: boolean) => void;
+    // onDeviceState?: (userUUID: string, camera: boolean, mic: boolean) => void;
     generateAvatar?: (userUUID: string) => string;
 }
 
@@ -34,13 +35,13 @@ export const UsersPanel = /* @__PURE__ */ observer<UsersPanelProps>(function Use
     userUUID,
     users,
     roomInfo,
-    getDeviceState,
+    // getDeviceState,
     getVolumeLevel,
     onOffStageAll,
-    onMuteAll,
+    // onMuteAll,
     onStaging,
     onWhiteboard,
-    onDeviceState,
+    // onDeviceState,
     generateAvatar,
 }) {
     const t = useTranslate();
@@ -65,9 +66,9 @@ export const UsersPanel = /* @__PURE__ */ observer<UsersPanelProps>(function Use
                         <Button className="users-panel-btn" onClick={onOffStageAll}>
                             {t("all-off-stage")}
                         </Button>
-                        <Button className="users-panel-btn" onClick={onMuteAll}>
+                        {/* <Button className="users-panel-btn" onClick={onMuteAll}>
                             {t("all-mute-mic")}
-                        </Button>
+                        </Button> */}
                     </>
                 )}
             </div>
@@ -80,8 +81,8 @@ export const UsersPanel = /* @__PURE__ */ observer<UsersPanelProps>(function Use
                             </th>
                             <th>{t("staging")}</th>
                             <th>{t("whiteboard-access")}</th>
-                            <th>{t("camera")}</th>
-                            <th>{t("microphone")}</th>
+                            {/* <th>{t("camera")}</th> */}
+                            {/* <th>{t("microphone")}</th> */}
                             <th>
                                 {t("raised-hand")} ({users.filter(user => user.isRaiseHand).length})
                             </th>
@@ -92,13 +93,13 @@ export const UsersPanel = /* @__PURE__ */ observer<UsersPanelProps>(function Use
                             <Row
                                 key={user.userUUID}
                                 generateAvatar={generateAvatar}
-                                getDeviceState={getDeviceState}
+                                // getDeviceState={getDeviceState}
                                 getVolumeLevel={getVolumeLevel}
                                 isCreator={isCreator}
                                 t={t}
                                 user={user}
                                 userUUID={userUUID}
-                                onDeviceState={onDeviceState}
+                                // onDeviceState={onDeviceState}
                                 onStaging={onStaging}
                                 onWhiteboard={onWhiteboard}
                             />
@@ -118,11 +119,11 @@ interface RowProps {
     isCreator: boolean;
     userUUID: string;
     user: User;
-    getDeviceState: UsersPanelProps["getDeviceState"];
+    // getDeviceState: UsersPanelProps["getDeviceState"];
     getVolumeLevel: UsersPanelProps["getVolumeLevel"];
     onStaging: UsersPanelProps["onStaging"];
     onWhiteboard: UsersPanelProps["onWhiteboard"];
-    onDeviceState: UsersPanelProps["onDeviceState"];
+    // onDeviceState: UsersPanelProps["onDeviceState"];
     generateAvatar: UsersPanelProps["generateAvatar"];
 }
 
@@ -131,11 +132,11 @@ const Row = /* @__PURE__ */ observer(function Row({
     isCreator,
     userUUID,
     user,
-    getDeviceState,
-    getVolumeLevel: getAnyVolumeLevel,
+    // getDeviceState,
+    // getVolumeLevel: getAnyVolumeLevel,
     onStaging,
     onWhiteboard,
-    onDeviceState,
+    // onDeviceState,
     generateAvatar,
 }: RowProps): React.ReactElement {
     const [isAvatarLoadFailed, setAvatarLoadFailed] = useState(false);
@@ -145,23 +146,23 @@ const Row = /* @__PURE__ */ observer(function Row({
             ? generateAvatar(user.userUUID)
             : user.avatar;
 
-    const [camera, setCamera] = useState(false);
-    const [mic, setMic] = useState(false);
-    const getVolumeLevel = useCallback(() => {
-        return getAnyVolumeLevel?.(user.userUUID) || 0;
-    }, [getAnyVolumeLevel, user.userUUID]);
+    // const [camera, setCamera] = useState(false);
+    // const [mic, setMic] = useState(false);
+    // const getVolumeLevel = useCallback(() => {
+    //     return getAnyVolumeLevel?.(user.userUUID) || 0;
+    // }, [getAnyVolumeLevel, user.userUUID]);
 
-    useEffect(() => {
-        if (getDeviceState) {
-            const timer = setInterval(() => {
-                const { camera, mic } = getDeviceState(user.userUUID);
-                setCamera(camera);
-                setMic(mic);
-            }, 500);
-            return () => clearInterval(timer);
-        }
-        return;
-    }, [getDeviceState, user.userUUID]);
+    // useEffect(() => {
+    //     if (getDeviceState) {
+    //         const timer = setInterval(() => {
+    //             const { camera, mic } = getDeviceState(user.userUUID);
+    //             setCamera(camera);
+    //             setMic(mic);
+    //         }, 500);
+    //         return () => clearInterval(timer);
+    //     }
+    //     return;
+    // }, [getDeviceState, user.userUUID]);
 
     const isSelf = userUUID === user.userUUID;
 
@@ -214,7 +215,7 @@ const Row = /* @__PURE__ */ observer(function Row({
                     onChange={checked => onWhiteboard?.(user.userUUID, checked)}
                 />
             </td>
-            <td>
+            {/* <td>
                 {user.isSpeak && getDeviceState ? (
                     <button
                         className="users-panel-media-btn is-camera"
@@ -226,8 +227,8 @@ const Row = /* @__PURE__ */ observer(function Row({
                 ) : (
                     <span className="users-panel-media-off">--</span>
                 )}
-            </td>
-            <td>
+            </td> */}
+            {/* <td>
                 {user.isSpeak && getDeviceState ? (
                     <button
                         className={classNames("users-panel-media-btn is-mic", {
@@ -241,7 +242,7 @@ const Row = /* @__PURE__ */ observer(function Row({
                 ) : (
                     <span className="users-panel-media-off">--</span>
                 )}
-            </td>
+            </td> */}
             <td className="users-panel-btn-group">
                 {user.isRaiseHand ? (
                     isCreator ? (

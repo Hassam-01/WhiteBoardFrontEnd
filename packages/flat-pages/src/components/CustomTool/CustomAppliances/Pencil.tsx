@@ -35,10 +35,8 @@ const Pencil: React.FC<PencilProps> = ({ app }) => {
     const [strokeColor, setStrokeColor] = useState("#000000");
     const [isDotted, setIsDotted] = useState(false);
 
-    // Ref for the range input
     const pencilStrokeSizeRef = useRef<HTMLInputElement>(null);
 
-    // Update the --range-progress CSS variable when strokeWidth changes
     useEffect(() => {
         const pencilStrokeSize = pencilStrokeSizeRef.current;
         if (pencilStrokeSize) {

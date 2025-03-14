@@ -13,7 +13,7 @@ export const SVGReset: React.FC<FlatIconProps> = ({ active, className = "", ...r
             xmlns="http://www.w3.org/2000/svg"
             {...restProps}
         >
-            <circle className="flat-icon-fill-color" cx="12" cy="12" fill="#5D6066" r="2"></circle>
+            <circle className="flat-icon-fill-color" cx="12" cy="12" fill="#6F3393" r="2"></circle>
             <path
                 className="flat-icon-stroke-color"
                 d="M12 3v4m0 10v4m9-9h-4M7 12H3"

@@ -17,7 +17,7 @@ export const SVGBoardOff: React.FC<FlatIconProps> = ({ active, className = "", .
                 className="flat-icon-fill-color"
                 clipRule="evenodd"
                 d="M7.024 19.628H21v-1.256h-9.375V17a.625.625 0 0 0-.625-.625h-.724l-1.25 1.25h1.349v.747H8.279l-1.255 1.256ZM19.375 7.276V8h1.25V7a2.62 2.62 0 0 0-.136-.837l-1.114 1.113Zm-2.402-2.901H6A2.625 2.625 0 0 0 3.375 7v10h.973l.277-.277V7c0-.76.616-1.375 1.375-1.375h9.723l1.25-1.25Z"
-                fill="#5D6066"
+                fill="#6F3393"
                 fillRule="evenodd"
             />
             <path

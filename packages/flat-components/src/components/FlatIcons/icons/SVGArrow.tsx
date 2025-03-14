@@ -19,7 +19,7 @@ export const SVGArrow: React.FC<FlatIconProps> = ({
             {...restProps}
         >
             <path
-                className="flat-icon-stroke-color flat-icon-fill-color"
+                className="flat-icon-stroke-color"
                 d="M5 19 15.5 8.5M17 12l2-7-7 2 3.5 1.5L17 12Z"
                 stroke={color}
                 strokeLinejoin="round"

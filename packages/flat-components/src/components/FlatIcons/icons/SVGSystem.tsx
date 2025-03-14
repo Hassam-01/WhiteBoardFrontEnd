@@ -24,7 +24,7 @@ export const SVGSystem: React.FC<FlatIconProps> = ({ active, className = "", ...
                 className="flat-icon-stroke-color"
                 cx="7"
                 cy="11"
-                fill="#5D6066"
+                fill="#6F3393"
                 r="1"
                 stroke="#5D6066"
             ></circle>
@@ -32,7 +32,7 @@ export const SVGSystem: React.FC<FlatIconProps> = ({ active, className = "", ...
                 className="flat-icon-stroke-color"
                 cx="12"
                 cy="14"
-                fill="#5D6066"
+                fill="#6F3393"
                 r="1"
                 stroke="#5D6066"
             ></circle>
@@ -40,7 +40,7 @@ export const SVGSystem: React.FC<FlatIconProps> = ({ active, className = "", ...
                 className="flat-icon-stroke-color"
                 cx="17"
                 cy="9"
-                fill="#5D6066"
+                fill="#6F3393"
                 r="1"
                 stroke="#5D6066"
             ></circle>

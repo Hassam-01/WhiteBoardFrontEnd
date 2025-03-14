@@ -38,7 +38,7 @@ export const SVGMicrophone: React.FC<FlatIconProps> = ({
             <path
                 className="flat-icon-fill-color"
                 d="M4 16.625h2v-1.25H4v1.25Zm6 4h4v-1.25h-4v1.25Zm8-4h2v-1.25h-2v1.25Zm-4 4A4.625 4.625 0 0 0 18.625 16h-1.25A3.375 3.375 0 0 1 14 19.375v1.25ZM5.375 16A4.625 4.625 0 0 0 10 20.625v-1.25A3.375 3.375 0 0 1 6.625 16h-1.25Z"
-                fill="#5D6066"
+                fill="#6F3393"
             ></path>
         </svg>
     );

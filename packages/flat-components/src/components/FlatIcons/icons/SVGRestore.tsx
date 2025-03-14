@@ -23,7 +23,7 @@ export const SVGRestore: React.FC<FlatIconProps> = ({ active, className = "", ..
             <path
                 className="flat-icon-fill-color"
                 d="m15 10-7.202.464 4.003 6.005L15 10Zm-8.653 6.52 4.32-2.88-.694-1.04-4.32 2.88.694 1.04Z"
-                fill="#5D6066"
+                fill="#6F3393"
             />
             <path
                 className="flat-icon-stroke-color"

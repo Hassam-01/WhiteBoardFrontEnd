@@ -17,7 +17,7 @@ export const SVGPause: React.FC<FlatIconProps> = ({ active, className = "", ...r
                 className="flat-icon-fill-color"
                 clipRule="evenodd"
                 d="M10 5H6v14h4V5Zm8 0h-4v14h4V5Z"
-                fill="#5D6066"
+                fill="#6F3393"
                 fillRule="evenodd"
             ></path>
         </svg>

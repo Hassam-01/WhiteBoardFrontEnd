@@ -12,36 +12,21 @@ export const SVGWhiteboardAdd: React.FC<FlatIconProps> = ({
             className={`${className} flat-icon ${active ? "is-active" : ""}`}
             fill="none"
             height="24"
-            viewBox="0 0 24 24"
+            viewBox="0 0 25 25"
             width="24"
             xmlns="http://www.w3.org/2000/svg"
             {...restProps}
         >
+            <circle cx="14.5" cy="14.5" r="6.5" fill="#595397" fillOpacity="0.15" />
+            <circle cx="12.5" cy="12.5" r="11.5" stroke="#595397" strokeWidth="2" />
             <path
-                className="flat-icon-stroke-color"
-                d="M4 20h16M4 6h16"
-                stroke="#5D6066"
+                d="M6 12.5H19M12.5 19V6"
+                stroke="#595397"
+                strokeLinecap="round"
                 strokeLinejoin="round"
-                strokeWidth="1.25"
-            ></path>
-            <rect
-                className="flat-icon-stroke-color"
-                height="10"
-                rx="1"
-                stroke="#5D6066"
-                strokeLinejoin="round"
-                strokeWidth="1.25"
-                width="14"
-                x="5"
-                y="8"
-            ></rect>
-            <path
-                className="flat-icon-stroke-color"
-                d="M12 4v2m-3 7h6m-3-3v6"
-                stroke="#5D6066"
-                strokeLinejoin="round"
-                strokeWidth="1.25"
-            ></path>
+                strokeMiterlimit="10"
+                strokeWidth="1.5"
+            />
         </svg>
     );
 };
