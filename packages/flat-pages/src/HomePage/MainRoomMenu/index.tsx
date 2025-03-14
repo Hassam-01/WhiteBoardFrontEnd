@@ -38,7 +38,7 @@ export const MainRoomMenu: FC = () => {
                     <ScheduleRoomBox />
                 </Col>
                 <Col span={6}>
-                    <CreateAIRoomBox onCreateRoom={createAIRoom} />
+                    {/* <CreateAIRoomBox onCreateRoom={createAIRoom} /> */}
                 </Col>
             </Row>
         </div>

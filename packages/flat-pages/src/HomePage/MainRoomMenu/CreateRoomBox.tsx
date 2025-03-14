@@ -11,7 +11,7 @@ import React, {
 } from "react";
 import {
     ClassPicker,
-    HomePageHeroButton,
+    // HomePageHeroButton,
     PmiDesc,
     PmiExistTip,
     Region,
@@ -19,7 +19,7 @@ import {
     formatInviteCode,
 } from "flat-components";
 import { Input, Modal, Checkbox, Form, InputRef, Dropdown, message, Button } from "antd";
-import { MoreOutlined } from "@ant-design/icons";
+// import { MoreOutlined } from "@ant-design/icons";
 import { useTranslate } from "@netless/flat-i18n";
 import { RoomType } from "@netless/flat-server-api";
 import { observer } from "mobx-react-lite";
@@ -28,6 +28,7 @@ import { PreferencesStoreContext, GlobalStoreContext } from "../../components/St
 import { useSafePromise } from "../../utils/hooks/lifecycle";
 import { FLAT_WEB_BASE_URL } from "../../constants/process";
 
+import { SVGBeginIllustration } from "../../../../flat-components/src/components/FlatIcons/icons/SVGBeginIllustration";
 interface CreateRoomFormValues {
     roomTitle: string;
     roomType: RoomType;
@@ -127,7 +128,7 @@ export const CreateRoomBox = observer<CreateRoomBoxProps>(function CreateRoomBox
 
     return (
         <>
-            <HomePageHeroButton type="begin" onClick={handleCreateRoom}>
+            {/* <HomePageHeroButton type="begin" onClick={handleCreateRoom}>
                 {!!pmi && (
                     <Dropdown
                         overlay={
@@ -162,7 +163,15 @@ export const CreateRoomBox = observer<CreateRoomBoxProps>(function CreateRoomBox
                         </div>
                     </Dropdown>
                 )}
-            </HomePageHeroButton>
+            </HomePageHeroButton> */}
+            <div className="create-room-box">
+                <div className="create-room-box-illustration">
+                    <SVGBeginIllustration />
+                </div>
+                <button className="create-room-box-button" onClick={handleCreateRoom}>
+                    Begin
+                </button>
+            </div>
             <Modal
                 forceRender // make "form" usable
                 footer={[

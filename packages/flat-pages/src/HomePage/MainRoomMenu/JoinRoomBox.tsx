@@ -7,7 +7,7 @@ import { useTranslate } from "@netless/flat-i18n";
 import { HomePageHeroButton, SVGChevronDown, formatInviteCode } from "flat-components";
 import { GlobalStoreContext, PreferencesStoreContext } from "../../components/StoreProvider";
 import { useSafePromise } from "../../utils/hooks/lifecycle";
-
+import { SVGJoinIllustration } from "../../../../flat-components/src/components/FlatIcons/icons/SVGJoinIllustration";
 interface JoinRoomFormValues {
     roomUUID: string;
     autoCameraOn: boolean;
@@ -60,7 +60,14 @@ export const JoinRoomBox = observer<JoinRoomBoxProps>(function JoinRoomBox({ onJ
 
     return (
         <>
-            <HomePageHeroButton type="join" onClick={handleShowModal} />
+            <div className="join-room-box">
+                <div className="join-room-box-illustration">
+                    <SVGJoinIllustration />
+                </div>
+                <button className="join-room-box-button" onClick={handleShowModal}>
+                    Join
+                </button>
+            </div>
             <Modal
                 cancelText={t("cancel")}
                 footer={[
@@ -140,39 +147,41 @@ export const JoinRoomBox = observer<JoinRoomBoxProps>(function JoinRoomBox({ onJ
                             onKeyUp={submitOnEnter}
                         />
                     </Form.Item>
-                    <Form.Item label={t("join-options")}>
+                    {/* <Form.Item label={t("join-options")}>
                         <Form.Item noStyle name="autoMicOn" valuePropName="checked">
                             <Checkbox>{t("turn-on-the-microphone")}</Checkbox>
                         </Form.Item>
                         <Form.Item noStyle name="autoCameraOn" valuePropName="checked">
                             <Checkbox>{t("turn-on-the-camera")}</Checkbox>
                         </Form.Item>
-                    </Form.Item>
+                    </Form.Item> */}
                 </Form>
             </Modal>
         </>
     );
 
-    async function extractUUIDFromClipboard(): Promise<string | undefined> {
-        const text = await navigator.clipboard.readText();
-        const m = ROOM_UUID_RE.exec(text);
-        if (m) {
-            return m[0];
-        }
-        const m2 = INVITE_CODE_RE.exec(text);
-        return m2?.[0];
-    }
+    // ! method to copy roomid from clipboard, uncomment if needed
+    // async function extractUUIDFromClipboard(): Promise<string | undefined> {
+    //     const text = await navigator.clipboard.readText();
+    //     const m = ROOM_UUID_RE.exec(text);
+    //     if (m) {
+    //         return m[0];
+    //     }
+    //     const m2 = INVITE_CODE_RE.exec(text);
+    //     return m2?.[0];
+    // }
 
     async function handleShowModal(): Promise<void> {
-        try {
-            const roomUUID = await extractUUIDFromClipboard();
-            if (roomUUID) {
-                form.setFieldsValue({ roomUUID });
-                setIsFormValidated(true);
-            }
-        } catch {
-            // ignore
-        }
+        // * copy from clipboard method, uncomment if needed
+        // try {
+        //     const roomUUID = await extractUUIDFromClipboard();
+        //     if (roomUUID) {
+        //         form.setFieldsValue({ roomUUID });
+        //         setIsFormValidated(true);
+        //     }
+        // } catch {
+        //     // ignore
+        // }
         showModal(true);
     }
 
