@@ -77,6 +77,7 @@ export interface EditRoomBodyProps {
     autoPmiOn?: boolean;
     pmiRoomExist?: boolean;
     updateAutoPmiOn?: (autoPmiOn: boolean) => void;
+    onClose?: () => void;
 }
 
 export const EditRoomBody: React.FC<EditRoomBodyProps> = ({
@@ -91,6 +92,7 @@ export const EditRoomBody: React.FC<EditRoomBodyProps> = ({
     previousPeriodicRoomBeginTime,
     nextPeriodicRoomBeginTime,
     nextPeriodicRoomEndTime,
+    onClose,
 }) => {
     const history = useHistory();
 
@@ -123,8 +125,14 @@ export const EditRoomBody: React.FC<EditRoomBodyProps> = ({
     }, [initialValues]);
     return (
         <>
-            <div className="edit-room-body fancy-scrollbar">
+            <div className="edit-room-body">
                 <div className="edit-room-mid">
+                    <div className="edit-room-header">
+                        <span className="edit-room-heading">Schedule</span>
+                        <span className="edit-room-close" onClick={onClose}>
+                            X
+                        </span>
+                    </div>
                     <Form
                         className="edit-room-form"
                         form={form}
@@ -134,12 +142,12 @@ export const EditRoomBody: React.FC<EditRoomBodyProps> = ({
                         onFieldsChange={formValidateStatus}
                     >
                         <Form.Item
-                            label={t("theme")}
+                            label={t("Title")}
                             name="title"
                             required={false}
                             rules={[
-                                { required: true, message: t("enter-room-theme") },
-                                { max: 50, message: t("theme-can-be-up-to-50-characters") },
+                                { required: true, message: t("enter-room-title") },
+                                { max: 50, message: t("title-can-be-up-to-50-characters") },
                             ]}
                         >
                             <Input
@@ -164,23 +172,25 @@ export const EditRoomBody: React.FC<EditRoomBodyProps> = ({
                                 placeholder={t("enter-room-theme")}
                             />
                         </Form.Item>
-                        <Form.Item label={t("type")} name="type">
+                        {/* <Form.Item label={t("type")} name="type">
                             <ClassPicker disabled={type === "periodicSub"} large={true} />
-                        </Form.Item>
-                        {renderBeginTimePicker(
-                            t,
-                            form,
-                            previousPeriodicRoomBeginTime,
-                            nextPeriodicRoomBeginTime,
-                            nextPeriodicRoomEndTime,
-                        )}
-                        {renderEndTimePicker(
-                            t,
-                            form,
-                            previousPeriodicRoomBeginTime,
-                            nextPeriodicRoomBeginTime,
-                            nextPeriodicRoomEndTime,
-                        )}
+                        </Form.Item> */}
+                        <div className="edit-room-time">
+                            {renderBeginTimePicker(
+                                t,
+                                form,
+                                previousPeriodicRoomBeginTime,
+                                nextPeriodicRoomBeginTime,
+                                nextPeriodicRoomEndTime,
+                            )}
+                            {renderEndTimePicker(
+                                t,
+                                form,
+                                previousPeriodicRoomBeginTime,
+                                nextPeriodicRoomBeginTime,
+                                nextPeriodicRoomEndTime,
+                            )}
+                        </div>
                         {updateAutoPmiOn && (
                             <Form.Item
                                 className="edit-room-form-item no-margin pmi"
@@ -203,7 +213,7 @@ export const EditRoomBody: React.FC<EditRoomBodyProps> = ({
                                 </div>
                             </Form.Item>
                         )}
-                        {type === "schedule" ? (
+                        {/* {type === "schedule" ? (
                             <Form.Item name="isPeriodic" valuePropName="checked">
                                 <Checkbox onChange={onToggleIsPeriodic}>
                                     <span className="edit-room-cycle">{t("periodic-room")}</span>
@@ -215,7 +225,7 @@ export const EditRoomBody: React.FC<EditRoomBodyProps> = ({
                                     {t("periodic-room")}
                                 </div>
                             )
-                        )}
+                        )} */}
                         <Form.Item
                             noStyle
                             shouldUpdate={(prev: EditRoomFormValues, curr: EditRoomFormValues) =>

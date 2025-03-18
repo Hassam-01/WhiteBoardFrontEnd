@@ -11,6 +11,7 @@ import { PageStoreContext } from "../StoreProvider";
 export type EditRoomPageProps = EditRoomBodyProps;
 
 export const EditRoomPage = observer<EditRoomPageProps>(function EditRoomPage(props) {
+    const { onClose } = props;
     const t = useTranslate();
     const history = useHistory();
     const pageStore = useContext(PageStoreContext);
@@ -33,7 +34,7 @@ export const EditRoomPage = observer<EditRoomPageProps>(function EditRoomPage(pr
         <div className="edit-room-page">
             <div className="edit-room-page-body fancy-scrollbar">
                 <div className="edit-room-page-body-content">
-                    <EditRoomBody {...props} />
+                    <EditRoomBody {...props} onClose={onClose} />
                 </div>
             </div>
         </div>

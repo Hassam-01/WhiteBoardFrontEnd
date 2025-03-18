@@ -10,6 +10,8 @@ import { MainRoomHistoryPanel } from "./MainRoomHistoryPanel";
 import { useLoginCheck } from "../utils/use-login-check";
 import { SVGMainPageHome } from "../../../flat-components/src/components/FlatIcons/icons/SVGMainPageHome";
 import { SVGMyLibrary } from "../../../flat-components/src/components/FlatIcons/icons/SVGMyLibrary";
+import { SVGHomeFooterIllustration } from "../../../flat-components/src/components/FlatIcons/icons/SVGHomeFooterIllustration";
+import { SVGHomeLeftIllustration } from "../../../flat-components/src/components/FlatIcons/icons/SVGHomeLeftIllustration";
 import {
     GlobalStoreContext,
     PageStoreContext,
@@ -72,6 +74,12 @@ export const HomePage = observer(function HomePage() {
     const [isHome, setHome] = useState(true);
     return (
         <div>
+            <div className="homepage-layout-left-illustration">
+                <SVGHomeLeftIllustration />
+            </div>
+            <div className="homepage-layout-footer-illustration">
+                <SVGHomeFooterIllustration />
+            </div>
             <div className="homepage-layout-horizontal-header">
                 <div
                     className={`homepage-layout-horizontal-header-button ${isHome ? "active" : ""}`}

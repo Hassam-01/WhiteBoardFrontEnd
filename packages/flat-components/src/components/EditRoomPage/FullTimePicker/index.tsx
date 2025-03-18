@@ -3,7 +3,7 @@
 import "./style.less";
 
 import React, { FC, useContext } from "react";
-import { Col, Row } from "antd";
+import { Row } from "antd";
 import dateFnsGenerateConfig from "rc-picker/es/generate/dateFns";
 import generatePicker, { PickerTimeProps, PickerProps } from "antd/es/date-picker/generatePicker";
 import { ConfigContext } from "antd/es/config-provider";
@@ -50,7 +50,7 @@ export const FullTimePicker: FC<FullTimePickerProps> = ({
 }) => {
     return (
         <Row gutter={16}>
-            <Col span={12}>
+            <Row gutter={12}>
                 <DatePicker
                     allowClear={false}
                     disabledDate={disabledDate}
@@ -68,8 +68,8 @@ export const FullTimePicker: FC<FullTimePickerProps> = ({
                         }
                     }}
                 />
-            </Col>
-            <Col span={12}>
+            </Row>
+            <Row gutter={12}>
                 <TimePicker
                     allowClear={false}
                     disabledTime={() => ({ disabledHours, disabledMinutes })}
@@ -89,7 +89,7 @@ export const FullTimePicker: FC<FullTimePickerProps> = ({
                         }
                     }}
                 />
-            </Col>
+            </Row>
         </Row>
     );
 };

@@ -11,9 +11,9 @@ export const SVGHomeFooterIllustration: React.FC<FlatIconProps> = ({
         <svg
             className={`${className} flat-icon ${active ? "is-active" : ""}`}
             fill="none"
-            height="24"
-            viewBox="0 0 24 24"
-            width="24"
+            height="312"
+            viewBox="0 0 212 312"
+            width="212"
             xmlns="http://www.w3.org/2000/svg"
             {...restProps}
         >
