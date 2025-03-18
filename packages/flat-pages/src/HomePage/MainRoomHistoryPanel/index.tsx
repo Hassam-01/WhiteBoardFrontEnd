@@ -22,7 +22,7 @@ export const MainRoomHistoryPanel = observer<MainRoomHistoryPanelProps>(
         }, [roomStore]);
 
         return (
-            <RoomList title={t("history")} onScrollToBottom={onScrollToBottom}>
+            <RoomList title={t("Recorded Sessions")} onScrollToBottom={onScrollToBottom}>
                 <MainRoomList
                     listRoomsType={ListRoomsType.History}
                     refreshRooms={refreshRooms}

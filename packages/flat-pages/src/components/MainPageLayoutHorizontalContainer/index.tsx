@@ -7,16 +7,13 @@ import {
     MainPageLayoutItem,
     MainPageLayoutTreeItem,
     MainPageLayoutProps,
-    SVGCloudFilled,
-    SVGCloudOutlined,
-    SVGDownload,
+    // SVGCloudOutlined,
     SVGFeedback,
-    SVGGithub,
     SVGHomeFilled,
     SVGHomeOutlined,
     SVGLogout,
-    SVGSetting,
 } from "flat-components";
+import { SVGMainPageSettings } from "../../../../flat-components/src/components/FlatIcons/icons/SVGMainPageSettings";
 import { useTranslate } from "@netless/flat-i18n";
 import { routeConfig, RouteNameType } from "../../route-config";
 import { GlobalStoreContext } from "../StoreProvider";
@@ -50,39 +47,23 @@ export const MainPageLayoutHorizontalContainer = observer<MainPageLayoutHorizont
                 title: t("home"),
                 route: routeConfig[RouteNameType.HomePage].path,
             },
-            {
-                key: routeConfig[RouteNameType.CloudStoragePage].path,
-                icon: (active: boolean): React.ReactNode => {
-                    return active ? <SVGCloudFilled active={active} /> : <SVGCloudOutlined />;
-                },
-                title: t("cloud-storage"),
-                route: routeConfig[RouteNameType.CloudStoragePage].path,
-            },
+            // {
+            //     key: routeConfig[RouteNameType.CloudStoragePage].path,
+            //     icon: (active: boolean): React.ReactNode => {
+            //         return active ? <SVGCloudFilled active={active} /> : <SVGCloudOutlined />;
+            //     },
+            //     title: t("cloud-storage"),
+            //     route: routeConfig[RouteNameType.CloudStoragePage].path,
+            // },
         ];
 
-        const rightMenu: MainPageLayoutItem[] = [
-            {
-                key: "download",
-                icon: (): React.ReactNode => <SVGDownload />,
-                title: <></>,
-                route: FLAT_DOWNLOAD_URL,
-                htmlTitle: t("download"),
-            },
-            {
-                key: "getGitHubCode",
-                icon: (): React.ReactNode => <SVGGithub />,
-                title: <></>,
-                route: "https://github.com/netless-io/flat",
-                htmlTitle: "netless-io/flat",
-            },
-            {
-                key: routeConfig[RouteNameType.GeneralSettingPage].path,
-                icon: (): React.ReactNode => <SVGSetting />,
-                title: <></>,
-                route: routeConfig[RouteNameType.GeneralSettingPage].path,
-                htmlTitle: t("settings"),
-            },
-        ];
+        const rightMenu: MainPageLayoutItem = {
+            key: routeConfig[RouteNameType.GeneralSettingPage].path,
+            icon: (): React.ReactNode => <SVGMainPageSettings />,
+            title: <></>,
+            route: routeConfig[RouteNameType.GeneralSettingPage].path,
+            htmlTitle: t("settings"),
+        };
 
         const popMenu: MainPageLayoutItem[] = [
             {

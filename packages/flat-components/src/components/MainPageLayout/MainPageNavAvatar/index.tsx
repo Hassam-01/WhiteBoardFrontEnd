@@ -4,6 +4,8 @@ import { Avatar, Divider, Popover } from "antd";
 import React, { useState } from "react";
 import { MainPageLayoutItem } from "../types";
 
+import { SVGMainPageAvatar } from "../../FlatIcons/icons/SVGMainPageAvatar";
+
 export interface MainPageNavAvatarProps {
     userUUID: string;
     /** user avatar src*/
@@ -50,8 +52,15 @@ export const MainPageNavAvatar: React.FC<MainPageNavAvatarProps> = ({
         >
             <Avatar
                 className="main-page-nav-avatar"
-                icon={<img src={avatar} onError={() => avatar && setAvatarLoadFailed(true)} />}
+                icon={<SVGMainPageAvatar />}
                 size={24}
+                onError={() => {
+                    if (avatar) {
+                        setAvatarLoadFailed(true);
+                        return false;
+                    }
+                    return true;
+                }}
             />
         </Popover>
     );

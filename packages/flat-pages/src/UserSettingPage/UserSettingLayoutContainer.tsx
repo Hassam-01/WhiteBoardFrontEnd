@@ -30,26 +30,26 @@ export const UserSettingLayoutContainer: React.FC = observer(function UserSettin
                     title: t("shortcut-settings"),
                     route: routeConfig[RouteNameType.HotKeySettingPage].path,
                 },
-                {
-                    key: routeConfig[RouteNameType.ApplicationsPage].path,
-                    icon: (active): React.ReactNode => <SVGApps active={active} />,
-                    title: t("applications"),
-                    route: routeConfig[RouteNameType.ApplicationsPage].path,
-                },
-                {
-                    key: "developer",
-                    icon: (active): React.ReactNode => <SVGCode active={active} />,
-                    title: t("developer"),
-                    route: "#",
-                    children: [
-                        {
-                            key: routeConfig[RouteNameType.OAuthPage].path,
-                            icon: () => null,
-                            title: t("oauth-apps"),
-                            route: routeConfig[RouteNameType.OAuthPage].path,
-                        },
-                    ],
-                },
+                // {
+                //     key: routeConfig[RouteNameType.ApplicationsPage].path,
+                //     icon: (active): React.ReactNode => <SVGApps active={active} />,
+                //     title: t("applications"),
+                //     route: routeConfig[RouteNameType.ApplicationsPage].path,
+                // },
+                // {
+                //     key: "developer",
+                //     icon: (active): React.ReactNode => <SVGCode active={active} />,
+                //     title: t("developer"),
+                //     route: "#",
+                //     children: [
+                //         {
+                //             key: routeConfig[RouteNameType.OAuthPage].path,
+                //             icon: () => null,
+                //             title: t("oauth-apps"),
+                //             route: routeConfig[RouteNameType.OAuthPage].path,
+                //         },
+                //     ],
+                // },
                 {
                     key: routeConfig[RouteNameType.AboutPage].path,
                     icon: (active): React.ReactNode => <SVGCircleInfoOutlined active={active} />,

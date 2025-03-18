@@ -164,7 +164,7 @@ export function RoomListItem<T extends string = string>({
                         <span>{isPeriodic && `(${t("periodic")})`}</span>
                         <span>{isPmi && `(${t("pmi")})`}</span>
                     </div>
-                    <div>
+                    <div className="room-list-item-uuid-wrapper">
                         {status !== "stopped" && inviteCode && inviteCode.length < 32 && (
                             <Tooltip
                                 className="room-list-item-uuid-help"

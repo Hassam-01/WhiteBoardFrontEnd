@@ -1,6 +1,6 @@
 import { Button, Dropdown, Menu } from "antd";
 import React from "react";
-import { SVGMore } from "../../../FlatIcons";
+import { SVGMainPageMore } from "../../../FlatIcons/icons/SVGMainPageMore";
 import { RoomListItemAction } from "./types";
 
 export interface RoomListItemMenusProps<TKey extends string = string> {
@@ -27,7 +27,7 @@ export function RoomListItemMenus<TKey extends string = string>({
             trigger={["click"]}
         >
             <Button className="room-list-item-more" type="text">
-                <SVGMore />
+                <SVGMainPageMore />
             </Button>
         </Dropdown>
     );

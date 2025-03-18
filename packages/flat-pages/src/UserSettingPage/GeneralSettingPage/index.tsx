@@ -310,7 +310,7 @@ export const GeneralSettingPage = observer(function GeneralSettingPage() {
                             {hasPassword ? t("update-password") : t("set-password")}
                         </Button>
                     </div>
-                    <div className="general-setting-binding-methods">
+                    {/* <div className="general-setting-binding-methods">
                         {loginButtons.map(button => {
                             switch (button) {
                                 case LoginPlatform.Github.toLowerCase(): {
@@ -351,7 +351,7 @@ export const GeneralSettingPage = observer(function GeneralSettingPage() {
                                 }
                             }
                         })}
-                    </div>
+                    </div> */}
                 </div>
                 <hr />
                 <div className="general-setting-item">
@@ -383,7 +383,7 @@ export const GeneralSettingPage = observer(function GeneralSettingPage() {
                     />
                 </div>
                 <hr />
-                <div className="general-setting-item">
+                {/* <div className="general-setting-item">
                     <div className="general-setting-item-title">{t("join-options")}</div>
 
                     <div className="join-room-settings">
@@ -436,7 +436,7 @@ export const GeneralSettingPage = observer(function GeneralSettingPage() {
                             <span className="checkbox-item-inner">{t("turn-on-device-test")}</span>
                         </Checkbox>
                     </div>
-                </div>
+                </div> */}
                 <hr />
                 {serverRegion === Region.CN_HZ && (
                     <>

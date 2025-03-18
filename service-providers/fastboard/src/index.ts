@@ -140,7 +140,6 @@ export class Fastboard extends IServiceWhiteboard {
                     this.ui.mount(el, {
                         app: this._app$.value,
                         config: {
-                            // Hide zoom control
                             toolbar: {
                                 enable: false,
                                 apps: { enable: true },

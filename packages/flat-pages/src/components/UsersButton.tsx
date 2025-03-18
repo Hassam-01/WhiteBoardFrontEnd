@@ -105,14 +105,14 @@ export const UsersButton = observer<UsersButtonProps>(function UsersButton({ cla
             >
                 <UsersPanel
                     generateAvatar={generateAvatar}
-                    getDeviceState={getDeviceState}
+                    // getDeviceState={getDeviceState}
                     getVolumeLevel={getVolumeLevel}
                     ownerUUID={classroom.ownerUUID}
                     roomInfo={classroom.roomInfo}
                     userUUID={classroom.userUUID}
                     users={users}
-                    onDeviceState={classroom.updateDeviceState}
-                    onMuteAll={classroom.muteAll}
+                    // onDeviceState={classroom.updateDeviceState}
+                    // onMuteAll={classroom.muteAll}
                     onOffStageAll={classroom.offStageAll}
                     onStaging={classroom.onStaging}
                     onWhiteboard={classroom.authorizeWhiteboard}

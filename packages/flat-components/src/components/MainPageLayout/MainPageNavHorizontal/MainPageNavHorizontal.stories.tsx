@@ -6,7 +6,6 @@ import { MainPageNavHorizontal, MainPageNavHorizontalProps } from ".";
 import {
     SVGCloudFilled,
     SVGCloudOutlined,
-    SVGDownload,
     SVGGithub,
     SVGHomeFilled,
     SVGHomeOutlined,
@@ -48,42 +47,29 @@ Overview.args = {
             title: "首页",
             route: "/home",
         },
-        {
-            key: "cloudStorage",
-            icon: active =>
-                active ? (
-                    <SVGCloudFilled style={sideMenuStyles} />
-                ) : (
-                    <SVGCloudOutlined style={sideMenuStyles} />
-                ),
-            title: "云盘",
-            route: "/cloudStorage",
-        },
+        // {
+        //     key: "cloudStorage",
+        //     icon: active =>
+        //         active ? (
+        //             <SVGCloudFilled style={sideMenuStyles} />
+        //         ) : (
+        //             <SVGCloudOutlined style={sideMenuStyles} />
+        //         ),
+        //     title: "云盘",
+        //     route: "/cloudStorage",
+        // },
     ],
-    rightMenu: [
-        {
-            key: "download",
-            icon: () => <SVGDownload style={rightMenuStyles} />,
-            title: "下载",
-            route: "/download",
-        },
-        {
-            key: "source-code",
-            icon: () => <SVGGithub style={rightMenuStyles} />,
-            title: "源码",
-            route: "/github",
-        },
-        {
-            key: "userConfig",
-            icon: () => <SVGSetting style={rightMenuStyles} />,
-            title: "设置",
-            route: "/config",
-        },
-    ],
+    rightMenu: {
+        key: "userConfig",
+        icon: () => <SVGSetting style={rightMenuStyles} />,
+        title: "设置",
+        route: "/config",
+    },
+
     popMenu: [
         {
             key: "logout",
-            icon: () => <SVGGithub className="red" />,
+            // icon: () => <SVGGithub className="red" />,
             title: <span className="red">退出登录</span>,
             route: "/logout",
         },

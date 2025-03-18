@@ -44,7 +44,7 @@ export const MainRoomListPanel = observer<MainRoomListPanelProps>(function MainR
         <RoomList
             activeTab={activeTab}
             filters={filters}
-            title={t("room-list")}
+            title={t("Current-Sessions")}
             onTabActive={setActiveTab}
         >
             <MainRoomList

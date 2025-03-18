@@ -14,7 +14,7 @@ export interface MainPageNavHorizontalProps extends MainPageNavAvatarProps, Main
     /** outside side menu in MainPageLayout */
     leftMenu: MainPageLayoutItem[];
     /** outside footer menu in MainPageLayout */
-    rightMenu: MainPageLayoutItem[];
+    rightMenu: MainPageLayoutItem;
     /** display return to previous page button if provided*/
     onBackPreviousPage?: () => void;
     /** function to generate placeholder avatar */
@@ -38,7 +38,7 @@ export const MainPageNavHorizontal: React.FC<MainPageNavHorizontalProps> = ({
         <div className="main-page-nav-horizontal-container">
             <div className="main-page-nav-horizontal-content">
                 <div className="main-page-nav-horizontal-left">
-                    {onBackPreviousPage ? (
+                    {/* {onBackPreviousPage ? (
                         <MainPageHeader title={title} onBackPreviousPage={onBackPreviousPage} />
                     ) : (
                         <Tabs
@@ -69,32 +69,11 @@ export const MainPageNavHorizontal: React.FC<MainPageNavHorizontalProps> = ({
                                 }
                             }}
                         ></Tabs>
-                    )}
+                    )} */}
+                    {/* later logo will be added here */}
+                    Collaborative WhiteBoard
                 </div>
                 <div className="main-page-nav-horizontal-right">
-                    {rightMenu.map(menuItem => {
-                        return (
-                            <a
-                                key={menuItem.key}
-                                className={classNames("main-page-nav-horizontal-right-item", {
-                                    "is-active": activeKeys.includes(menuItem.key),
-                                })}
-                                href={menuItem.route}
-                                title={menuItem.htmlTitle}
-                                onClick={e => {
-                                    e.preventDefault();
-                                    onClick(menuItem);
-                                }}
-                            >
-                                <span className="main-page-nav-horizontal-right-item-img">
-                                    {menuItem.icon(activeKeys.includes(menuItem.key))}
-                                </span>
-                                <span className="main-page-nav-horizontal-right-item-title">
-                                    {menuItem.title}
-                                </span>
-                            </a>
-                        );
-                    })}
                     <div className="main-page-nav-horizontal-right-header">
                         <MainPageNavAvatar
                             activeKeys={activeKeys}
@@ -106,6 +85,27 @@ export const MainPageNavHorizontal: React.FC<MainPageNavHorizontalProps> = ({
                             onClick={onClick}
                         />
                     </div>
+
+                    <a
+                        key={rightMenu.key}
+                        className={classNames("main-page-nav-horizontal-right-item", {
+                            "is-active": activeKeys.includes(rightMenu.key),
+                        })}
+                        href={rightMenu.route}
+                        title={rightMenu.htmlTitle}
+                        onClick={e => {
+                            e.preventDefault();
+                            onClick(rightMenu);
+                        }}
+                    >
+                        <span className="main-page-nav-horizontal-right-item-img">
+                            {rightMenu.icon(activeKeys.includes(rightMenu.key))}
+                        </span>
+                        <span className="main-page-nav-horizontal-right-item-title">
+                            {rightMenu.title}
+                        </span>
+                    </a>
+
                 </div>
             </div>
         </div>
