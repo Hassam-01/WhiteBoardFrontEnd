@@ -17,7 +17,12 @@ export const SVGSelectorApp: React.FC<FlatIconProps> = ({
             xmlns="http://www.w3.org/2000/svg"
             {...restProps}
         >
-            <circle cx="13.0156" cy="12.5" r="12.5" fill="#6F3393" />
+            <circle
+                className="svg-tool-icon-fill fill-opacity-0-5"
+                cx="13.0156"
+                cy="12.5"
+                r="12.5"
+            />
             {/* <mask
                 id="mask0_818_1033"
                 style="mask-type:alpha"

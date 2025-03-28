@@ -9,7 +9,7 @@ export const SVGEraserFilled: React.FC<FlatIconProps> = ({
 }) => {
     return (
         <svg
-            className={`${className} flat-icon ${active ? "is-active" : ""}`}
+            className={`${className} ${active ? "is-active" : ""}`}
             fill="none"
             height="24"
             viewBox="0 0 24 24"
@@ -18,9 +18,8 @@ export const SVGEraserFilled: React.FC<FlatIconProps> = ({
             {...restProps}
         >
             <path
-                className="flat-icon-stroke-color flat-icon-fill-color"
+                className="svg-tool-icon-fill fill-opacity-0-1 svg-tool-icon-stroke"
                 d="M13.414 4.929a2 2 0 0 1 2.829 0l2.828 2.828a2 2 0 0 1 0 2.829L12 17.656a4 4 0 0 1-5.657 0L4.93 16.244a2 2 0 0 1 0-2.829l8.485-8.485Z"
-                fill="#6F3393"
                 stroke="#5D6066"
                 strokeLinejoin="round"
                 strokeWidth="1.25"

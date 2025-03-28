@@ -1,13 +1,10 @@
 import React, { useEffect, useState } from "react";
-import SVGCustomAddSVG from "./CustomIcons/SVGCustomAdd.svg";
-import SVGCustomPreviousSVG from "./CustomIcons/SVGCustomPrevious.svg";
-import SVGCustomNextSVG from "./CustomIcons/SVGCustomNext.svg";
 import "./CustomToolbarRight.less";
 import FastboardSingleton from "../../../../../service-providers/fastboard/src/fastboardSingleton";
 import { RoomPhase } from "white-web-sdk";
 import { SVGWhiteboardAdd } from "../../../../flat-components/src/components/FlatIcons/icons/SVGWhiteboardAdd";
-import {SVGNextPage} from "../../../../flat-components/src/components/FlatIcons/icons/SVGNextPage";
-import {SVGPrevPage} from "../../../../flat-components/src/components/FlatIcons/icons/SVGPrevPage";
+import { SVGNextPage } from "../../../../flat-components/src/components/FlatIcons/icons/SVGNextPage";
+import { SVGPrevPage } from "../../../../flat-components/src/components/FlatIcons/icons/SVGPrevPage";
 const CustomToolbarRight: React.FC = () => {
     const [prevDisabled, setPrevDisabled] = useState(true);
     const [nextDisabled, setNextDisabled] = useState(true);

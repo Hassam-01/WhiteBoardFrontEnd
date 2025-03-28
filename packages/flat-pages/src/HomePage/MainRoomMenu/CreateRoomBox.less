@@ -1,25 +1,25 @@
 .create-room-box-container {
-    >.ant-modal {
+    > .ant-modal {
         top: 50px;
 
-        >.ant-modal-content {
-            >.ant-modal-header {
+        > .ant-modal-content {
+            > .ant-modal-header {
                 padding: 16px;
             }
 
-            >.ant-modal-body {
+            > .ant-modal-body {
                 padding: 0 16px;
 
                 .main-room-menu-form-item.no-margin {
-                    margin: 0
+                    margin: 0;
                 }
 
-                .main-room-menu-form-item.pmi .ant-checkbox+span {
+                .main-room-menu-form-item.pmi .ant-checkbox + span {
                     padding-right: 0;
                 }
             }
 
-            >.ant-modal-footer {
+            > .ant-modal-footer {
                 border-top: none;
             }
         }
@@ -30,7 +30,6 @@
     margin-top: 2px;
     margin-right: -11px;
 }
-
 
 .pmi-selector-more {
     flex: 1;
@@ -43,7 +42,10 @@
     padding: 8px 4px;
     background: #fff;
     border-radius: 8px;
-    box-shadow: 0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 6px 16px 0 rgba(0, 0, 0, 0.08), 0 9px 28px 8px rgba(0, 0, 0, 0.05);
+    box-shadow:
+        0 3px 6px -4px rgba(0, 0, 0, 0.12),
+        0 6px 16px 0 rgba(0, 0, 0, 0.08),
+        0 9px 28px 8px rgba(0, 0, 0, 0.05);
     font-family: var(--font-family);
 
     .pmi-selector-item {
@@ -80,9 +82,20 @@
             background: var(--grey-9);
         }
     }
+    .create-room-box-button {
+        background-color: #595397;
+        color: #ffffff;
+    }
+    .create-room-box {
+        background-color: #272a30;
+    }
+    .ant-btn.cancel{
+        color: #CAC4D0;
+        border-color: #CAC4D0;
+    }
 }
 
-.create-room-box{
+.create-room-box {
     padding: 10px;
     min-height: 261px;
     display: flex;
@@ -92,15 +105,14 @@
     gap: 40px;
     border-radius: 16px;
     box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.08);
-    background-color: #F7F2FA;
-
+    background-color: #f7f2fa;
 }
-.create-room-box-button{
+.create-room-box-button {
     width: 105px;
     height: 32px;
     border-radius: 20px;
-    background-color: #6F3393;
-    color: #FFFFFF;
+    background-color: #6f3393;
+    color: #ffffff;
     font-size: 14px;
     font-weight: 500;
     line-height: 20px;
@@ -109,8 +121,39 @@
     justify-content: center;
     align-items: center;
     cursor: pointer;
+    border: none;
 
     &:active {
-        background-color: #82C341;
+        background-color: #82c341;
+    }
+}
+
+.toggle-group {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+    color: #79747e;
+    padding: 8px 0;
+}
+
+.ant-switch-checked {
+    background-color: #82c341 !important;
+}
+
+.text-gray-500 {
+    color: gray;
+}
+
+.create-room-box-input:focus {
+    outline: none;
+    border-color: #6f3393;
+}
+.ant-btn.cancel {
+    border-color: #6f3393;
+    color: #6f3393;
+
+    &:hover {
+        border-color: #6f3393;
     }
 }

@@ -3,6 +3,7 @@
 import React, { FC, useEffect } from "react";
 import { Button, Modal } from "antd";
 import { useTranslate } from "@netless/flat-i18n";
+import "./style.less";
 
 export interface StopClassConfirmModalProps {
     visible: boolean;
@@ -72,13 +73,19 @@ export const CloseRoomConfirmModal: FC<CloseRoomConfirmModalProps> = ({
         <>
             <Modal
                 footer={[
-                    <Button key="Cancel" onClick={onCancel}>
+                    <Button className="button" key="Cancel" onClick={onCancel}>
                         {t("cancel")}
                     </Button>,
-                    <Button key="ReturnMain" loading={hangLoading} onClick={onHang}>
+                    <Button
+                        className="button"
+                        key="ReturnMain"
+                        loading={hangLoading}
+                        onClick={onHang}
+                    >
                         {t("hang-up-the-room")}
                     </Button>,
                     <Button
+                        className="button-end"
                         key="StopClass"
                         loading={stopLoading}
                         type="primary"

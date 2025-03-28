@@ -105,7 +105,6 @@ export const MainPageNavHorizontal: React.FC<MainPageNavHorizontalProps> = ({
                             {rightMenu.title}
                         </span>
                     </a>
-
                 </div>
             </div>
         </div>

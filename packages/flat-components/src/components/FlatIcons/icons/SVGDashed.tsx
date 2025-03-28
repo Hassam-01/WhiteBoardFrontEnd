@@ -14,9 +14,8 @@ export const SVGDashed: React.FC<FlatIconProps> = ({ active, className = "", ...
             {...restProps}
         >
             <path
-                className="flat-icon-stroke-color"
+                className="purple-6F3393-stroke"
                 d="M1.25597 1.32499C23.3604 1.3233 2.86806 25.793 24.5012 25.7936"
-                stroke="#6F3393"
                 strokeDasharray="4 4"
                 strokeLinecap="round"
                 strokeWidth="2"

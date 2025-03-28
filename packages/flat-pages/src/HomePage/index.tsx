@@ -74,12 +74,16 @@ export const HomePage = observer(function HomePage() {
     const [isHome, setHome] = useState(true);
     return (
         <div>
-            <div className="homepage-layout-left-illustration">
-                <SVGHomeLeftIllustration />
-            </div>
-            <div className="homepage-layout-footer-illustration">
-                <SVGHomeFooterIllustration />
-            </div>
+            {isHome && (
+                <div className="homepage-layout-left-illustration">
+                    <SVGHomeLeftIllustration />
+                </div>
+            )}
+            {isHome && (
+                <div className="homepage-layout-footer-illustration">
+                    <SVGHomeFooterIllustration />
+                </div>
+            )}
             <div className="homepage-layout-horizontal-header">
                 <div
                     className={`homepage-layout-horizontal-header-button ${isHome ? "active" : ""}`}
@@ -104,12 +108,14 @@ export const HomePage = observer(function HomePage() {
             <div className="homepage-layout-horizontal-container">
                 {isHome ? (
                     <div className="homepage-layout-main-menu">
-                        <h1 className="homepage-layout-main-menu-heading">
-                            Collaborative White Board
-                        </h1>
-                        <p className="homepage-layout-main-menu-subheading">
-                            Write, collaborate and Innovate together!
-                        </p>
+                        <div>
+                            <h1 className="homepage-layout-main-menu-heading">
+                                Collaborative Write
+                            </h1>
+                            <p className="homepage-layout-main-menu-subheading">
+                                Write, collaborate and Innovate together!
+                            </p>
+                        </div>
                         <MainRoomMenu />
                     </div>
                 ) : (

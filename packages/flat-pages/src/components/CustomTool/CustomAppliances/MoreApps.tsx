@@ -17,14 +17,17 @@ let service = await flatServices.requestService("whiteboard");
 const handleEmitEvent = async (eventName: string): Promise<void> => {
     service = await flatServices.requestService("whiteboard");
     switch (eventName) {
-        case "insertPresets":
+        case "insertPresets": {
             service?.events.emit("insertPresets");
             break;
-        case "exportAnnotations":
+        }
+        case "exportAnnotations": {
             service?.events.emit("exportAnnotations");
             break;
-        default:
+        }
+        default: {
             break;
+        }
     }
 };
 

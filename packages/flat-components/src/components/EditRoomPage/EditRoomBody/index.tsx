@@ -266,11 +266,16 @@ export const EditRoomBody: React.FC<EditRoomBodyProps> = ({
             {type !== "schedule" && (
                 <Modal
                     footer={[
-                        <Button key="Cancel" onClick={hideEditSubmitConfirm}>
+                        <Button
+                            key="Cancel"
+                            className="schedule-room-cancel"
+                            onClick={hideEditSubmitConfirm}
+                        >
                             {t("cancel")}
                         </Button>,
                         <Button
                             key="Ok"
+                            className="schedule-room-confirm"
                             disabled={!loading && !isFormVetted}
                             loading={loading}
                             type="primary"

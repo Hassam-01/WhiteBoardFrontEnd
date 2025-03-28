@@ -7,8 +7,6 @@
     overflow: hidden;
     justify-content: center;
     align-items: center;
-    // border: 2px solid red;
-
 }
 
 .homepage-layout-horizontal-content {
@@ -20,23 +18,24 @@
     overflow: hidden;
 }
 
-.homepage-layout-main-menu{
+.homepage-layout-main-menu {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 16px;
+    gap: 85px;
 }
-.homepage-layout-main-menu-heading{
-    font-size: 24px;
-    color: #6F3393;
+.homepage-layout-main-menu-heading {
+    font-size: 45px;
+    color: #6f3393;
     font-weight: 800;
     text-align: center;
+    margin: 0;
 }
-.homepage-layout-main-menu-subheading{
-    font-size: 16px;
+.homepage-layout-main-menu-subheading {
+    font-size: 28px;
     font-weight: 700;
-    color: #6F3393;
+    color: #6f3393;
     text-align: center;
 }
 .room-not-begin-modal {
@@ -60,7 +59,7 @@
 .room-not-begin-early-minutes {
     font-style: normal;
     color: var(--primary);
-    padding: 0 .25em;
+    padding: 0 0.25em;
 }
 
 .homepage-layout-horizontal-header {
@@ -80,12 +79,12 @@
     font-size: 16px;
     font-weight: 600;
     cursor: pointer;
-    color: #6F3393;
+    color: #6f3393;
     line-height: 16px;
     position: relative;
     margin-bottom: 5px;
 }
-.homepage-layout-horizontal-header-slider-bg{
+.homepage-layout-horizontal-header-slider-bg {
     position: absolute;
     bottom: 0;
     height: 3px;
@@ -93,14 +92,13 @@
     width: 90%;
     left: 10px;
     // width: 200px;
-    
 }
 
 .homepage-layout-horizontal-header-slider {
     position: absolute;
     bottom: 0;
     height: 3px;
-    background-color: #6F3393;
+    background-color: #6f3393;
     width: 45%;
     left: 10px;
     transition: all 0.3s ease-in-out;
@@ -111,16 +109,23 @@
     left: 50%;
 }
 
-.homepage-layout-footer-illustration{
-    
+.homepage-layout-footer-illustration {
     bottom: 20px;
     left: 50px;
     position: absolute;
 }
-.homepage-layout-left-illustration{
-    top: 15%;
+.homepage-layout-left-illustration {
+    top: 25%;
     right: 0;
-    // right: -10px;
     position: fixed;
-    // height: 200px;
+}
+.flat-color-scheme-dark {
+    .homepage-layout-main-menu-subheading,
+    .homepage-layout-main-menu-heading,
+    .homepage-layout-horizontal-header-button {
+        color: #f5eff7;
+    }
+    .homepage-layout-horizontal-header-slider {
+        background-color: #f5eff7;
+    }
 }

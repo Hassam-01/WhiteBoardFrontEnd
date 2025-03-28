@@ -18,7 +18,7 @@ import {
     errorTips,
     formatInviteCode,
 } from "flat-components";
-import { Input, Modal, Checkbox, Form, InputRef, Dropdown, message, Button } from "antd";
+import { Input, Modal, Checkbox, Form, InputRef, Dropdown, message, Button, Switch } from "antd";
 // import { MoreOutlined } from "@ant-design/icons";
 import { useTranslate } from "@netless/flat-i18n";
 import { RoomType } from "@netless/flat-server-api";
@@ -173,9 +173,10 @@ export const CreateRoomBox = observer<CreateRoomBoxProps>(function CreateRoomBox
                 </button>
             </div>
             <Modal
+                centered
                 forceRender // make "form" usable
                 footer={[
-                    <Button key="cancel" onClick={handleCancel}>
+                    <Button key="cancel" className="cancel" onClick={handleCancel}>
                         {t("cancel")}
                     </Button>,
                     <Button
@@ -213,34 +214,58 @@ export const CreateRoomBox = observer<CreateRoomBoxProps>(function CreateRoomBox
                     >
                         <Input
                             ref={roomTitleInputRef}
+                            className="create-room-box-input"
                             placeholder={t("enter-room-theme")}
                             onKeyUp={submitOnEnter}
                         />
                     </Form.Item>
-                    <Form.Item label={t("type")} name="roomType" valuePropName="type">
-                        <ClassPicker value={classType} onChange={e => setClassType(RoomType[e])} />
+                    {/* <Form.Item label={t("type")} name="roomType" valuePropName="type"> */}
+                    {/* replace the form.item below with the one above this comment line for using Class picker */}
+                    <Form.Item noStyle name="roomType">
+                        <input type="hidden" />
+                        {/* <ClassPicker value={classType} onChange={e => setClassType(RoomType[e])} /> */}
                     </Form.Item>
-                    <Form.Item label={t("join-options")}>
-                        <Form.Item noStyle name="autoMicOn" valuePropName="checked">
+                    {/* <Form.Item label={t("join-options")}> */}
+                    <Form.Item>
+                        {/* <Form.Item noStyle name="autoMicOn" valuePropName="checked">
                             <Checkbox>{t("turn-on-the-microphone")}</Checkbox>
                         </Form.Item>
                         <Form.Item noStyle name="autoCameraOn" valuePropName="checked">
                             <Checkbox>{t("turn-on-the-camera")}</Checkbox>
-                        </Form.Item>
+                        </Form.Item> */}
                         {pmi && (
-                            <Form.Item
-                                className="main-room-menu-form-item no-margin pmi"
-                                name="pmi"
-                                valuePropName="checked"
-                            >
-                                <div>
-                                    {pmiCheckbox({
-                                        autoPmiOn: preferencesStore.autoPmiOn,
-                                        isDisabled: globalStore.pmiRoomExist,
-                                        updateAutoPmiOn: preferencesStore.updateAutoPmiOn,
-                                        pmi: pmi!,
-                                    })}
-                                    {globalStore.pmiRoomExist && <PmiExistTip />}
+                            // <Form.Item
+                            //     className="main-room-menu-form-item no-margin pmi"
+                            //     name="pmi"
+                            //     valuePropName="checked"
+                            // >
+                            //     <div>
+                            //         {pmiCheckbox({
+                            //             autoPmiOn: preferencesStore.autoPmiOn,
+                            //             isDisabled: globalStore.pmiRoomExist,
+                            //             updateAutoPmiOn: preferencesStore.updateAutoPmiOn,
+                            //             pmi: pmi!,
+                            //         })}
+                            //         {globalStore.pmiRoomExist && <PmiExistTip />}
+                            //     </div>
+                            // </Form.Item>
+                            <Form.Item className="main-room-menu-form-item no-margin">
+                                <div className="toggle-group">
+                                    <span>
+                                        Use PMI <span className="text-gray-500">{pmi}</span>
+                                    </span>
+                                    <Switch
+                                        checked={preferencesStore.autoPmiOn}
+                                        onChange={checked =>
+                                            preferencesStore.updateAutoPmiOn(checked)
+                                        }
+                                    />
+                                </div>
+
+                                <div className="toggle-group">
+                                    <span>Restrict access for everyone</span>
+                                    {/* <Switch checked={globalStore.pmiRoomExist} /> */}
+                                    <Switch />
                                 </div>
                             </Form.Item>
                         )}

@@ -74,7 +74,7 @@ export const UserScheduledPage = observer(function UserScheduledPage() {
             }
         };
 
-        checkPmi();
+        checkPmi();ii
     }, [globalStore]);
 
     return (

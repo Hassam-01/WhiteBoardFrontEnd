@@ -69,6 +69,7 @@ export const JoinRoomBox = observer<JoinRoomBoxProps>(function JoinRoomBox({ onJ
                 </button>
             </div>
             <Modal
+                centered
                 cancelText={t("cancel")}
                 footer={[
                     <Button key="cancel" onClick={handleCancel}>
@@ -101,6 +102,19 @@ export const JoinRoomBox = observer<JoinRoomBoxProps>(function JoinRoomBox({ onJ
                     onFieldsChange={formValidateStatus}
                 >
                     <Form.Item
+                        label={t("Username")}
+                        name="userName"
+                        rules={[{ required: true, message: t("enter-user-name") }]}
+                    >
+                        <Input
+                            ref={roomTitleInputRef}
+                            autoComplete="off"
+                            className="join-room-box-input"
+                            placeholder={t("jhon")}
+                            onKeyUp={submitOnEnter}
+                        />
+                    </Form.Item>
+                    <Form.Item
                         label={t("room-uuid")}
                         name="roomUUID"
                         rules={[{ required: true, message: t("enter-room-uuid") }]}
@@ -108,53 +122,54 @@ export const JoinRoomBox = observer<JoinRoomBoxProps>(function JoinRoomBox({ onJ
                         <Input
                             ref={roomTitleInputRef}
                             autoComplete="off"
+                            className="join-room-box-input"
                             placeholder={t("enter-room-uuid")}
-                            suffix={
-                                globalStore.roomHistory.length > 0 && (
-                                    <Dropdown
-                                        open={dropdown}
-                                        overlay={
-                                            <Menu
-                                                className="join-room-box-dropdown-menu"
-                                                items={globalStore.roomHistory.map(room => ({
-                                                    key: room.uuid,
-                                                    label: (
-                                                        <>
-                                                            <span className="room-title">
-                                                                {room.title}
-                                                            </span>
-                                                            <span className="invite-code">
-                                                                {formatInviteCode("", room.uuid)}
-                                                            </span>
-                                                        </>
-                                                    ),
-                                                }))}
-                                                onClick={e => selectRoomFromHistory(e.key)}
-                                            />
-                                        }
-                                        overlayClassName="join-room-box-dropdown"
-                                    >
-                                        <Button
-                                            size="small"
-                                            type="text"
-                                            onClick={() => showDropdown(e => !e)}
-                                        >
-                                            <SVGChevronDown active={dropdown} />
-                                        </Button>
-                                    </Dropdown>
-                                )
-                            }
+                            // suffix={
+                            //     globalStore.roomHistory.length > 0 && (
+                            //         <Dropdown
+                            //             open={dropdown}
+                            //             overlay={
+                            //                 <Menu
+                            //                     className="join-room-box-dropdown-menu"
+                            //                     items={globalStore.roomHistory.map(room => ({
+                            //                         key: room.uuid,
+                            //                         label: (
+                            //                             <>
+                            //                                 <span className="room-title">
+                            //                                     {room.title}
+                            //                                 </span>
+                            //                                 <span className="invite-code">
+                            //                                     {formatInviteCode("", room.uuid)}
+                            //                                 </span>
+                            //                             </>
+                            //                         ),
+                            //                     }))}
+                            //                     onClick={e => selectRoomFromHistory(e.key)}
+                            //                 />
+                            //             }
+                            //             overlayClassName="join-room-box-dropdown"
+                            //         >
+                            //             <Button
+                            //                 size="small"
+                            //                 type="text"
+                            //                 onClick={() => showDropdown(e => !e)}
+                            //             >
+                            //                 <SVGChevronDown active={dropdown} />
+                            //             </Button>
+                            //         </Dropdown>
+                            //     )
+                            // }
                             onKeyUp={submitOnEnter}
                         />
                     </Form.Item>
                     {/* <Form.Item label={t("join-options")}>
                         <Form.Item noStyle name="autoMicOn" valuePropName="checked">
                             <Checkbox>{t("turn-on-the-microphone")}</Checkbox>
-                        </Form.Item>
-                        <Form.Item noStyle name="autoCameraOn" valuePropName="checked">
+                            </Form.Item>
+                            <Form.Item noStyle name="autoCameraOn" valuePropName="checked">
                             <Checkbox>{t("turn-on-the-camera")}</Checkbox>
                         </Form.Item>
-                    </Form.Item> */}
+                        </Form.Item> */}
                 </Form>
             </Modal>
         </>

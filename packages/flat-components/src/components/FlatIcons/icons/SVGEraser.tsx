@@ -14,28 +14,24 @@ export const SVGEraser: React.FC<FlatIconProps> = ({ active, className = "", ...
             {...restProps}
         >
             <line
-                className="flat-icon-stroke-color"
-                stroke="#6F3393"
-                strokeWidth="2"
+                className="svg-tool-icon-stroke stroke-width-2"
                 x1="6.98836"
                 x2="14.1266"
                 y1="8.91399"
                 y2="16.0523"
             />
             <ellipse
-                className="flat-icon-stroke-color"
+                className="svg-tool-icon-stroke stroke-width-1-5"
                 cx="12"
                 cy="22"
                 rx="11"
                 ry="2"
-                stroke="#6F3393"
                 strokeDasharray="3 3"
                 strokeLinecap="round"
                 strokeMiterlimit="16"
-                strokeWidth="1.5"
             />
             <rect
-                className="flat-icon-stroke-color"
+                className="flat-icon-stroke-color fill-opacity-0-5"
                 fill="#E5DEF0"
                 height="4.82278"
                 transform="rotate(45.362 6.42188 9.72266)"
@@ -44,11 +40,9 @@ export const SVGEraser: React.FC<FlatIconProps> = ({ active, className = "", ...
                 y="9.72266"
             />
             <rect
-                className="flat-icon-stroke-color"
+                className="flat-icon-stroke-color svg-tool-icon-stroke stroke-width-2"
                 height="11.1177"
                 rx="2"
-                stroke="#6F3393"
-                strokeWidth="2"
                 transform="rotate(-44.3152 2 13.082)"
                 width="17.2943"
                 x="2"

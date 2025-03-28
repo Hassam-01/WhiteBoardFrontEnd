@@ -26,7 +26,7 @@ export const ScheduleRoomBox = React.memo<{}>(function ScheduleRoomBox() {
         if (isShowModal) {
             // showModal(false);
         }
-        console.log("isShowModal", isShowModal);
+        // console.log();
     }, [isShowModal]);
     const closeModal = (): void => {
         showModal(false);
