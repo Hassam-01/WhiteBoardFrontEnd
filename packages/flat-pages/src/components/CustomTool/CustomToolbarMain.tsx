@@ -13,9 +13,10 @@ import { SVGInsert } from "../../../../flat-components/src/components/FlatIcons/
 import { SVGMore } from "../../../../flat-components/src/components/FlatIcons/icons/SVGMore";
 import { SVGSelector } from "../../../../flat-components/src/components/FlatIcons/icons/SVGSelector";
 import { SVGClick } from "../../../../flat-components/src/components/FlatIcons/icons/SVGClick";
-
+import { ApplianceNames } from "white-web-sdk";
+import { set } from "date-fns";
 let app = fastboardSingleton.getFastboardApp();
-
+// let currentApplianceName = app?.memberState.value.currentApplianceName;
 interface PopupProps {
     children: React.ReactNode;
     position: { bottom: number; left: number };
@@ -44,8 +45,12 @@ const CustomToolbarMain: React.FC = () => {
     const [popupPosition, setPopupPosition] = useState<{ bottom: number; left: number } | null>(
         null,
     );
+    const [currentAppliance, setCurrentAppliance] = useState<ApplianceNames | null>(null);
     const toolbarRef = useRef<HTMLDivElement>(null);
-    const [activeTool, setActiveTool] = useState<string | null>(null);
+    // currentApplianceName = app?.memberState.value.currentApplianceName as
+    //     | ApplianceNames
+    //     | undefined;
+    const [activeTool, setActiveTool] = useState<string | null>(currentAppliance ?? null);
     const handlePopupToggle = (tool: string, event: React.MouseEvent): void => {
         if (activePopup === tool) {
             setActivePopup(null);
@@ -71,6 +76,12 @@ const CustomToolbarMain: React.FC = () => {
     };
 
     useEffect(() => {
+        app = fastboardSingleton.getFastboardApp();
+        setCurrentAppliance(app?.memberState.value.currentApplianceName as ApplianceNames | null);
+        setActiveTool(app?.memberState.value.currentApplianceName as ApplianceNames | null);
+    }, [currentAppliance]);
+
+    useEffect(() => {
         if (activePopup && popupPosition && toolbarRef.current) {
             const popupElement = document.querySelector(".popup") as HTMLElement;
             if (popupElement) {
@@ -89,8 +100,8 @@ const CustomToolbarMain: React.FC = () => {
         }
     }, [activePopup, popupPosition]);
 
-    // Close popup when clicking outside
     useEffect(() => {
+        // setCurrentAppliance(app?.memberState.value.currentApplianceName as ApplianceNames | null);
         function handleClickOutside(event: MouseEvent): void {
             if (toolbarRef.current && !toolbarRef.current.contains(event.target as Node)) {
                 setActivePopup(null);
