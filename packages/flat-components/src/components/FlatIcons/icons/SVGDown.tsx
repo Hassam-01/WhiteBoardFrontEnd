@@ -14,9 +14,9 @@ export const SVGDown: React.FC<FlatIconProps> = ({ active, className = "", ...re
             {...restProps}
         >
             <path
-                className="flat-icon-stroke-color"
+                className="flat-icon-stroke-color svg-tool-icon-stroke-white"
                 d="m16 10-2 2-2 2-2-2-2-2"
-                stroke="#5D6066"
+                // stroke="#5D6066"
                 strokeLinejoin="round"
                 strokeWidth="1.25"
             ></path>

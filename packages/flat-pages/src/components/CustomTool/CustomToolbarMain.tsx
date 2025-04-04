@@ -45,7 +45,7 @@ const CustomToolbarMain: React.FC = () => {
         null,
     );
     const toolbarRef = useRef<HTMLDivElement>(null);
-
+    const [activeTool, setActiveTool] = useState<string | null>(null);
     const handlePopupToggle = (tool: string, event: React.MouseEvent): void => {
         if (activePopup === tool) {
             setActivePopup(null);
@@ -62,6 +62,7 @@ const CustomToolbarMain: React.FC = () => {
             if (tool === "more") {
                 const popupWidth = 280;
                 popupLeft = rect.left - popupWidth + rect.width;
+                setActiveTool("more");
             }
 
             setPopupPosition({ bottom: popupBottom, left: popupLeft });
@@ -127,26 +128,32 @@ const CustomToolbarMain: React.FC = () => {
         switch (appliance) {
             case "clicker": {
                 app?.setAppliance("clicker");
+                setActiveTool("clicker");
                 break;
             }
             case "selector": {
                 app?.setAppliance("selector");
+                setActiveTool("selector");
                 break;
             }
             case "text": {
                 app?.setAppliance("text");
+                setActiveTool("text");
                 break;
             }
             case "pencil": {
                 app?.setAppliance("pencil");
+                setActiveTool("pencil");
                 break;
             }
             case "eraser": {
                 app?.setAppliance("eraser");
+                setActiveTool("eraser");
                 break;
             }
             case "shape": {
                 app?.setAppliance("shape");
+                setActiveTool("shape");
                 break;
             }
             default: {
@@ -157,14 +164,14 @@ const CustomToolbarMain: React.FC = () => {
     return (
         <div ref={toolbarRef} className="toolbar" style={{ position: "relative" }}>
             {/* Click Tool */}
-            <div className="toolbar-item-box" onClick={() => handleAppliance("click")}>
-                <SVGClick />
+            <div className="toolbar-item-box" onClick={() => handleAppliance("clicker")}>
+                <SVGClick active={activeTool === "clicker"} />
                 <span>Clicker</span>
             </div>
 
             {/* Selector Tool */}
             <div className="toolbar-item-box" onClick={() => handleAppliance("selector")}>
-                <SVGSelector />
+                <SVGSelector active={activeTool === "selector"} />
                 <span>Selector</span>
             </div>
 
@@ -176,13 +183,13 @@ const CustomToolbarMain: React.FC = () => {
                     handleAppliance("pencil");
                 }}
             >
-                <SVGPencil />
+                <SVGPencil active={activeTool === "pencil"} />
                 <span>Pencil</span>
             </div>
 
             {/* Text Tool */}
             <div className="toolbar-item-box" onClick={() => handleAppliance("text")}>
-                <SVGText />
+                <SVGText active={activeTool === "text"} />
                 <span>Text</span>
             </div>
 
@@ -194,7 +201,7 @@ const CustomToolbarMain: React.FC = () => {
                     handleAppliance("shape");
                 }}
             >
-                <SVGShapes />
+                <SVGShapes active={activeTool === "shape"} />
                 <span>Shape</span>
             </div>
 
@@ -206,7 +213,7 @@ const CustomToolbarMain: React.FC = () => {
                     handleAppliance("eraser");
                 }}
             >
-                <SVGEraser />
+                <SVGEraser active={activeTool === "eraser"} />
                 <span>Eraser</span>
             </div>
 
@@ -229,7 +236,7 @@ const CustomToolbarMain: React.FC = () => {
                     handleAppliance("more");
                 }}
             >
-                <SVGMore />
+                <SVGMore active={activeTool === "more"} />
                 <span>More</span>
             </div>
 

@@ -40,12 +40,17 @@ const MoreApps: React.FC<MoreProps> = ({ app }) => {
         <div className="toolbar-apps-container">
             <div
                 className="toolbar-apps-box"
-                onClick={() => app?.manager.addApp({ kind: "Monaco" })}
+                onClick={() =>
+                    app?.manager.addApp({ kind: "Monaco", options: { title: "Code Editor" } })
+                }
             >
                 <SVGCode />
                 <span className="toolbar-apps-label">Code</span>
             </div>
-            <div className="toolbar-apps-box" onClick={() => app?.manager.addApp({ kind: "Dice" })}>
+            <div
+                className="toolbar-apps-box"
+                onClick={() => app?.manager.addApp({ kind: "Dice", options: { title: "Dice" } })}
+            >
                 <SVGDice />
                 <span className="toolbar-apps-label">Dice</span>
             </div>
@@ -55,6 +60,7 @@ const MoreApps: React.FC<MoreProps> = ({ app }) => {
                     app?.manager.addApp({
                         kind: "GeoGebra",
                         attributes: { uid: app.room.uid },
+                        options: { title: "Graphing Tool" },
                     })
                 }
             >
@@ -64,7 +70,7 @@ const MoreApps: React.FC<MoreProps> = ({ app }) => {
             <div
                 className="toolbar-apps-box"
                 onClick={() => {
-                    console.log("MindMap");
+                    // console.log("MindMap");
                     (window as any).define = undefined;
                     console.log((window as any).define);
                     app?.manager.addApp({ kind: "MindMap", options: { title: "MindMap" } });
@@ -84,17 +90,21 @@ const MoreApps: React.FC<MoreProps> = ({ app }) => {
             </div>
             <div
                 className="toolbar-apps-box"
-                onClick={() => app?.manager.addApp({ kind: "Selector" })}
+                onClick={() =>
+                    app?.manager.addApp({ kind: "Selector", options: { title: "Selector" } })
+                }
             >
                 <SVGSelectorApp />
                 <span className="toolbar-apps-label">Selector</span>
             </div>
             <div
                 className="toolbar-apps-box"
-                onClick={() => app?.manager.addApp({ kind: "Countdown" })}
+                onClick={() =>
+                    app?.manager.addApp({ kind: "Countdown", options: { title: "Count Down" } })
+                }
             >
                 <SVGStopWatch />
-                <span className="toolbar-apps-label">Stop Watch</span>
+                <span className="toolbar-apps-label">Count Down</span>
             </div>{" "}
         </div>
     );

@@ -1,4 +1,3 @@
-import frontZhSVG from "../assets/front-zh.svg";
 import frontEnSVG from "../assets/front-en.svg";
 
 import type { PreferencesButtonProps } from "../index";
@@ -47,7 +46,7 @@ export const BackgroundSettings = observer<BackgroundSettingsProps>(function Bac
                             <img
                                 alt={t("online-interaction-to-synchronize-ideas")}
                                 className="preferences-modal-section-front"
-                                src={language === "zh-CN" ? frontZhSVG : frontEnSVG}
+                                src={language === "en" ? frontEnSVG : frontEnSVG}
                             />
                         </span>
                         <span>{t("background." + background)}</span>

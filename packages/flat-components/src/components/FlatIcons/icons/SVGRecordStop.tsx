@@ -18,34 +18,40 @@ export const SVGRecordStop: React.FC<FlatIconProps> = ({
             {...restProps}
         >
             <path
-                className="flat-icon-stroke-color"
+                className="svg-tool-icon-stroke"
                 d="M3 11V8a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-5"
-                stroke="#5D6066"
+                // stroke="#5D6066"
                 strokeLinejoin="round"
                 strokeWidth="1.25"
             ></path>
             <circle
-                className="flat-icon-stroke-color"
+                className="svg-tool-icon-stroke"
                 cx="6"
                 cy="15"
                 r="3"
-                stroke="#5D6066"
+                // stroke="#5D6066"
                 strokeLinejoin="round"
                 strokeWidth="1.25"
             ></circle>
-            <path className="flat-icon-fill-color" d="M5 14h2v2H5z" fill="#6F3393"></path>
             <path
-                className="flat-icon-stroke-color"
+                className="flat-icon-fill-color svg-tool-icon-fill"
+                d="M5 14h2v2H5z"
+                // fill="#6F3393"
+            ></path>
+            <path
+                className="svg-tool-icon-stroke"
+                // className="flat-icon-stroke-color"
                 clipRule="evenodd"
                 d="m17 11 4-2v6l-4-2v-2Z"
-                stroke="#5D6066"
+                // stroke="#5D6066"
                 strokeLinejoin="round"
                 strokeWidth="1.25"
             ></path>
             <path
-                className="flat-icon-stroke-color"
+                className="svg-tool-icon-stroke"
+                // className="flat-icon-stroke-color"
                 d="M6 9h4"
-                stroke="#5D6066"
+                // stroke="#5D6066"
                 strokeLinejoin="round"
                 strokeWidth="1.25"
             ></path>

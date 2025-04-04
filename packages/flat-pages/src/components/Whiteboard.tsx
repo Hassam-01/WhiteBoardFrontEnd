@@ -268,7 +268,7 @@ export const Whiteboard = observer<WhiteboardProps>(function Whiteboard({
                                 <CustomToolbarMain />
                             </div>
                             <div className="custom-toolbar-right-bar">
-                                <CustomToolbarRight />
+                                <CustomToolbarRight whiteboardStore={whiteboardStore} />
                             </div>
                         </div>
                     )}

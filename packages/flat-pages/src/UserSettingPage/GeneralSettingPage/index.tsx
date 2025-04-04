@@ -48,8 +48,10 @@ import { useBindingList } from "./binding";
 // import { Region } from "../../utils/join-room-handler";
 
 enum SelectLanguage {
-    Chinese,
+    // Chinese,
     English,
+    Espanol,
+    Arabic,
 }
 
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
@@ -145,7 +147,13 @@ export const GeneralSettingPage = observer(function GeneralSettingPage() {
     }
     function changeLanguage(event: CheckboxChangeEvent): void {
         const language: SelectLanguage = event.target.value;
-        void FlatI18n.changeLanguage(language === SelectLanguage.Chinese ? "zh-CN" : "en");
+        void FlatI18n.changeLanguage(
+            language === SelectLanguage.English
+                ? "en"
+                : language === SelectLanguage.Espanol
+                  ? "es"
+                  : "arabic",
+        );
     }
 
     const changeAppearance = (event: CheckboxChangeEvent): void => {
@@ -359,21 +367,22 @@ export const GeneralSettingPage = observer(function GeneralSettingPage() {
 
                     <Radio.Group
                         defaultValue={
-                            language === "zh-CN" ? SelectLanguage.Chinese : SelectLanguage.English
+                            // language === "zh-CN" ? SelectLanguage.Chinese : SelectLanguage.English
+                            language === "en" ? SelectLanguage.English : SelectLanguage.Espanol
                         }
                         onChange={changeLanguage}
                     >
-                        <Radio value={SelectLanguage.Chinese}>
+                        {/* <Radio value={SelectLanguage.Chinese}>
                             <span className="radio-item-inner">{t("chinese")}</span>
-                        </Radio>
+                        </Radio> */}
                         <Radio value={SelectLanguage.English}>
                             <span className="radio-item-inner">English</span>
                         </Radio>
-                        <Radio value={null}>
+                        <Radio value={SelectLanguage.Espanol}>
                             <span className="radio-item-inner">Espanol</span>
                         </Radio>
                         {/* Arabic language to be added */}
-                        <Radio value={null}>
+                        <Radio value={SelectLanguage.Arabic}>
                             <span className="radio-item-inner">Arabic</span>
                         </Radio>
                     </Radio.Group>

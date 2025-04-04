@@ -1,8 +1,8 @@
-.toolbar-right{
+.toolbar-right {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 10px;
+    // gap: 10px;
     width: 100%;
     margin: 13px 28px;
     height: 48px;
@@ -14,22 +14,24 @@
     height: 29px;
     width: 27px;
 }
-.toolbar-right-item-box{
+
+.toolbar-right-item-box {
     display: flex;
     flex-direction: column;
     font-size: 11px;
     align-items: center;
     justify-content: space-between;
-    padding: 2px;
-    height: 52px;
-    // gap: 3px;
-    // &:hover {
-    //     background-color: rgba(111, 51, 147, 0.1);
-    //     border-radius: 11px;
-    // }
+    border-radius: 11px;
+    padding: 4px 8px;
+    height: 58px;
+
+    &:hover {
+        background-color: rgba(111, 51, 147, 0.1);
+    }
 
 }
-.page-number{
+
+.page-number {
     color: #6F3393;
     font-size: 13px;
     font-weight: 500;
@@ -40,8 +42,103 @@
     border-radius: 8px;
     text-align: center;
 }
-.flat-color-scheme-dark{
-    .page-number{
+
+.flat-color-scheme-dark {
+    .page-number {
         color: #F5EFF7;
+    }
+
+    .toolbar-right-item-box {
+        &:hover {
+            background-color: rgba(227, 224, 229, 0.2);
+        }
+    }
+
+    .annotation-images-container {
+        background: #222429;
+        border: 1px solid #444;
+    }
+}
+
+
+.annotation-images-container {
+    position: absolute;
+    bottom: 80px;
+    right: 50px;
+    width: 250px;
+    max-height: 400px;
+    overflow-y: auto;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 8px;
+    gap: 8px;
+    z-index: 1000;
+
+    .annotation-image-wrapper {
+        margin: 0 auto;
+    }
+
+    .annotation-image-wrapper {
+        width: 220px; // Fixed width
+        height: 180px; // Fixed height
+        position: relative;
+        border: 1px solid #999;
+        border-radius: 4px;
+        margin-bottom: 5px;
+        padding: 2px;
+        overflow: hidden;
+        background: white;
+        // display: flex;
+        // display: block;
+
+        .annotation-image {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            background: white;
+            position: relative;
+        }
+
+        .annotation-label {
+            position: absolute;
+            left: 3px;
+            top: 3px;
+            color: #6F3393;
+            padding: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            text-align: center;
+            z-index: 10;
+        }
+
+        .annotation-delete {
+            position: absolute;
+            right: 3px;
+            top: 3px;
+            padding: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            text-align: center;
+            z-index: 100;
+
+            img {
+                width: 18px;
+                height: 18px;
+                cursor: pointer;
+            }
+
+        }
+
+        .annotation-image-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #999;
+            color: #f5f5f5;
+            font-size: 12px;
+        }
     }
 }

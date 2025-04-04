@@ -24,11 +24,17 @@ export const LanguageSettings = observer<LanguageSettingsProps>(function Languag
                 value={language}
                 onChange={changeLanguage}
             >
-                <Radio value="zh-CN">
+                {/* <Radio value="zh-CN">
                     <span>{t("chinese")}</span>
-                </Radio>
+                </Radio> */}
                 <Radio value="en">
                     <span>English</span>
+                </Radio>
+                <Radio value="es">
+                    <span>{t("Espanol")}</span>
+                </Radio>
+                <Radio value="arabic">
+                    <span>{t("Arabic ")}</span>
                 </Radio>
             </Radio.Group>
         </>

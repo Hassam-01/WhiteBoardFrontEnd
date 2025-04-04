@@ -11,6 +11,7 @@ import React, {
 } from "react";
 import {
     ClassPicker,
+    HomePageHeroButton,
     // HomePageHeroButton,
     PmiDesc,
     PmiExistTip,
@@ -29,6 +30,7 @@ import { useSafePromise } from "../../utils/hooks/lifecycle";
 import { FLAT_WEB_BASE_URL } from "../../constants/process";
 
 import { SVGBeginIllustration } from "../../../../flat-components/src/components/FlatIcons/icons/SVGBeginIllustration";
+import { MoreOutlined } from "@ant-design/icons";
 interface CreateRoomFormValues {
     roomTitle: string;
     roomType: RoomType;
@@ -223,7 +225,7 @@ export const CreateRoomBox = observer<CreateRoomBoxProps>(function CreateRoomBox
                     {/* replace the form.item below with the one above this comment line for using Class picker */}
                     <Form.Item noStyle name="roomType">
                         <input type="hidden" />
-                        {/* <ClassPicker value={classType} onChange={e => setClassType(RoomType[e])} /> */}
+                        <ClassPicker value={classType} onChange={e => setClassType(RoomType[e])} />
                     </Form.Item>
                     {/* <Form.Item label={t("join-options")}> */}
                     <Form.Item>

@@ -1,15 +1,15 @@
 const SupportedFileExts = [
-    ".ppt",
-    ".pptx",
-    ".doc",
-    ".docx",
-    ".pdf",
+    // ".ppt",
+    // ".pptx",
+    // ".doc",
+    // ".docx",
+    // ".pdf",
     ".png",
     ".jpg",
     ".jpeg",
-    ".gif",
-    ".mp3",
-    ".mp4",
+    // ".gif",
+    // ".mp3",
+    // ".mp4",
 ];
 
 export function isSupportedFileExt(file: File): boolean {

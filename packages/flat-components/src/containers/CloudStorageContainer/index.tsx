@@ -24,17 +24,20 @@ export interface CloudStorageContainerProps {
 }
 
 const SupportedFileExts = [
-    ".ppt",
-    ".pptx",
-    ".doc",
-    ".docx",
-    ".pdf",
+    // ".ppt",
+    // ".pptx",
+    // ".doc",
+    // ".docx",
+    // ".pdf",
     ".png",
     ".jpg",
     ".jpeg",
-    ".gif",
-    ".mp3",
-    ".mp4",
+    ".svg",
+    ".webp",
+    ".bmp",
+    // ".gif",
+    // ".mp3",
+    // ".mp4",
 ];
 
 const isSupportedFile = (file: File): boolean => {

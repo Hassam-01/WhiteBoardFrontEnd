@@ -4,9 +4,13 @@ import { ReadonlyVal, Val } from "value-enhancer";
 import { SideEffectManager } from "side-effect-manager";
 import en from "../locales/en.json";
 import zhCN from "../locales/zh-CN.json";
+import es from "../locales/espanol.json";
+import arabic from "../locales/arabic.json";
 
 import varsCNen from "../vars/cn/en.json";
 import varsCNzhCN from "../vars/cn/zh-CN.json";
+import varsUSes from "../vars/us/es.json";
+import varsUSarabic from "../vars/us/arabic.json";
 // import varsUSen from "../vars/us/en.json";
 // import varsUSzhCN from "../vars/us/zh-CN.json";
 
@@ -48,7 +52,8 @@ export class FlatI18n {
         return (window.__FlAtI18n ||= new FlatI18n());
     }
 
-    public static readonly languages = ["en", "zh-CN"] as const;
+    // public static readonly languages = ["en", "zh-CN", "es", "arabic"] as const;
+    public static readonly languages = ["en", "es", "arabic"] as const;
 
     public readonly $Val: {
         readonly isReady$: ReadonlyVal<boolean>;
@@ -81,13 +86,17 @@ export class FlatI18n {
         this.i18n = i18next;
 
         const resources: Resource = {
-            "en": { translation: en },
-            "zh-CN": { translation: zhCN },
+            en: { translation: en },
+            es: { translation: es },
+            arabic: { translation: arabic },
+            // "zh-CN": { translation: zhCN },
         };
 
         const defaultVars: Record<string, Record<string, string>> = {
-            "en": varsCNen,
-            "zh-CN": varsCNzhCN,
+            en: varsCNen,
+            // "zh-CN": varsCNzhCN,
+            es: varsUSes,
+            arabic: varsUSarabic,
         };
 
         i18next

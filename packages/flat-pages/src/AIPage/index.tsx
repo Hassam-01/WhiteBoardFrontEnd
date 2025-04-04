@@ -326,7 +326,7 @@ export const AIPage = withClassroomStore<AIPageProps>(
                     {classroomStore.whiteboardStore.allowDrawing && (
                         <CloudStorageButton classroom={classroomStore} />
                     )}
-                    <PreferencesButton classroom={classroomStore} />
+                    {/* <PreferencesButton classroom={classroomStore} /> */}
                     {!windowsBtn?.showWindowsBtn && (
                         <TopBarRightBtn
                             icon={<SVGExit />}
