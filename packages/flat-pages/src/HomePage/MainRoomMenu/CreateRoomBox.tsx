@@ -264,11 +264,13 @@ export const CreateRoomBox = observer<CreateRoomBoxProps>(function CreateRoomBox
                                     />
                                 </div>
 
-                                <div className="toggle-group">
+                                {/* <div className="toggle-group">
                                     <span>Restrict access for everyone</span>
-                                    {/* <Switch checked={globalStore.pmiRoomExist} /> */}
-                                    <Switch />
-                                </div>
+                                    <Switch
+                                    // checked={preferencesStore.downStageAll}
+                                    // onChange={() => preferencesStore.toggleDownStage()}
+                                    />
+                                </div> */}
                             </Form.Item>
                         )}
                     </Form.Item>

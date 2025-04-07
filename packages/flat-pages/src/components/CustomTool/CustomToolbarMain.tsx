@@ -14,7 +14,9 @@ import { SVGMore } from "../../../../flat-components/src/components/FlatIcons/ic
 import { SVGSelector } from "../../../../flat-components/src/components/FlatIcons/icons/SVGSelector";
 import { SVGClick } from "../../../../flat-components/src/components/FlatIcons/icons/SVGClick";
 import { ApplianceNames } from "white-web-sdk";
-import { set } from "date-fns";
+import { onDropImage } from "../../utils/drag-and-drop/image";
+import { WhiteboardStore } from "@netless/flat-stores";
+
 let app = fastboardSingleton.getFastboardApp();
 // let currentApplianceName = app?.memberState.value.currentApplianceName;
 interface PopupProps {
@@ -40,7 +42,7 @@ const Popup: React.FC<PopupProps> = ({ children, position, isMore }) => {
     );
 };
 
-const CustomToolbarMain: React.FC = () => {
+const CustomToolbarMain: React.FC<{ whiteboardStore: WhiteboardStore }> = ({ whiteboardStore }) => {
     const [activePopup, setActivePopup] = useState<string | null>(null);
     const [popupPosition, setPopupPosition] = useState<{ bottom: number; left: number } | null>(
         null,
@@ -172,6 +174,83 @@ const CustomToolbarMain: React.FC = () => {
             }
         }
     };
+    // const uploadImageOnView = async (file: CloudFile): Promise<void> => {
+    //     const maxWidth = window.innerWidth * 0.6;
+
+    //     let width: number;
+    //     let height: number;
+
+    //     if (file.fileURL) {
+    //         ({ width, height } = await new Promise<{ width: number; height: number }>(resolve => {
+    //             const img = new Image();
+    //             img.onload = () => resolve(img);
+    //             img.onerror = () =>
+    //                 resolve({ width: window.innerWidth, height: window.innerHeight });
+    //             img.src = file.fileURL;
+    //         }));
+    //     } else {
+    //         ({ innerWidth: width, innerHeight: height } = window);
+    //     }
+
+    //     let scale = 1;
+    //     if (width > maxWidth) {
+    //         scale = maxWidth / width;
+    //     }
+
+    //     const uuid = uuidv4();
+    //     // let { centerX, centerY } = app?.manager.cameraState;
+    //     const centerX = Math.floor(window.innerWidth / 2);
+    //     const centerY = Math.floor(window.innerHeight / 2);
+    //     width *= scale;
+    //     height *= scale;
+    //     app?.manager.mainView.insertImage({
+    //         uuid,
+    //         centerX,
+    //         centerY,
+    //         width: Math.floor(width),
+    //         height: Math.floor(height),
+    //         locked: false,
+    //     });
+
+    //     app?.manager.mainView.completeImageUpload(uuid, file.fileURL);
+    // };
+    // const uploadImageOnView = async (fileURL: string): Promise<void> => {
+    //     const fileService = await FlatServices.getInstance().requestService("file");
+    //     console.log(createCloudFile({ fileName: `${Date.now()}.png`, fileURL }));
+    //     if (fileService) {
+    //         console.log("test1");
+    //         fileService.insert(createCloudFile({ fileName: `${Date.now()}.png`, fileURL }));
+    //         console.log("test2");
+    //     }
+    // };
+
+    const uploadImageOnView = async (file: File): Promise<void> => {
+        const { room, windowManager } = whiteboardStore;
+        if (!room || !windowManager) {
+            return;
+        }
+        const { centerX, centerY } = windowManager.camera;
+        await onDropImage(file, centerX, centerY, room, whiteboardStore.cloudStorageStore);
+    };
+    const handleSelectImage = (): void => {
+        // select image from local browser default option
+        const input = document.createElement("input");
+        input.type = "file";
+        input.accept = "image/*";
+
+        input.onchange = async (e: Event): Promise<void> => {
+            const target = e.target as HTMLInputElement;
+            const file = target.files?.[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = async (_event: ProgressEvent<FileReader>): Promise<void> => {
+                    uploadImageOnView(file);
+                };
+                reader.readAsDataURL(file);
+            }
+        };
+        input.click();
+    };
     return (
         <div ref={toolbarRef} className="toolbar" style={{ position: "relative" }}>
             {/* Click Tool */}
@@ -230,9 +309,8 @@ const CustomToolbarMain: React.FC = () => {
 
             <div
                 className="toolbar-item-box"
-                onClick={e => {
-                    // handlePopupToggle("eraser", e);
-                    // handleAppliance("eraser");
+                onClick={() => {
+                    handleSelectImage();
                 }}
             >
                 <SVGInsert />

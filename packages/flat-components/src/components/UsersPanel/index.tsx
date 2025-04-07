@@ -23,7 +23,7 @@ export interface UsersPanelProps {
     // getDeviceState?: (userUUID: string) => { camera: boolean; mic: boolean };
     getVolumeLevel?: (userUUID: string) => number;
     onOffStageAll?: () => void;
-    // onMuteAll?: () => void;
+    onMuteAll?: () => void;
     onStaging?: (userUUID: string, isOnStage: boolean) => void;
     onWhiteboard?: (userUUID: string, enabled: boolean) => void;
     // onDeviceState?: (userUUID: string, camera: boolean, mic: boolean) => void;
@@ -38,7 +38,7 @@ export const UsersPanel = /* @__PURE__ */ observer<UsersPanelProps>(function Use
     // getDeviceState,
     getVolumeLevel,
     onOffStageAll,
-    // onMuteAll,
+    onMuteAll,
     onStaging,
     onWhiteboard,
     // onDeviceState,
@@ -66,9 +66,9 @@ export const UsersPanel = /* @__PURE__ */ observer<UsersPanelProps>(function Use
                         <Button className="users-panel-btn" onClick={onOffStageAll}>
                             {t("all-off-stage")}
                         </Button>
-                        {/* <Button className="users-panel-btn" onClick={onMuteAll}>
+                        <Button className="users-panel-btn" onClick={onMuteAll}>
                             {t("all-mute-mic")}
-                        </Button> */}
+                        </Button>
                     </>
                 )}
             </div>
@@ -82,7 +82,7 @@ export const UsersPanel = /* @__PURE__ */ observer<UsersPanelProps>(function Use
                             <th>{t("staging")}</th>
                             <th>{t("whiteboard-access")}</th>
                             {/* <th>{t("camera")}</th> */}
-                            {/* <th>{t("microphone")}</th> */}
+                            <th>{t("microphone")}</th>
                             <th>
                                 {t("raised-hand")} ({users.filter(user => user.isRaiseHand).length})
                             </th>

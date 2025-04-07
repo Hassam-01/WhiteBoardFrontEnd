@@ -145,6 +145,7 @@ export const VideoAvatar: React.FC<VideoAvatarProps> = ({
                                         avatarUser.camera,
                                         !avatarUser.mic,
                                     );
+                                    console.log("userUUID", avatarUser.userUUID, avatarUser.mic);
                                 }
                             }}
                         >

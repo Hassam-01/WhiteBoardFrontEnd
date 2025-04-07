@@ -42,7 +42,6 @@ export function registerColorShortcut(app: FastboardApp): () => void {
     const shortcut = (e: KeyboardEvent): void => {
         if (e.altKey && keyQ.has(e.key.toLowerCase())) {
             e.preventDefault();
-
             const { currentApplianceName, strokeColor, textColor } = app.memberState.value;
             const select = e.shiftKey ? previousColor : nextColor;
             const appliance = currentApplianceName as Appliance;

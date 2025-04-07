@@ -42,6 +42,8 @@ export class PreferencesStore {
     public autoRecording = false;
     /** Show or hide stroke tails */
     public strokeTail = true;
+    /** Auto down stage when joining room */
+    // public downStageAll = true;
 
     public constructor() {
         autoPersistStore({ storeLSName: "PreferencesStore", store: this, version: LS_VERSION });
@@ -103,6 +105,9 @@ export class PreferencesStore {
     public updateBackground = (background: Background): void => {
         this.background = background;
     };
+    // public toggleDownStage = (): void => {
+    //     this.downStageAll = !this.downStageAll;
+    // };
 }
 
 export const preferencesStore = new PreferencesStore();

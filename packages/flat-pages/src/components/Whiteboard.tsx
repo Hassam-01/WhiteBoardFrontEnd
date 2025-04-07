@@ -8,9 +8,12 @@ import {
     DarkModeContext,
     PresetsModal,
     RaiseHand,
+    RaisingHand,
     // RaisingHand,
     SaveAnnotationModal,
     SaveAnnotationModalProps,
+    SVGMicrophone,
+    SVGMicrophoneMute,
 } from "flat-components";
 import { FlatI18nTFunction, useTranslate } from "@netless/flat-i18n";
 import { observer } from "mobx-react-lite";
@@ -44,6 +47,7 @@ export const Whiteboard = observer<WhiteboardProps>(function Whiteboard({
     classRoomStore,
 }) {
     const t = useTranslate();
+    const [muted, setMuted] = useState(false);
     const preferences = useContext(PreferencesStoreContext);
     const { room, windowManager, phase, whiteboard } = whiteboardStore;
     const isDark = useContext(DarkModeContext);
@@ -205,6 +209,22 @@ export const Whiteboard = observer<WhiteboardProps>(function Whiteboard({
         return;
     }, [classRoomStore, classRoomStore.isHandRaisingPanelVisible]);
 
+    const handleMute = (): void => {
+        const { creator } = classRoomStore.users;
+
+        if (classRoomStore.firstOnStageUser && classRoomStore.onStageUserUUIDs.length > 0) {
+            classRoomStore.updateDeviceState(
+                classRoomStore.firstOnStageUser.userUUID,
+                classRoomStore.firstOnStageUser.camera,
+                !classRoomStore.firstOnStageUser.mic,
+            );
+            setMuted(!classRoomStore.firstOnStageUser.mic);
+            classRoomStore.firstOnStageUser.mic = !classRoomStore.firstOnStageUser.mic;
+        } else if (creator) {
+            classRoomStore.updateDeviceState(creator?.userUUID, creator?.camera, !creator?.mic);
+            setMuted(!creator?.mic);
+        }
+    };
     return (
         <>
             {room && (
@@ -248,10 +268,20 @@ export const Whiteboard = observer<WhiteboardProps>(function Whiteboard({
                             <RaisingHand
                                 active={handRaisingCount > 0}
                                 count={handRaisingCount}
-                                onClick={() => classRoomStore.onToggleHandRaisingPanel()}
+                                // onClick={() => classRoomStore.onToggleHandRaisingPanel()}
+                                onClick={() => handleMute()}
                             />
                         </div>
                     )} */}
+                    <div className="mic-container">
+                        {/* // remove the default style of button */}
+                        <button
+                            style={{ border: "none", background: "transparent" }}
+                            onClick={() => handleMute()}
+                        >
+                            {muted ? <SVGMicrophoneMute /> : <SVGMicrophone />}
+                        </button>
+                    </div>
                     <div
                         className={classNames("whiteboard-scroll-page", {
                             "is-active": showPage,
@@ -265,7 +295,7 @@ export const Whiteboard = observer<WhiteboardProps>(function Whiteboard({
                                 <CustomToolbarLeft />
                             </div>
                             <div className="custom-toolbar-main-bar">
-                                <CustomToolbarMain />
+                                <CustomToolbarMain whiteboardStore={whiteboardStore} />
                             </div>
                             <div className="custom-toolbar-right-bar">
                                 <CustomToolbarRight whiteboardStore={whiteboardStore} />

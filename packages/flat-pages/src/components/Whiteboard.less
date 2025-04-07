@@ -17,6 +17,7 @@
         }
 
         &.can-operate {
+
             .fastboard-left,
             .fastboard-bottom-left,
             .fastboard-bottom-right {
@@ -56,6 +57,7 @@
         button {
             outline: 4;
         }
+
         bottom: 40px;
     }
 
@@ -70,7 +72,7 @@
             background-image: url('./testBG.svg');
             background-size: cover;
             background-repeat: no-repeat;
-            
+
         }
     }
 
@@ -270,7 +272,9 @@
     --fastboard-border-color: var(--grey-1);
 }
 
+
 .flat-color-scheme-dark {
+
     .whiteboard-container,
     .custom-toolbar-main-bar,
     .custom-toolbar-left-bar,
@@ -306,12 +310,26 @@
     --tele-managerStageShadow: none;
     --tele-managerContainerBackground: #222429;
 }
+
 // .fastboard-bottom-left{
 //     left: 45px;
 // }
 // .fastboard-bottom-right{
 //     right: 45px;
 // }
+.mic-container {
+    position: absolute;
+    bottom: 120px;
+    right: 50px;
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    padding: 4px;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+}
+
 .custom-toolbar {
     position: absolute;
     bottom: 40px;

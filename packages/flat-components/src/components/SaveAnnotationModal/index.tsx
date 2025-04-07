@@ -240,7 +240,7 @@ const Annotation: React.FC<AnnotationProps> = ({ image, footerText, onRemove }) 
                 <img alt="delete" src={deleteSVG} />
             </div>
 
-            {/* <div ref={refDiv} className="save-annotation-image" /> */}
+            <div ref={refDiv} className="save-annotation-image" />
             <div className="save-annotation-footer">{footerText}</div>
         </div>
     );
