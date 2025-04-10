@@ -6,9 +6,9 @@ import { useTranslate } from "@netless/flat-i18n";
 import { Modal, message } from "antd";
 
 import { useSafePromise } from "../../utils/hooks";
-// import jsPDF from "jspdf";
-// import PPTXgen from "pptxgenjs";
-// import JSZip from "jszip";
+import jsPDF from "jspdf";
+import PPTXgen from "pptxgenjs";
+import JSZip from "jszip";
 let downloadFormat = "PNG";
 function download(
     images: Array<Promise<HTMLCanvasElement | null>>,
@@ -35,74 +35,74 @@ function download(
                     });
                 break;
             }
-            // case "PDF": {
-            //     console.log("PDF");
-            //     console.log(images);
-            //     Promise.all(images)
-            //         .then(canvases => {
-            //             const pdf = new jsPDF();
-            //             canvases.forEach((canvas, index) => {
-            //                 if (canvas) {
-            //                     const imgData = canvas.toDataURL("image/png"); //
-            //                     if (index > 0) {
-            //                         pdf.addPage();
-            //                     }
-            //                     pdf.addImage(imgData, "PNG", 10, 10, 190, 0); //
-            //                 }
-            //             });
-            //             pdf.save("annotations.pdf"); //
-            //         })
-            //         .catch(err => {
-            //             console.error(err);
-            //             message.error(failText);
-            //         });
+            case "PDF": {
+                console.log("PDF");
+                console.log(images);
+                Promise.all(images)
+                    .then(canvases => {
+                        const pdf = new jsPDF();
+                        canvases.forEach((canvas, index) => {
+                            if (canvas) {
+                                const imgData = canvas.toDataURL("image/png"); //
+                                if (index > 0) {
+                                    pdf.addPage();
+                                }
+                                pdf.addImage(imgData, "PNG", 10, 10, 190, 0); //
+                            }
+                        });
+                        pdf.save("annotations.pdf"); //
+                    })
+                    .catch(err => {
+                        console.error(err);
+                        message.error(failText);
+                    });
 
-            //     break;
-            // }
-            // case "PPTX": {
-            //     console.log("PPTX");
-            //     console.log(images);
-            //     Promise.all(images)
-            //         .then(canvases => {
-            //             const pptx = new PPTXgen();
-            //             canvases.forEach(canvas => {
-            //                 if (canvas) {
-            //                     const slide = pptx.addSlide();
-            //                     const imgData = canvas.toDataURL("image/png");
-            //                     slide.addImage({ data: imgData, x: 0.5, y: 0.5, w: 9, h: 5 });
-            //                 }
-            //             });
-            //             pptx.writeFile({ fileName: "annotations.pptx" });
-            //         })
-            //         .catch(err => {
-            //             console.error(err);
-            //             message.error(failText);
-            //         });
-            //     break;
-            // }
-            // case "IWB": {
-            //     Promise.all(images)
-            //         .then(canvases => {
-            //             const zip = new JSZip();
-            //             canvases.forEach((canvas, index) => {
-            //                 if (canvas) {
-            //                     const imgData = canvas.toDataURL("image/png").split(",")[1];
-            //                     zip.file(`annotation-${index + 1}.iwb`, imgData, { base64: true });
-            //                 }
-            //             });
-            //             zip.generateAsync({ type: "blob" }).then((content: Blob | MediaSource) => {
-            //                 const a = document.createElement("a");
-            //                 a.download = "annotations.zip";
-            //                 a.href = URL.createObjectURL(content);
-            //                 a.click();
-            //             });
-            //         })
-            //         .catch(err => {
-            //             console.error(err);
-            //             message.error(failText);
-            //         });
-            //     break;
-            // }
+                break;
+            }
+            case "PPTX": {
+                console.log("PPTX");
+                console.log(images);
+                Promise.all(images)
+                    .then(canvases => {
+                        const pptx = new PPTXgen();
+                        canvases.forEach(canvas => {
+                            if (canvas) {
+                                const slide = pptx.addSlide();
+                                const imgData = canvas.toDataURL("image/png");
+                                slide.addImage({ data: imgData, x: 0.5, y: 0.5, w: 9, h: 5 });
+                            }
+                        });
+                        pptx.writeFile({ fileName: "annotations.pptx" });
+                    })
+                    .catch(err => {
+                        console.error(err);
+                        message.error(failText);
+                    });
+                break;
+            }
+            case "IWB": {
+                Promise.all(images)
+                    .then(canvases => {
+                        const zip = new JSZip();
+                        canvases.forEach((canvas, index) => {
+                            if (canvas) {
+                                const imgData = canvas.toDataURL("image/png").split(",")[1];
+                                zip.file(`annotation-${index + 1}.iwb`, imgData, { base64: true });
+                            }
+                        });
+                        zip.generateAsync({ type: "blob" }).then((content: Blob | MediaSource) => {
+                            const a = document.createElement("a");
+                            a.download = "annotations.zip";
+                            a.href = URL.createObjectURL(content);
+                            a.click();
+                        });
+                    })
+                    .catch(err => {
+                        console.error(err);
+                        message.error(failText);
+                    });
+                break;
+            }
             default: {
                 break;
             }
