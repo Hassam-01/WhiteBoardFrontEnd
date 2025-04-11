@@ -3,7 +3,6 @@
   "private": true,
   "scripts": {
     "preinstall": "npx only-allow pnpm",
-    "prepare": "husky install",
     "lint": "lint-staged --cwd .",
     "check-spelling": "cspell --no-progress \"**/*.{md,ts,tsx,js,css,less,json,yml,yaml,html,sh}\"",
     "storybook": "pnpm -F flat-components start",
