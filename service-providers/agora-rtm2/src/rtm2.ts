@@ -46,6 +46,7 @@ export class AgoraRTM2 extends IServiceTextChat {
     }
 
     public async joinRoom(config: IServiceTextChatJoinRoomConfig): Promise<void> {
+        console.log("AgoraRTM2 joinRoom", config.roomUUID, config.uid, config.token);
         if (this._pJoiningRoom) {
             await this._pJoiningRoom;
         }
@@ -174,11 +175,14 @@ export class AgoraRTM2 extends IServiceTextChat {
             logUpload: !process.env.DEV,
             token: this.token,
         }));
-
+        console.log("Client brother: ", client, uid, token);
         this.sideEffect.add(() => {
+            console.log("generating token sideffect: ");
             const handler = async (): Promise<void> => {
                 this.token = await generateRTMToken();
+                console.log("renew token: ", this.token);
                 await client.renewToken(this.token);
+                console.log("renew token success: ", this.token);
             };
             client.addEventListener("tokenPrivilegeWillExpire", handler);
             return () => client.removeEventListener("tokenPrivilegeWillExpire", handler);
@@ -302,15 +306,18 @@ export class AgoraRTM2 extends IServiceTextChat {
             client.addEventListener("message", handler);
             return () => client.removeEventListener("message", handler);
         });
-
+        console.log("[rtm2] joinRoom before login", roomUUID, uid, token);
         await client.login();
+        console.log("[rtm2] joinRoom after login", roomUUID, uid, token);
         await client.subscribe(roomUUID, {
             withMessage: true,
             withPresence: true,
         });
+        console.log("[rtm2] joinRoom after subscribe", roomUUID, uid, token);
         await client.subscribe(uid, {
             withMessage: true,
         });
+        console.log("[rtm2] joinRoom after user susbcribe", roomUUID, uid, token);
         this.channel = roomUUID;
 
         await this._initMembers(client, roomUUID);
@@ -351,7 +358,7 @@ export class AgoraRTM2 extends IServiceTextChat {
             client.addEventListener("presence", handler);
             return () => client.removeEventListener("presence", handler);
         });
-
+        console.log("end of _joinroom brother: ", roomUUID, uid, token);
         this.roomUUID = roomUUID;
         this.userUUID = uid;
     }

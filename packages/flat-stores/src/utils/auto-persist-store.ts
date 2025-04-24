@@ -12,6 +12,8 @@ export function autoPersistStore<TStore extends object>({
     version?: number;
 }): void {
     const config = getLSStore<TStore>(storeLSName, version);
+    console.log("config", storeLSName);
+    console.log("store", store.userInfo);
     if (config) {
         const keys = Object.keys(config) as unknown as Array<keyof TStore>;
         for (const key of keys) {
@@ -21,8 +23,9 @@ export function autoPersistStore<TStore extends object>({
         }
     }
 
+    console.log("store beforeee", store);
     makeAutoObservable(store);
-
+    console.log("store afterrr", store);
     autorun(() => setLSStore(storeLSName, toJS(store), version));
 }
 

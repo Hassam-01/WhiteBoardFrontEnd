@@ -117,8 +117,10 @@ export const RegisterModal: React.FC<RegisterProps> = ({
                 ),
             )
         ) {
+            console.log("register success brother: ");
             await new Promise(resolve => setTimeout(resolve, 60000));
         } else {
+            console.log("register failed brother: ");
             message.info(t("register-failed"));
         }
 

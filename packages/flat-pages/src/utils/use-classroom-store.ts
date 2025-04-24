@@ -11,6 +11,7 @@ export type useClassRoomStoreConfig = Omit<
 >;
 
 export function useClassroomStore(config: useClassRoomStoreConfig): ClassroomStore | undefined {
+    console.log("config on enter: ", config);
     const [classroomStore, setClassroomStore] = useState<ClassroomStore>();
 
     const pushHistory = usePushHistory();
@@ -27,6 +28,7 @@ export function useClassroomStore(config: useClassRoomStoreConfig): ClassroomSto
         let isUnmounted = false;
         let classroomStore: ClassroomStore | undefined;
         const flatServices = FlatServices.getInstance();
+        console.log("flatServices from useClassRoomStore", flatServices);
         sp(
             Promise.all([
                 flatServices.requestService("videoChat"),
@@ -35,6 +37,7 @@ export function useClassroomStore(config: useClassRoomStoreConfig): ClassroomSto
                 flatServices.requestService("textChat"),
             ]),
         ).then(([videoChat, whiteboard, recording, textChat]) => {
+            console.log("videoChat ", videoChat, whiteboard, recording, textChat);
             if (!isUnmounted && videoChat && whiteboard && recording && textChat) {
                 const classroomStoreConfig: ClassroomStoreConfig = {
                     ...config,

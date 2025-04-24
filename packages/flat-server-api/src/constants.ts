@@ -10,26 +10,26 @@ export const COOKIE_DOMAIN = CURRENT_SERVER_DOMAIN
     ? CURRENT_SERVER_DOMAIN.slice(CURRENT_SERVER_DOMAIN.indexOf(".") + 1)
     : "";
 
-export const FLAT_SERVER_BASE_URL = `https://${CURRENT_SERVER_DOMAIN}`;
+export const FLAT_SERVER_BASE_URL = `http://${CURRENT_SERVER_DOMAIN}`;
 
-export const FLAT_SERVER_BASE_URL_V1 = `https://${CURRENT_SERVER_DOMAIN}/v1`;
-export const FLAT_SERVER_BASE_URL_V2 = `https://${CURRENT_SERVER_DOMAIN}/v2`;
+export const FLAT_SERVER_BASE_URL_V1 = `http://${CURRENT_SERVER_DOMAIN}/v1`;
+export const FLAT_SERVER_BASE_URL_V2 = `http://${CURRENT_SERVER_DOMAIN}/v2`;
 
 export const FLAT_SERVER_LOGIN = {
-    AGORA_CALLBACK: `https://${CURRENT_SERVER_DOMAIN}/v1/login/agora/callback`,
-    GITHUB_CALLBACK: `https://${CURRENT_SERVER_DOMAIN}/v1/login/github/callback?platform=web`,
-    GOOGLE_CALLBACK: `https://${CURRENT_SERVER_DOMAIN}/v1/login/google/callback`,
-    WECHAT_CALLBACK: `https://${CURRENT_SERVER_DOMAIN}/v1/login/weChat/web/callback`,
+    AGORA_CALLBACK: `http://${CURRENT_SERVER_DOMAIN}/v1/login/agora/callback`,
+    GITHUB_CALLBACK: `http://${CURRENT_SERVER_DOMAIN}/v1/login/github/callback?platform=web`,
+    GOOGLE_CALLBACK: `http://${CURRENT_SERVER_DOMAIN}/v1/login/google/callback`,
+    WECHAT_CALLBACK: `http://${CURRENT_SERVER_DOMAIN}/v1/login/weChat/web/callback`,
 } as const;
 
 export const FLAT_SERVER_USER_BINDING = {
-    GITHUB_CALLBACK: `https://${CURRENT_SERVER_DOMAIN}/v1/login/github/callback/binding`,
-    WECHAT_CALLBACK: `https://${CURRENT_SERVER_DOMAIN}/v1/user/binding/platform/wechat/web`,
-    GOOGLE_CALLBACK: `https://${CURRENT_SERVER_DOMAIN}/v1/user/binding/platform/google`,
+    GITHUB_CALLBACK: `http://${CURRENT_SERVER_DOMAIN}/v1/login/github/callback/binding`,
+    WECHAT_CALLBACK: `http://${CURRENT_SERVER_DOMAIN}/v1/user/binding/platform/wechat/web`,
+    GOOGLE_CALLBACK: `http://${CURRENT_SERVER_DOMAIN}/v1/user/binding/platform/google`,
 } as const;
 
 export enum Region {
-    CN_HZ = "cn-hz",
+    CN_HZ = "sg", // from cn-hz to sg
     US_SV = "us-sv",
     SG = "sg",
     IN_MUM = "in-mum",

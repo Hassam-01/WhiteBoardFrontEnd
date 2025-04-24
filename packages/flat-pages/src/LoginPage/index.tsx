@@ -1,11 +1,12 @@
 import "./style.less";
 
-import React, { useMemo, useState } from "react";
+// import React, { useMemo, useState } from "react";
+import React, { useMemo } from "react";
 import { useLanguage } from "@netless/flat-i18n";
 import { observer } from "mobx-react-lite";
 import { wrap } from "./utils/disposer";
 import { useLoginState } from "./utils/state";
-import { WeChatLogin } from "./WeChatLogin";
+// import { WeChatLogin } from "./WeChatLogin";
 import {
     PRIVACY_URL_CN_CN,
     PRIVACY_URL_CN_EN,
@@ -21,33 +22,33 @@ import { AppUpgradeModal } from "../components/AppUpgradeModal";
 
 import {
     LoginPanel,
-    LoginWithCode,
+    // LoginWithCode,
     LoginWithPassword,
-    BindingPhonePanel,
-    QRCodePanel,
+    // BindingPhonePanel,
+    // QRCodePanel,
     RegisterModal,
     LoginKeyType,
     PasswordLoginType,
     LoginButtonProviderType,
-    RebindingPhonePanel,
+    // RebindingPhonePanel,
 } from "flat-components";
 import {
-    bindingPhone,
-    bindingPhoneSendCode,
+    // bindingPhone,
+    // bindingPhoneSendCode,
     loginEmailWithPwd,
     loginPhoneWithPwd,
-    loginPhone,
-    loginPhoneSendCode,
+    // loginPhone,
+    // loginPhoneSendCode,
     resetPhoneSendCode,
     resetEmailSendCode,
     resetPwdWithEmail,
-    resetPwdWithPhone,
+    // resetPwdWithPhone,
     registerEmail,
     registerPhone,
     registerEmailSendCode,
     registerPhoneSendCode,
-    rebindingPhoneSendCode,
-    rebindingPhone,
+    // rebindingPhoneSendCode,
+    // rebindingPhone,
     FLAT_REGION,
 } from "@netless/flat-server-api";
 import { globalStore } from "@netless/flat-stores";
@@ -55,10 +56,10 @@ import { globalStore } from "@netless/flat-stores";
 export const LoginPage = observer(function LoginPage() {
     const language = useLanguage();
     const sp = useSafePromise();
-    const [phone, setBindingPhone] = useState("");
+    // const [phone, setBindingPhone] = useState("");
 
-    const { currentState, setCurrentState, handleLogin, onLoginResult, onBoundPhone } =
-        useLoginState();
+    // const { currentState, setCurrentState, handleLogin, onLoginResult, onBoundPhone } = useLoginState();
+    const { currentState, setCurrentState, handleLogin, onLoginResult } = useLoginState();
 
     const panel = useMemo(() => {
         // const privacyURL = language.startsWith("zh") ? PRIVACY_URL_CN : PRIVACY_URL;
@@ -90,20 +91,20 @@ export const LoginPage = observer(function LoginPage() {
         };
 
         switch (currentState.value) {
-            case "loginWithCode": {
-                return (
-                    <LoginWithCode
-                        {...loginProps}
-                        loginOrRegister={async (countryCode, phone, code) =>
-                            wrap(loginPhone(countryCode + phone, Number(code)).then(onLoginResult))
-                        }
-                        loginWithPassword={() => setCurrentState("SWITCH_TO_PASSWORD")}
-                        sendVerificationCode={async (countryCode, phone) =>
-                            wrap(loginPhoneSendCode(countryCode + phone))
-                        }
-                    />
-                );
-            }
+            // case "loginWithCode": { // this is login using sms
+            //     return (
+            //         <LoginWithCode
+            //             {...loginProps}
+            //             loginOrRegister={async (countryCode, phone, code) =>
+            //                 wrap(loginPhone(countryCode + phone, Number(code)).then(onLoginResult))
+            //             }
+            //             loginWithPassword={() => setCurrentState("SWITCH_TO_PASSWORD")}
+            //             sendVerificationCode={async (countryCode, phone) =>
+            //                 wrap(loginPhoneSendCode(countryCode + phone))
+            //             }
+            //         />
+            //     );
+            // }
             case "register": {
                 return (
                     <RegisterModal
@@ -143,54 +144,54 @@ export const LoginPage = observer(function LoginPage() {
                     />
                 );
             }
-            case "wechatQRCode": {
-                return (
-                    <QRCodePanel
-                        backToLogin={() => setCurrentState("SWITCH_TO_PASSWORD")}
-                        renderQRCode={() => <WeChatLogin onLoginResult={onLoginResult} />}
-                    />
-                );
-            }
-            case "bindingPhone": {
-                return (
-                    <BindingPhonePanel
-                        bindingPhone={async (countryCode, phone, code) =>
-                            wrap(bindingPhone(countryCode + phone, Number(code)).then(onBoundPhone))
-                        }
-                        cancelBindingPhone={() => {
-                            onLoginResult(null);
-                            setCurrentState("SWITCH_TO_PASSWORD");
-                        }}
-                        needRebindingPhone={phone => {
-                            setBindingPhone(phone);
-                            setCurrentState("SWITCH_TO_REBINDING_PHONE");
-                        }}
-                        sendBindingPhoneCode={async (countryCode, phone) =>
-                            bindingPhoneSendCode(countryCode + phone)
-                        }
-                    />
-                );
-            }
-            case "rebindingPhone": {
-                return (
-                    <RebindingPhonePanel
-                        cancelRebindingPhone={() => {
-                            setCurrentState("SWITCH_TO_BINDING_PHONE");
-                        }}
-                        defaultPhone={phone}
-                        rebindingPhone={async (countryCode, phone, code) =>
-                            wrap(
-                                rebindingPhone(countryCode + phone, Number(code)).then(
-                                    onLoginResult,
-                                ),
-                            )
-                        }
-                        sendRebindingPhoneCode={async (countryCode, phone) =>
-                            rebindingPhoneSendCode(countryCode + phone)
-                        }
-                    />
-                );
-            }
+            // case "wechatQRCode": {
+            //     return (
+            //         <QRCodePanel
+            //             backToLogin={() => setCurrentState("SWITCH_TO_PASSWORD")}
+            //             renderQRCode={() => <WeChatLogin onLoginResult={onLoginResult} />}
+            //         />
+            //     );
+            // }
+            // case "bindingPhone": {
+            //     return (
+            //         <BindingPhonePanel
+            //             bindingPhone={async (countryCode, phone, code) =>
+            //                 wrap(bindingPhone(countryCode + phone, Number(code)).then(onBoundPhone))
+            //             }
+            //             cancelBindingPhone={() => {
+            //                 onLoginResult(null);
+            //                 setCurrentState("SWITCH_TO_PASSWORD");
+            //             }}
+            //             needRebindingPhone={phone => {
+            //                 setBindingPhone(phone);
+            //                 setCurrentState("SWITCH_TO_REBINDING_PHONE");
+            //             }}
+            //             sendBindingPhoneCode={async (countryCode, phone) =>
+            //                 bindingPhoneSendCode(countryCode + phone)
+            //             }
+            //         />
+            //     );
+            // }
+            // case "rebindingPhone": {
+            //     return (
+            //         <RebindingPhonePanel
+            //             cancelRebindingPhone={() => {
+            //                 setCurrentState("SWITCH_TO_BINDING_PHONE");
+            //             }}
+            //             defaultPhone={phone}
+            //             rebindingPhone={async (countryCode, phone, code) =>
+            //                 wrap(
+            //                     rebindingPhone(countryCode + phone, Number(code)).then(
+            //                         onLoginResult,
+            //                     ),
+            //                 )
+            //             }
+            //             sendRebindingPhoneCode={async (countryCode, phone) =>
+            //                 rebindingPhoneSendCode(countryCode + phone)
+            //             }
+            //         />
+            //     );
+            // }
             default: {
                 return (
                     <LoginWithPassword
@@ -198,47 +199,51 @@ export const LoginPage = observer(function LoginPage() {
                         accountHistory={globalStore.accountHistory}
                         login={async (
                             type,
-                            { key, originKey, countryCode }: LoginKeyType,
+                            // { key, originKey, countryCode }: LoginKeyType,
+                            { key, originKey }: LoginKeyType,
                             password,
                         ) =>
                             wrap(
-                                type === PasswordLoginType.Email
-                                    ? loginEmailWithPwd(key, password).then(authInfo =>
-                                          onLoginResult(authInfo, { key: originKey, password }),
-                                      )
-                                    : loginPhoneWithPwd(key, password).then(authInfo =>
-                                          onLoginResult(authInfo, {
-                                              key: originKey,
-                                              password,
-                                              countryCode,
-                                          }),
-                                      ),
+                                // type === PasswordLoginType.Email
+                                // ?
+                                loginEmailWithPwd(key, password).then(authInfo =>
+                                    onLoginResult(authInfo, { key: originKey, password }),
+                                ),
+                                // : loginPhoneWithPwd(key, password).then(authInfo => {
+                                //       onLoginResult(authInfo, {
+                                //           key: originKey,
+                                //           password,
+                                //           countryCode,
+                                //       });
+                                //   }),
                             )
                         }
-                        loginWithVerificationCode={() => setCurrentState("SWITCH_TO_CODE")}
+                        // loginWithVerificationCode={() => setCurrentState("SWITCH_TO_CODE")}
                         register={() => setCurrentState("SWITCH_TO_REGISTER")}
                         resetPassword={(
                             type: PasswordLoginType,
-                            { key, originKey, countryCode }: LoginKeyType,
+                            // { key, originKey, countryCode }: LoginKeyType,
+                            { key, originKey }: LoginKeyType,
                             code: string,
                             password: string,
                         ) =>
                             wrap(
-                                type === PasswordLoginType.Email
-                                    ? resetPwdWithEmail(key, Number(code), password).then(() => {
-                                          sp(loginEmailWithPwd(key, password)).then(authInfo =>
-                                              onLoginResult(authInfo, { key: originKey, password }),
-                                          );
-                                      })
-                                    : resetPwdWithPhone(key, Number(code), password).then(() => {
-                                          sp(loginPhoneWithPwd(key, password)).then(authInfo =>
-                                              onLoginResult(authInfo, {
-                                                  key: originKey,
-                                                  password,
-                                                  countryCode,
-                                              }),
-                                          );
-                                      }),
+                                // type === PasswordLoginType.Email
+                                // ?
+                                resetPwdWithEmail(key, Number(code), password).then(() => {
+                                    sp(loginEmailWithPwd(key, password)).then(authInfo =>
+                                        onLoginResult(authInfo, { key: originKey, password }),
+                                    );
+                                }),
+                                // : resetPwdWithPhone(key, Number(code), password).then(() => {
+                                //       sp(loginPhoneWithPwd(key, password)).then(authInfo =>
+                                //           onLoginResult(authInfo, {
+                                //               key: originKey,
+                                //               password,
+                                //               countryCode,
+                                //           }),
+                                //       );
+                                //   }),
                             )
                         }
                         sendVerificationCode={async (type, key) =>
@@ -252,16 +257,7 @@ export const LoginPage = observer(function LoginPage() {
                 );
             }
         }
-    }, [
-        language,
-        handleLogin,
-        currentState.value,
-        onLoginResult,
-        setCurrentState,
-        sp,
-        onBoundPhone,
-        phone,
-    ]);
+    }, [language, handleLogin, currentState.value, onLoginResult, setCurrentState, sp]);
 
     return (
         <div className="login-page-container" style={{ borderRadius: window.isElectron ? 0 : 12 }}>

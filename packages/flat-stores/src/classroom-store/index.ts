@@ -147,7 +147,7 @@ export class ClassroomStore {
 
     public readonly rtc: IServiceVideoChat;
     public readonly rtm: IServiceTextChat;
-    public readonly chatStore: ChatStore;
+    // public readonly chatStore: ChatStore;
     public readonly whiteboardStore: WhiteboardStore;
     public readonly recording: IServiceRecording;
     public aiChatStore?: AIChatStore;
@@ -173,12 +173,12 @@ export class ClassroomStore {
         this.recording = config.recording;
         this.isAIRoom = config.isAIClass;
 
-        this.chatStore = new ChatStore({
-            roomUUID: this.roomUUID,
-            ownerUUID: this.ownerUUID,
-            rtm: this.rtm,
-            isShowUserGuide: globalStore.isShowGuide,
-        });
+        // this.chatStore = new ChatStore({
+        //     roomUUID: this.roomUUID,
+        //     ownerUUID: this.ownerUUID,
+        //     rtm: this.rtm,
+        //     isShowUserGuide: globalStore.isShowGuide,
+        // });
 
         this.users = new UserStore({
             roomUUID: this.roomUUID,
@@ -544,12 +544,12 @@ export class ClassroomStore {
 
         this.updateIsBan(classroomStorage.state.ban);
 
-        this.chatStore.onNewMessage = message => {
-            if (this.isRecording) {
-                fastboard.syncedStore.dispatchEvent("new-message", message);
-            }
-            this.users.flushLazyUsers([message.senderID]).catch(console.error);
-        };
+        // this.chatStore.onNewMessage = message => {
+        //     if (this.isRecording) {
+        //         fastboard.syncedStore.dispatchEvent("new-message", message);
+        //     }
+        //     this.users.flushLazyUsers([message.senderID]).catch(console.error);
+        // };
 
         const raiseHandUsers = new Set<string>();
         const updateRaiseHandUsers = (userUUIDs: ReadonlyArray<string> = []): void => {

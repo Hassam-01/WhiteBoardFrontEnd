@@ -163,6 +163,7 @@ export async function registerEmail(
     code: number,
     password: string,
 ): Promise<RegisterResult> {
+    console.log("registerEmail waiting", email, code, password);
     return await postV2NotAuth<RegisterEmailPayload, RegisterResult>("register/email", {
         email,
         code,

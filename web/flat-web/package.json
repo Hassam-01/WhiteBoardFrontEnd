@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "license": "MIT",
   "scripts": {
-    "start": "vite --open",
+    "start": "vite",
     "start:cn": "cross-env FLAT_REGION=CN pnpm start",
     "start:sg": "cross-env FLAT_REGION=SG pnpm start",
     "build": "cross-env NODE_OPTIONS=\"--max-old-space-size=8192\" vite build",

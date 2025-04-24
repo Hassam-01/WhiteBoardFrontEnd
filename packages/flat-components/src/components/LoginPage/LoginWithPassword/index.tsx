@@ -1,6 +1,6 @@
 import "./index.less";
 
-import React, { useCallback, useEffect, useMemo, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { FlatI18nTFunction, useTranslate } from "@netless/flat-i18n";
 import { Button, Form, message } from "antd";
 import { FormInstance } from "antd/es/form";
@@ -14,7 +14,9 @@ import { LoginAccount, PasswordLoginType, defaultCountryCode } from "../LoginAcc
 import { LoginPassword } from "../LoginPassword";
 import { LoginSendCode } from "../LoginSendCode";
 import { LoginButtonProviderType } from "../LoginButton";
-import { LoginButtonsProps, LoginButtonsDescription, LoginButtons } from "../LoginButtons";
+// import { LoginButtonsProps, LoginButtonsDescription, LoginButtons } from "../LoginButtons";
+// import { LoginButtonsProps, LoginButtons } from "../LoginButtons";
+import { LoginButtonsProps } from "../LoginButtons";
 import { phoneValidator, emailValidator, passwordValidator } from "./validators";
 import { codeValidator } from "../LoginWithCode/validators";
 export * from "../LoginButtons";
@@ -45,7 +47,7 @@ export interface LoginWithPasswordProps {
     login: (type: PasswordLoginType, key: LoginKeyType, password: string) => Promise<boolean>;
     register: () => void;
     onClickButton: LoginButtonsProps["onClick"];
-    loginWithVerificationCode: () => void;
+    // loginWithVerificationCode: () => void;
     sendVerificationCode: (type: PasswordLoginType, key: string) => Promise<boolean>;
     resetPassword: (
         type: PasswordLoginType,
@@ -56,16 +58,16 @@ export interface LoginWithPasswordProps {
 }
 
 export const LoginWithPassword: React.FC<LoginWithPasswordProps> = ({
-    buttons: userButtons,
+    // buttons: userButtons,
     privacyURL,
     serviceURL,
     accountHistory,
-    onClickButton,
+    // onClickButton,
     login,
     resetPassword,
     register,
     sendVerificationCode,
-    loginWithVerificationCode,
+    // loginWithVerificationCode,
 }) => {
     const t = useTranslate();
     const sp = useSafePromise();
@@ -73,16 +75,16 @@ export const LoginWithPassword: React.FC<LoginWithPasswordProps> = ({
     // specify the current default input method through global variables
     const accountType = process.env.DEFAULT_LOGIN_WAY as PasswordLoginType;
 
-    const buttons = useMemo<LoginButtonsDescription>(
-        () =>
-            userButtons
-                ? userButtons.map(e => ({ provider: e, text: t(`login-${e}`) }))
-                : [
-                      { provider: "google", text: t("login-google") },
-                      { provider: "github", text: t("login-github") },
-                  ],
-        [t, userButtons],
-    );
+    // const buttons = useMemo<LoginButtonsDescription>(
+    //     () =>
+    //         userButtons
+    //             ? userButtons.map(e => ({ provider: e, text: t(`login-${e}`) }))
+    //             : [
+    //                   { provider: "google", text: t("login-google") },
+    //                   { provider: "github", text: t("login-github") },
+    //               ],
+    //     [t, userButtons],
+    // );
 
     const [page, setPage] = useState<PasswordLoginPageType>(PasswordLoginPageType.Login);
 
@@ -175,18 +177,18 @@ export const LoginWithPassword: React.FC<LoginWithPasswordProps> = ({
         return sendVerificationCode(type, phone ? countryCode + keyValue : keyValue);
     };
 
-    const onClick = useCallback(
-        async (provider: LoginButtonProviderType) => {
-            if (!agreed) {
-                if (!(await requestAgreement({ t, privacyURL, serviceURL }))) {
-                    return;
-                }
-                setAgreed(true);
-            }
-            onClickButton(provider);
-        },
-        [agreed, onClickButton, privacyURL, serviceURL, t],
-    );
+    // const onClick = useCallback(
+    //     async (provider: LoginButtonProviderType) => {
+    //         if (!agreed) {
+    //             if (!(await requestAgreement({ t, privacyURL, serviceURL }))) {
+    //                 return;
+    //             }
+    //             setAgreed(true);
+    //         }
+    //         onClickButton(provider);
+    //     },
+    //     [agreed, onClickButton, privacyURL, serviceURL, t],
+    // );
 
     const formValidateStatus = useCallback(() => {
         let condition =
@@ -256,9 +258,9 @@ export const LoginWithPassword: React.FC<LoginWithPasswordProps> = ({
                     </Form>
 
                     <div className="login-with-email-btn-wrapper">
-                        <Button type="link" onClick={loginWithVerificationCode}>
+                        {/* <Button type="link" onClick={loginWithVerificationCode}>
                             {t("verify-code-login")}
-                        </Button>
+                        </Button> */}
                         <Button type="link" onClick={() => setPage(PasswordLoginPageType.Reset)}>
                             {t("forgot")}
                         </Button>
@@ -292,10 +294,10 @@ export const LoginWithPassword: React.FC<LoginWithPasswordProps> = ({
                         {t("register")}
                     </Button>
                 </div>
-                <div className="login-splitter">
+                {/* <div className="login-splitter">
                     <span className="login-splitter-text">{t("also-login-with")}</span>
-                </div>
-                <LoginButtons buttons={buttons} onClick={onClick} />
+                </div> */}
+                {/* <LoginButtons buttons={buttons} onClick={onClick} /> */}
             </div>
         );
     }

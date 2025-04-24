@@ -55,6 +55,7 @@ export class AgoraRTM extends IServiceTextChat {
     }
 
     public async joinRoom(config: IServiceTextChatJoinRoomConfig): Promise<void> {
+        console.log("AgoraRTM joinRoom", config.roomUUID, config.uid, config.token);
         if (this._pJoiningRoom) {
             await this._pJoiningRoom;
         }

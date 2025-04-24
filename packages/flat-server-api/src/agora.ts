@@ -25,10 +25,12 @@ export type GenerateRTMTokenResult = {
 };
 
 export async function generateRTMToken(): Promise<string> {
+    console.log("generateRTMToken entered 090: ");
     const { token } = await post<GenerateRTMTokenPayload, GenerateRTMTokenResult>(
         "agora/token/generate/rtm",
         undefined,
     );
+    console.log("generateRTMToken done 101: ");
     return token;
 }
 

@@ -1,8 +1,8 @@
 import "./BigClassPage.less";
 
-import { message } from "antd";
+// import { message } from "antd";
 import {
-    CloudRecordBtn,
+    // CloudRecordBtn,
     Timer,
     NetworkStatus,
     TopBar,
@@ -15,18 +15,18 @@ import { observer } from "mobx-react-lite";
 import React, { useContext, useEffect } from "react";
 import { useTranslate } from "@netless/flat-i18n";
 import { RoomStatus } from "@netless/flat-server-api";
-import { ChatPanel } from "../components/ChatPanel";
+// import { ChatPanel } from "../components/ChatPanel";
 import { RoomStatusStoppedModal } from "../components/ClassRoom/RoomStatusStoppedModal";
-import { CloudStorageButton } from "../components/CloudStorageButton";
+// import { CloudStorageButton } from "../components/CloudStorageButton";
 import {
     ExitRoomConfirm,
     ExitRoomConfirmType,
     useExitRoomConfirmModal,
 } from "../components/ExitRoomConfirm";
 import InviteButton from "../components/InviteButton";
-import { RealtimePanel } from "../components/RealtimePanel";
+// import { RealtimePanel } from "../components/RealtimePanel";
 import { Whiteboard } from "../components/Whiteboard";
-import { RTCAvatar } from "../components/RTCAvatar";
+// import { RTCAvatar } from "../components/RTCAvatar";
 import { ShareScreen } from "../components/ShareScreen";
 import { useLoginCheck } from "../utils/use-login-check";
 import { withClassroomStore, WithClassroomStoreProps } from "../utils/with-classroom-store";
@@ -45,15 +45,15 @@ export const BigClassPage = withClassroomStore<BigClassPageProps>(
         useLoginCheck();
 
         const t = useTranslate();
-
         const whiteboardStore = classroomStore.whiteboardStore;
         const windowsBtn = useContext(WindowsSystemBtnContext);
 
         const { confirm, ...exitConfirmModalProps } = useExitRoomConfirmModal(classroomStore);
 
-        const isRealtimeSideOpen = !whiteboardStore.isRightSideClose;
+        // const isRealtimeSideOpen = !whiteboardStore.isRightSideClose;
 
         useEffect(() => {
+            console.log("BigClassPage render useeffect: ", classroomStore.roomUUID);
             if (classroomStore.isCreator && classroomStore.roomStatus === RoomStatus.Idle) {
                 void classroomStore.startClass();
             }
@@ -141,7 +141,7 @@ export const BigClassPage = withClassroomStore<BigClassPageProps>(
                             }}
                         />
                     )}
-                    {classroomStore.isCreator && (
+                    {/* {classroomStore.isCreator && (
                         <CloudRecordBtn
                             isRecording={classroomStore.isRecording}
                             loading={classroomStore.isRecordingLoading}
@@ -153,7 +153,7 @@ export const BigClassPage = withClassroomStore<BigClassPageProps>(
                                 });
                             }}
                         />
-                    )}
+                    )} */}
                     {/* {classroomStore.whiteboardStore.allowDrawing && (
                         <CloudStorageButton classroom={classroomStore} />
                     )} */}
@@ -179,69 +179,69 @@ export const BigClassPage = withClassroomStore<BigClassPageProps>(
             );
         }
 
-        function renderRealtimePanel(): React.ReactNode {
-            const { creator } = classroomStore.users;
+        // function renderRealtimePanel(): React.ReactNode {
+        //     const { creator } = classroomStore.users;
 
-            return (
-                <RealtimePanel
-                    chatSlot={<ChatPanel classRoomStore={classroomStore} />}
-                    classroom={classroomStore}
-                    isShow={isRealtimeSideOpen}
-                    isVideoOn={classroomStore.isJoinedRTC}
-                    videoSlot={
-                        <div className="big-class-realtime-rtc-box">
-                            <RTCAvatar
-                                avatarUser={creator}
-                                getPortal={classroomStore.getPortal}
-                                isAvatarUserCreator={true}
-                                isCreator={classroomStore.isCreator}
-                                isDropTarget={classroomStore.isDropTarget(classroomStore.ownerUUID)}
-                                rtcAvatar={creator && classroomStore.rtc.getAvatar(creator.rtcUID)}
-                                updateDeviceState={classroomStore.updateDeviceState}
-                                userUUID={classroomStore.userUUID}
-                                onDoubleClick={() =>
-                                    classroomStore.createMaximizedAvatarWindow(
-                                        classroomStore.ownerUUID,
-                                    )
-                                }
-                                onDragEnd={classroomStore.onDragEnd}
-                                onDragStart={classroomStore.onDragStart}
-                            />
-                            {classroomStore.onStageUserUUIDs.length > 0 && (
-                                <RTCAvatar
-                                    avatarUser={classroomStore.firstOnStageUser}
-                                    getPortal={classroomStore.getPortal}
-                                    isAvatarUserCreator={false}
-                                    isCreator={classroomStore.isCreator}
-                                    isDropTarget={
-                                        classroomStore.firstOnStageUser &&
-                                        classroomStore.isDropTarget(
-                                            classroomStore.firstOnStageUser.userUUID,
-                                        )
-                                    }
-                                    rtcAvatar={
-                                        classroomStore.firstOnStageUser &&
-                                        classroomStore.rtc.getAvatar(
-                                            classroomStore.firstOnStageUser.rtcUID,
-                                        )
-                                    }
-                                    updateDeviceState={classroomStore.updateDeviceState}
-                                    userUUID={classroomStore.userUUID}
-                                    onDoubleClick={() =>
-                                        classroomStore.firstOnStageUser &&
-                                        classroomStore.createMaximizedAvatarWindow(
-                                            classroomStore.firstOnStageUser.userUUID,
-                                        )
-                                    }
-                                    onDragEnd={classroomStore.onDragEnd}
-                                    onDragStart={classroomStore.onDragStart}
-                                />
-                            )}
-                        </div>
-                    }
-                />
-            );
-        }
+        //     return (
+        //         <RealtimePanel
+        //             chatSlot={<ChatPanel classRoomStore={classroomStore} />}
+        //             classroom={classroomStore}
+        //             isShow={isRealtimeSideOpen}
+        //             isVideoOn={classroomStore.isJoinedRTC}
+        //             videoSlot={
+        //                 <div className="big-class-realtime-rtc-box">
+        //                     <RTCAvatar
+        //                         avatarUser={creator}
+        //                         getPortal={classroomStore.getPortal}
+        //                         isAvatarUserCreator={true}
+        //                         isCreator={classroomStore.isCreator}
+        //                         isDropTarget={classroomStore.isDropTarget(classroomStore.ownerUUID)}
+        //                         rtcAvatar={creator && classroomStore.rtc.getAvatar(creator.rtcUID)}
+        //                         updateDeviceState={classroomStore.updateDeviceState}
+        //                         userUUID={classroomStore.userUUID}
+        //                         onDoubleClick={() =>
+        //                             classroomStore.createMaximizedAvatarWindow(
+        //                                 classroomStore.ownerUUID,
+        //                             )
+        //                         }
+        //                         onDragEnd={classroomStore.onDragEnd}
+        //                         onDragStart={classroomStore.onDragStart}
+        //                     />
+        //                     {classroomStore.onStageUserUUIDs.length > 0 && (
+        //                         <RTCAvatar
+        //                             avatarUser={classroomStore.firstOnStageUser}
+        //                             getPortal={classroomStore.getPortal}
+        //                             isAvatarUserCreator={false}
+        //                             isCreator={classroomStore.isCreator}
+        //                             isDropTarget={
+        //                                 classroomStore.firstOnStageUser &&
+        //                                 classroomStore.isDropTarget(
+        //                                     classroomStore.firstOnStageUser.userUUID,
+        //                                 )
+        //                             }
+        //                             rtcAvatar={
+        //                                 classroomStore.firstOnStageUser &&
+        //                                 classroomStore.rtc.getAvatar(
+        //                                     classroomStore.firstOnStageUser.rtcUID,
+        //                                 )
+        //                             }
+        //                             updateDeviceState={classroomStore.updateDeviceState}
+        //                             userUUID={classroomStore.userUUID}
+        //                             onDoubleClick={() =>
+        //                                 classroomStore.firstOnStageUser &&
+        //                                 classroomStore.createMaximizedAvatarWindow(
+        //                                     classroomStore.firstOnStageUser.userUUID,
+        //                                 )
+        //                             }
+        //                             onDragEnd={classroomStore.onDragEnd}
+        //                             onDragStart={classroomStore.onDragStart}
+        //                         />
+        //                     )}
+        //                 </div>
+        //             }
+        //         />
+        //     );
+        // }
 
         // function handleSideOpenerSwitch(): void {
         //     whiteboardStore.setRightSideClose(isRealtimeSideOpen);

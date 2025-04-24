@@ -2,7 +2,7 @@ const { configPath } = require("../constants");
 const path = require("path");
 
 const configRegion = () => {
-    return process.env.FLAT_REGION || "CN";
+    return process.env.FLAT_REGION || "SG";
 };
 
 const autoChooseConfig = () => {

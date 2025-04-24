@@ -37,6 +37,7 @@ declare global {
 
 export class FlatServices {
     public static getInstance(): FlatServices {
+        console.log("getInstance flatServices from window", window.__FlAtSeRvIcEs, window);
         return (window.__FlAtSeRvIcEs ||= new FlatServices());
     }
 

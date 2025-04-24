@@ -49,7 +49,6 @@ const defaultRegion = getDefaultRegion();
 
 export function chooseServer(payload: any, enableFlatServerV2?: boolean): string {
     let server = enableFlatServerV2 ? FLAT_SERVER_BASE_URL_V2 : FLAT_SERVER_BASE_URL_V1;
-
     let region = defaultRegion;
     if (payload !== null && typeof payload === "object") {
         // Please check all server api's payload to make sure roomUUID is from these fields:
@@ -70,12 +69,11 @@ export function chooseServer(payload: any, enableFlatServerV2?: boolean): string
     }
 
     // replace server domain with another region's
-    server = `https://${SERVER_DOMAINS[region.slice(0, 2).toUpperCase()]}/${
+    server = `http://${SERVER_DOMAINS[region.slice(0, 2).toUpperCase()]}/${
         enableFlatServerV2 ? "v2" : "v1"
     }`;
 
     if (server.includes("undefined")) {
-        console.log("server domains:", SERVER_DOMAINS);
         throw new Error(`Failed to choose server for region: ${region}`);
     }
 
@@ -122,7 +120,6 @@ export async function requestFlatServer<TPayload, TResult>(
     }
 
     const data: FlatServerRawResponseData<TResult> = await response.json();
-
     if (data.status !== Status.Success && data.status !== Status.Process) {
         throw new ServerRequestError(data.code, data.message, data.detail);
     }
@@ -252,7 +249,6 @@ export async function postV2NotAuth<TPayload, TResult>(
     init?: Partial<RequestInit>,
 ): Promise<TResult> {
     const res = await requestFlatServer<TPayload, TResult>(action, payload, init, "", true);
-
     if (process.env.NODE_ENV !== "production") {
         if (res.status !== Status.Success) {
             throw new TypeError(
