@@ -2,10 +2,9 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    // gap: 10px;
     width: 100%;
-    margin: 13px 28px;
     height: 48px;
+    
 }
 
 .toolbar-right-item {
@@ -20,23 +19,28 @@
     flex-direction: column;
     font-size: 11px;
     align-items: center;
-    justify-content: space-between;
+    justify-content: end;
     border-radius: 11px;
     padding: 4px 8px;
     height: 58px;
-
+    gap: 0.5vh;
     &:hover {
         background-color: rgba(111, 51, 147, 0.1);
     }
 
 }
-
+.page-preview-label {
+    display: block;
+    width: 60px; 
+    text-align: center;
+    font-size: 11px;
+    margin-top: 4px;
+}
 .page-number {
     color: #6F3393;
     font-size: 13px;
     font-weight: 500;
     height: 24px;
-    margin-bottom: 4px;
     width: 79px;
     border: 1px solid #CAC4D0;
     border-radius: 8px;
@@ -89,8 +93,7 @@
         padding: 2px;
         overflow: hidden;
         background: white;
-        // display: flex;
-        // display: block;
+
 
         .annotation-image {
             width: 100%;

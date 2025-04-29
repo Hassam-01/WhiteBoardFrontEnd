@@ -4,7 +4,7 @@ import { Input, Select } from "antd";
 import React, { useEffect, useState } from "react";
 
 import { COUNTRY_CODES } from "../LoginWithCode/data";
-import emailSVG from "../icons/email.svg";
+// import emailSVG from "../icons/email.svg";
 
 // to distinguish phone and email
 const phoneRegex = /^\d+$/;
@@ -48,14 +48,14 @@ export const LoginAccount: React.FC<LoginAccountProps> = ({
     countryCode = defaultCountryCode,
     accountType = defaultAccountType,
     placeholder,
-    password,
+    // password,
     value,
     onlyPhone,
     onlyEmail,
-    accountHistory,
+    // accountHistory,
     handleType,
     handleCountryCode,
-    onHistoryChange,
+    // onHistoryChange,
     ...restProps
 }) => {
     const defaultEmail = accountType === PasswordLoginType.Email;
@@ -98,29 +98,6 @@ export const LoginAccount: React.FC<LoginAccountProps> = ({
 
     return (
         <Input
-            addonAfter={
-                accountHistory?.length ? (
-                    <Select
-                        labelInValue
-                        bordered={false}
-                        placement="bottomRight"
-                        value={{ key: password, value }}
-                        onChange={onHistoryChange}
-                    >
-                        {accountHistory.map(account => {
-                            return (
-                                <Select.Option
-                                    key={account.password}
-                                    title={account.countryCode}
-                                    value={account.key}
-                                >
-                                    {account.key}
-                                </Select.Option>
-                            );
-                        })}
-                    </Select>
-                ) : null
-            }
             autoComplete="off"
             className="login-account"
             placeholder={placeholder}
@@ -140,7 +117,8 @@ export const LoginAccount: React.FC<LoginAccountProps> = ({
                         ))}
                     </Select>
                 ) : (
-                    <img alt="email" src={emailSVG} />
+                    // <img alt="email" src={emailSVG} />
+                    <></>
                 )
             }
             value={value}

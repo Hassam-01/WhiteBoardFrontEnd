@@ -20,6 +20,11 @@
             cursor: pointer;
             border: 2px solid transparent;
             transition: transform 0.2s, border-color 0.2s;
+
+            &.selected {
+                box-shadow: 0 0 5px 2px rgba(111, 51, 147, 0.5);
+                transform: scale(1.1);
+            }
         }
 
         input[type="color"] {

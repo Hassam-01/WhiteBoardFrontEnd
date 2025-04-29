@@ -2,7 +2,7 @@
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    gap: 10px;
+    // gap: 10px;
     justify-content: space-between;
     width: 100%;
     padding: 13px 28px;
@@ -15,12 +15,13 @@
     font-size: 11px;
     border-radius: 11px;
     align-items: center;
-    justify-content: center;
+    justify-content: end;
     padding: 4px 8px;
-    // height: 58px;
-    gap: 8  px;
-    &:hover {
-        background-color: rgba(111, 51, 147, 0.1);
+    gap: 0.5vh;
+    @media (hover: hover) and (pointer: fine) {
+        &:hover {
+            background-color: rgba(111, 51, 147, 0.1);
+        }
     }
 }
 
@@ -28,7 +29,7 @@
     position: absolute;
     top: 100%;
     left: 0;
-    background: #FEF7FF;
+    background: #fef7ff;
     border-radius: 8px;
     box-shadow: 1px 2px 4px 0 rgba(0, 0, 0, 0.1);
     padding: 8px 22px;
@@ -41,10 +42,10 @@
     left: 20px;
     width: 0;
     height: 0;
-    background: #FEF7FF;
+    background: #fef7ff;
     border-left: 10px solid transparent;
     border-right: 15px solid transparent;
-    border-top: 15px solid #FEF7FF;
+    border-top: 15px solid #fef7ff;
     // border-bottom: 10px solid #6F3393;
 }
 .popup-edge-more {
@@ -57,22 +58,23 @@
     border-right: 15px solid transparent;
     border-top: 15px solid #fef7ffd6;
 }
-.flat-color-scheme-dark{
-    .popup{
+.flat-color-scheme-dark {
+    .popup {
         background: #222429;
     }
     .popup-edge {
         border-top: 15px solid #222429;
         background: transparent;
     }
-    
+
     .popup-edge-more {
         border-top: 15px solid #222429;
     }
-    .toolbar-item-box{
-        &:hover {
-            background-color: rgba(227, 224, 229, 0.2);
+    @media (hover: hover) and (pointer: fine) {
+        .toolbar-item-box {
+            &:hover {
+                background-color: rgba(227, 224, 229, 0.2);
+            }
         }
     }
-    
 }

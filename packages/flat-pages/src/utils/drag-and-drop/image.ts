@@ -91,8 +91,11 @@ export async function onDropImage(
 
     const uuid = v4uuid();
     const { width, height } = await getSize;
+    console.log("[dnd:image] image size:", width, height);
     room.insertImage({ uuid, centerX: x, centerY: y, width, height, locked: false });
+    console.log("before completeImageUpload", uuid, fileURL);
     room.completeImageUpload(uuid, fileURL);
+    console.log("after completeImageUpload", uuid, fileURL);
     room.setMemberState({ currentApplianceName: ApplianceNames.selector });
 }
 

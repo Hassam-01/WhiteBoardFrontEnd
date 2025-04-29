@@ -11,8 +11,8 @@ export const SVGBeginIllustration: React.FC<FlatIconProps> = ({
         <svg
             className={`${className} purple-6F3393 flat-icon ${active ? "is-active" : ""}`}
             fill="none"
-            width="194"
-            height="137"
+            width="190"
+            height="100"
             viewBox="0 0 194 137"
             xmlns="http://www.w3.org/2000/svg"
             {...restProps}

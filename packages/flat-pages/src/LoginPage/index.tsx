@@ -260,7 +260,7 @@ export const LoginPage = observer(function LoginPage() {
     }, [language, handleLogin, currentState.value, onLoginResult, setCurrentState, sp]);
 
     return (
-        <div className="login-page-container" style={{ borderRadius: window.isElectron ? 0 : 12 }}>
+        <div className="login-page-container">
             <LoginPanel>{panel}</LoginPanel>
             <AppUpgradeModal />
         </div>

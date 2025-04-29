@@ -1,7 +1,7 @@
 import "./index.less";
 
 import { useTranslate } from "@netless/flat-i18n";
-import React, { useCallback, useMemo, useState } from "react";
+import React, { useCallback, useState } from "react";
 import { Button, message, Form } from "antd";
 
 import { LoginTitle } from "../LoginPage/LoginTitle";
@@ -13,8 +13,8 @@ import { LoginKeyType, LoginPassword, LoginSendCode, requestAgreement } from "..
 import { LoginButtonProviderType } from "../LoginPage/LoginButton";
 import {
     LoginButtonsProps,
-    LoginButtonsDescription,
-    LoginButtons,
+    // LoginButtonsDescription,
+    // LoginButtons,
 } from "../LoginPage/LoginButtons";
 import { codeValidator } from "../LoginPage/LoginWithCode/validators";
 import {
@@ -45,13 +45,13 @@ export interface RegisterProps {
 }
 
 export const RegisterModal: React.FC<RegisterProps> = ({
-    buttons: userButtons,
+    // buttons: userButtons,
     sendVerificationCode,
     register,
     backToLogin,
     privacyURL,
     serviceURL,
-    onClickButton,
+    // onClickButton,
 }) => {
     const t = useTranslate();
     const sp = useSafePromise();
@@ -59,16 +59,16 @@ export const RegisterModal: React.FC<RegisterProps> = ({
     // specify the current default input method through global variables
     const accountType = process.env.DEFAULT_LOGIN_WAY as PasswordLoginType;
 
-    const buttons = useMemo<LoginButtonsDescription>(
-        () =>
-            userButtons
-                ? userButtons.map(e => ({ provider: e, text: t(`login-${e}`) }))
-                : [
-                      { provider: "google", text: t("login-google") },
-                      { provider: "github", text: t("login-github") },
-                  ],
-        [t, userButtons],
-    );
+    // const buttons = useMemo<LoginButtonsDescription>(
+    //     () =>
+    //         userButtons
+    //             ? userButtons.map(e => ({ provider: e, text: t(`login-${e}`) }))
+    //             : [
+    //                   { provider: "google", text: t("login-google") },
+    //                   { provider: "github", text: t("login-github") },
+    //               ],
+    //     [t, userButtons],
+    // );
 
     const [countryCode, setCountryCode] = useState(defaultCountryCode);
     const [type, setType] = useState(PasswordLoginType.Phone);
@@ -127,18 +127,18 @@ export const RegisterModal: React.FC<RegisterProps> = ({
         setClickedRegister(false);
     }, [agreed, countryCode, form, type, phone, privacyURL, register, serviceURL, sp, t]);
 
-    const onClick = useCallback(
-        async (provider: LoginButtonProviderType) => {
-            if (!agreed) {
-                if (!(await requestAgreement({ t, privacyURL, serviceURL }))) {
-                    return;
-                }
-                setAgreed(true);
-            }
-            onClickButton(provider);
-        },
-        [agreed, onClickButton, privacyURL, serviceURL, t],
-    );
+    // const onClick = useCallback(
+    //     async (provider: LoginButtonProviderType) => {
+    //         if (!agreed) {
+    //             if (!(await requestAgreement({ t, privacyURL, serviceURL }))) {
+    //                 return;
+    //             }
+    //             setAgreed(true);
+    //         }
+    //         onClickButton(provider);
+    //     },
+    //     [agreed, onClickButton, privacyURL, serviceURL, t],
+    // );
 
     const [page] = useState("register");
 
@@ -175,7 +175,7 @@ export const RegisterModal: React.FC<RegisterProps> = ({
                                 countryCode={countryCode}
                                 handleCountryCode={code => setCountryCode(code)}
                                 handleType={type => setType(type)}
-                                placeholder={t("enter-email-or-phone")}
+                                placeholder={t("Email")}
                             />
                         </Form.Item>
 
@@ -196,14 +196,8 @@ export const RegisterModal: React.FC<RegisterProps> = ({
                         checked={agreed}
                         privacyURL={privacyURL}
                         serviceURL={serviceURL}
-                        onChange={checked => {
-                            if (checked) {
-                                requestAgreement({ t, privacyURL, serviceURL }).then(agreed => {
-                                    setAgreed(agreed);
-                                });
-                            } else {
-                                setAgreed(false);
-                            }
+                        onChange={() => {
+                            setAgreed(!agreed);
                         }}
                     />
 
@@ -221,10 +215,10 @@ export const RegisterModal: React.FC<RegisterProps> = ({
                     </Button>
                 </div>
 
-                <div className="login-splitter">
+                {/* <div className="login-splitter">
                     <span className="login-splitter-text">{t("also-login-with")}</span>
                 </div>
-                <LoginButtons buttons={buttons} onClick={onClick} />
+                <LoginButtons buttons={buttons} onClick={onClick} /> */}
             </div>
         </LoginPanelContent>
     );

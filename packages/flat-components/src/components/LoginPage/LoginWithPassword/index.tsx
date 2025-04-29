@@ -236,7 +236,7 @@ export const LoginWithPassword: React.FC<LoginWithPasswordProps> = ({
                                 handleCountryCode={code => setCountryCode(code)}
                                 handleType={type => setType(type)}
                                 password={password}
-                                placeholder={t("enter-email-or-phone")}
+                                placeholder={t("email")}
                                 onHistoryChange={options => {
                                     if (options.title) {
                                         setCountryCode(options.title);
@@ -270,14 +270,8 @@ export const LoginWithPassword: React.FC<LoginWithPasswordProps> = ({
                         checked={agreed}
                         privacyURL={privacyURL}
                         serviceURL={serviceURL}
-                        onChange={checked => {
-                            if (checked) {
-                                requestAgreement({ t, privacyURL, serviceURL }).then(agreed => {
-                                    setAgreed(agreed);
-                                });
-                            } else {
-                                setAgreed(false);
-                            }
+                        onChange={() => {
+                            setAgreed(!agreed);
                         }}
                     />
 

@@ -230,7 +230,16 @@ const CustomToolbarMain: React.FC<{ whiteboardStore: WhiteboardStore }> = ({ whi
             return;
         }
         const { centerX, centerY } = windowManager.camera;
+        console.log(
+            "before dropiamge:",
+            file,
+            centerX,
+            centerY,
+            room,
+            whiteboardStore.cloudStorageStore,
+        );
         await onDropImage(file, centerX, centerY, room, whiteboardStore.cloudStorageStore);
+        console.log("after dropiamge:");
     };
     const handleSelectImage = (): void => {
         // select image from local browser default option

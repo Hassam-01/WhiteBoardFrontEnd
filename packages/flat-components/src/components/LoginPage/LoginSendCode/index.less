@@ -1,4 +1,32 @@
 .login-countdown {
     user-select: none;
     -webkit-user-select: none;
+
+}
+
+.ant-btn-link {
+    color: rgba(111, 51, 147, 1); // Primary purple
+
+    &:hover {
+        color: rgba(196, 127, 238, 1); // Lighter purple on hover
+    }
+
+    &:disabled {
+        color: #ccc !important;
+        cursor: not-allowed;
+    }
+}
+
+.flat-color-scheme-dark {
+        .ant-btn-link {
+            color: rgba(105, 100, 159, 1); // Soft white in dark mode
+
+            &:hover {
+                color: rgba(150, 147, 179, 1);
+            }
+
+            &:disabled {
+                color: #666 !important;
+            }
+        }
 }

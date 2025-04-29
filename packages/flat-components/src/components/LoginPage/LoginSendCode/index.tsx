@@ -109,7 +109,7 @@ export const LoginSendCode: React.FC<LoginSendCodeProps> = ({
                         type="link"
                         onClick={sendCode}
                     >
-                        {t("send-verify-code")}
+                        {t("Code")}
                     </Button>
                 )
             }

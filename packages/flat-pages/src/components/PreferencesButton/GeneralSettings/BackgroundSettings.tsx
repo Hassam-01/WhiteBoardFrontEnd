@@ -1,4 +1,4 @@
-import frontEnSVG from "../assets/front-en.svg";
+// import frontEnSVG from "../assets/front-en.svg";
 
 import type { PreferencesButtonProps } from "../index";
 
@@ -7,7 +7,7 @@ import { Radio } from "antd";
 import { observer } from "mobx-react-lite";
 
 import { Background } from "@netless/flat-stores";
-import { useLanguage, useTranslate } from "@netless/flat-i18n";
+import { useTranslate } from "@netless/flat-i18n";
 import { PreferencesStoreContext } from "../../StoreProvider";
 
 export interface BackgroundSettingsProps extends PreferencesButtonProps {}
@@ -16,7 +16,7 @@ const backgrounds: Background[] = ["default", "teal", "grey", "green"];
 
 export const BackgroundSettings = observer<BackgroundSettingsProps>(function BackgroundSettings() {
     const t = useTranslate();
-    const language = useLanguage();
+    // const language = useLanguage();
     const preferences = useContext(PreferencesStoreContext);
 
     const changeBackground = useCallback(
@@ -43,11 +43,11 @@ export const BackgroundSettings = observer<BackgroundSettingsProps>(function Bac
                         value={background}
                     >
                         <span className={"preferences-modal-section-background " + background}>
-                            <img
+                            {/* <img
                                 alt={t("online-interaction-to-synchronize-ideas")}
                                 className="preferences-modal-section-front"
                                 src={language === "en" ? frontEnSVG : frontEnSVG}
-                            />
+                            /> */}
                         </span>
                         <span>{t("background." + background)}</span>
                     </Radio>

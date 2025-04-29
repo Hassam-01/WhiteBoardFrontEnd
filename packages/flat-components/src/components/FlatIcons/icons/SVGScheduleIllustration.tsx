@@ -10,8 +10,8 @@ export const SVGScheduleIllustration: React.FC<FlatIconProps> = ({
     return (
         <svg
             className={`${className} purple-6F3393 flat-icon ${active ? "is-active" : ""}`}
-            width="176"
-            height="149"
+            width="190"
+            height="100"
             viewBox="0 0 176 149"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"

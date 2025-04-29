@@ -17,7 +17,6 @@ export const SVGShapes: React.FC<FlatIconProps> = ({ active, className = "", ...
                 className="svg-tool-icon-stroke"
                 height="10.98"
                 rx="1.25"
-                // stroke="#6F3393"
                 strokeWidth="1.5"
                 transform="rotate(45.0301 13.6283 1.06066)"
                 width="10.98"
@@ -27,9 +26,9 @@ export const SVGShapes: React.FC<FlatIconProps> = ({ active, className = "", ...
             <rect
                 className="flat-icon-stroke-color svg-tool-icon-stroke"
                 fill="#E5DEF0"
+                fillOpacity={0.5}
                 height="12.65"
                 rx="1.125"
-                // stroke="#6F3393"
                 strokeWidth="1.75"
                 width="12.65"
                 x="0.875"
@@ -40,8 +39,8 @@ export const SVGShapes: React.FC<FlatIconProps> = ({ active, className = "", ...
                 cx="13.4407"
                 cy="17.2786"
                 fill="#FEF7FF"
+                fillOpacity={0.9}
                 r="5.97"
-                // stroke="#6F3393"
                 strokeWidth="1.5"
             />
         </svg>

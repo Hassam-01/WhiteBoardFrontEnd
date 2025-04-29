@@ -11,9 +11,9 @@ export const SVGJoinIllustration: React.FC<FlatIconProps> = ({
         <svg
             className={`${className} purple-6F3393 flat-icon ${active ? "is-active" : ""}`}
             fill="none"
-            height="129"
+            height="100"
             viewBox="0 0 203 129"
-            width="203"
+            width="190"
             xmlns="http://www.w3.org/2000/svg"
             {...restProps}
         >

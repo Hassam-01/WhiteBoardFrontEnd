@@ -11,15 +11,15 @@ import React, {
 } from "react";
 import {
     ClassPicker,
-    HomePageHeroButton,
+    // HomePageHeroButton,
     // HomePageHeroButton,
     PmiDesc,
-    PmiExistTip,
+    // PmiExistTip,
     Region,
     errorTips,
     formatInviteCode,
 } from "flat-components";
-import { Input, Modal, Checkbox, Form, InputRef, Dropdown, message, Button, Switch } from "antd";
+import { Input, Modal, Checkbox, Form, InputRef, message, Button, Switch } from "antd";
 // import { MoreOutlined } from "@ant-design/icons";
 import { useTranslate } from "@netless/flat-i18n";
 import { RoomType } from "@netless/flat-server-api";
@@ -30,7 +30,7 @@ import { useSafePromise } from "../../utils/hooks/lifecycle";
 import { FLAT_WEB_BASE_URL } from "../../constants/process";
 
 import { SVGBeginIllustration } from "../../../../flat-components/src/components/FlatIcons/icons/SVGBeginIllustration";
-import { MoreOutlined } from "@ant-design/icons";
+// import { MoreOutlined } from "@ant-design/icons";
 interface CreateRoomFormValues {
     roomTitle: string;
     roomType: RoomType;
@@ -103,24 +103,24 @@ export const CreateRoomBox = observer<CreateRoomBoxProps>(function CreateRoomBox
         };
     }, [isShowModal]);
 
-    const handleCopy = useCallback(
-        (id: string) => {
-            const copyText =
-                t("pmi-invite-title", {
-                    userName: globalStore.userInfo?.name,
-                }) +
-                "\n" +
-                "\n" +
-                t("invite-suffix", { uuid: formatInviteCode("", id) }) +
-                "\n" +
-                "\n" +
-                t("invite-join-link", { link: `${FLAT_WEB_BASE_URL}/join/${id}` });
+    // const handleCopy = useCallback(
+    //     (id: string) => {
+    //         const copyText =
+    //             t("pmi-invite-title", {
+    //                 userName: globalStore.userInfo?.name,
+    //             }) +
+    //             "\n" +
+    //             "\n" +
+    //             t("invite-suffix", { uuid: formatInviteCode("", id) }) +
+    //             "\n" +
+    //             "\n" +
+    //             t("invite-join-link", { link: `${FLAT_WEB_BASE_URL}/join/${id}` });
 
-            navigator.clipboard.writeText(copyText);
-            void message.success(t("copy-success"));
-        },
-        [globalStore.userInfo?.name, t],
-    );
+    //         navigator.clipboard.writeText(copyText);
+    //         void message.success(t("copy-success"));
+    //     },
+    //     [globalStore.userInfo?.name, t],
+    // );
 
     const handleCreateRoom = (): void => {
         form.setFieldsValue(defaultValues);
@@ -279,30 +279,30 @@ export const CreateRoomBox = observer<CreateRoomBoxProps>(function CreateRoomBox
         </>
     );
 
-    function pmiCheckbox({
-        pmi,
-        className,
-        autoPmiOn,
-        isDisabled,
-        updateAutoPmiOn,
-    }: {
-        autoPmiOn: boolean;
-        isDisabled: boolean;
-        updateAutoPmiOn: (value: boolean) => void;
-        pmi: string;
-        className?: string;
-    }): React.ReactNode {
-        return (
-            <Checkbox
-                checked={isDisabled ? false : autoPmiOn}
-                className={className}
-                disabled={isDisabled}
-                onClick={() => updateAutoPmiOn(!autoPmiOn)}
-            >
-                <PmiDesc className="checkbox-item-inner" pmi={pmi} text={t("turn-on-the-pmi")} />
-            </Checkbox>
-        );
-    }
+    // function pmiCheckbox({
+    //     pmi,
+    //     className,
+    //     autoPmiOn,
+    //     isDisabled,
+    //     updateAutoPmiOn,
+    // }: {
+    //     autoPmiOn: boolean;
+    //     isDisabled: boolean;
+    //     updateAutoPmiOn: (value: boolean) => void;
+    //     pmi: string;
+    //     className?: string;
+    // }): React.ReactNode {
+    //     return (
+    //         <Checkbox
+    //             checked={isDisabled ? false : autoPmiOn}
+    //             className={className}
+    //             disabled={isDisabled}
+    //             onClick={() => updateAutoPmiOn(!autoPmiOn)}
+    //         >
+    //             <PmiDesc className="checkbox-item-inner" pmi={pmi} text={t("turn-on-the-pmi")} />
+    //         </Checkbox>
+    //     );
+    // }
 
     function submitOnEnter(ev: KeyboardEvent<HTMLInputElement>): void {
         if (ev.key === "Enter" && !ev.ctrlKey && !ev.shiftKey && !ev.altKey && !ev.metaKey) {

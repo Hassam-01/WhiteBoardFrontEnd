@@ -105,27 +105,27 @@ const CustomToolbarRight: React.FC<CustomToolbarRightProps> = ({ whiteboardStore
         <div className="toolbar-right">
             <div className="toolbar-right-item-box" onClick={handleAddPage}>
                 <SVGWhiteboardAdd />
-                <span>Add</span>
+                <span className="page-preview-label">Add</span>
             </div>
             <div
                 className={`toolbar-right-item-box ${prevDisabled ? "disabled" : ""}`}
                 onClick={handlePrevPage}
             >
                 <SVGPrevPage />
-                <span>Previous</span>
+                <span className="page-preview-label">Previous</span>
             </div>
             <div className="toolbar-right-item-box" onClick={handlePagePreview}>
                 <span className="page-number">
                     {pageNumber}/{totalPages}
                 </span>
-                Page
+                <span className="page-preview-label">Page</span>
             </div>
             <div
                 className={`toolbar-right-item-box ${nextDisabled ? "disabled" : ""}`}
                 onClick={handleNextPage}
             >
                 <SVGNextPage />
-                <span>Next</span>
+                <span className="page-preview-label">Next</span>
             </div>
             {showAnnotations && (
                 <div ref={annotationsRef} className="annotation-images-container">

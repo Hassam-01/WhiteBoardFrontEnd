@@ -1,11 +1,9 @@
 import "./index.less";
 
-import React, { useContext } from "react";
+import React from "react";
 
-import { DarkModeContext } from "../FlatThemeProvider";
-import { Cover } from "./icons/Cover";
-import { CoverDark } from "./icons/CoverDark";
-import { useLanguage } from "@netless/flat-i18n";
+// import { DarkModeContext } from "../FlatThemeProvider";
+import SVGLoginIllustration from "../FlatIcons/icons/SVGLoginIllustration";
 export * from "./LoginWithPassword";
 export * from "./LoginWithCode";
 export * from "./BindingPhonePanel";
@@ -18,16 +16,27 @@ export * from "./LoginSendCode";
 export interface LoginPanelProps {}
 
 export const LoginPanel: React.FC<LoginPanelProps> = ({ children }) => {
-    const language = useLanguage();
-    const isZh = language.startsWith("zh");
-    const darkMode = useContext(DarkModeContext);
-
     return (
         <div className="login-panel-container">
             <div className="login-panel-cover">
-                {darkMode ? <CoverDark isZh={isZh} /> : <Cover isZh={isZh} />}
+                <div className="login-panel-cover-text">
+                    <p className="panel-cover-heading">
+                        Bring your team&apos;s ideas to
+                        <span>life together, in real time</span>
+                    </p>
+                    <p className="panel-cover-subheading">
+                        Sign up to schedule, host, and revisit
+                        <span>every creative session in one place.</span>
+                    </p>
+                </div>
+                <div className="login-panel-cover-illustration">
+                    <SVGLoginIllustration style={{ maxWidth: "90%", height: "auto" }} />
+                </div>
             </div>
-            <div className="login-panel-inner">{children}</div>
+
+            <div className="login-panel-inner">
+                <div className="login-panel-content">{children}</div>
+            </div>
         </div>
     );
 };
