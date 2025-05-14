@@ -1,4 +1,4 @@
-import Axios from "axios";
+// import Axios from "axios";
 import { message } from "antd";
 import { v4 as v4uuid } from "uuid";
 import { ApplianceNames, Room, Size } from "white-web-sdk";
@@ -8,9 +8,11 @@ import {
     RequestErrorCode,
     UploadTempPhotoResult,
     isServerRequestError,
-    uploadTempPhotoFinish,
+    // uploadTempPhotoFinish,
     uploadTempPhotoStart,
 } from "@netless/flat-server-api";
+// import { fi } from "date-fns/locale";
+import { AWS3Client } from "./aws-s3-client";
 
 const ImageFileTypes = [
     "image/png",
@@ -38,6 +40,7 @@ export async function onDropImage(
     room: Room,
     _cloudStorageStore: CloudStorageStore,
 ): Promise<void> {
+    console.log("12324555");
     if (!isSupportedImageType(file)) {
         console.log("[dnd:image] unsupported file type:", file.type, file.name);
         return;
@@ -52,6 +55,7 @@ export async function onDropImage(
 
     const getSize = getImageSize(file);
 
+    console.log("123244");
     let ticket: UploadTempPhotoResult;
     try {
         ticket = await uploadTempPhotoStart(file.name, file.size);
@@ -62,8 +66,10 @@ export async function onDropImage(
         throw err;
     }
 
-    const fileURL = `${ticket.ossDomain}/${ticket.ossFilePath}`;
-
+    // const fileURL = `${ticket.ossDomain}/${ticket.ossFilePath}`;
+    const fileURLAWS = await new AWS3Client().uploadFile(file, ticket.ossFilePath);
+    // const fileURL = "https://i.ibb.co/mrHrGs6f/chirayu-trivedi-tw-OIx6-I35tk-unsplash.jpg";
+    const fileURL = fileURLAWS;
     const formData = new FormData();
     const encodedFileName = encodeURIComponent(file.name);
     formData.append("key", ticket.ossFilePath);
@@ -79,23 +85,18 @@ export async function onDropImage(
     );
     formData.append("file", file);
 
-    await Axios.post(ticket.ossDomain, formData, {
-        headers: {
-            "Content-Type": "multipart/form-data",
-        },
-    });
-
-    await uploadTempPhotoFinish(ticket.fileUUID);
+    // await Axios.post(ticket.ossDomain, formData, {
+    //     headers: {
+    //         "Content-Type": "multipart/form-data",
+    //     },
+    // });
+    // await uploadTempPhotoFinish(ticket.fileUUID);
 
     hideLoading();
-
     const uuid = v4uuid();
     const { width, height } = await getSize;
-    console.log("[dnd:image] image size:", width, height);
     room.insertImage({ uuid, centerX: x, centerY: y, width, height, locked: false });
-    console.log("before completeImageUpload", uuid, fileURL);
     room.completeImageUpload(uuid, fileURL);
-    console.log("after completeImageUpload", uuid, fileURL);
     room.setMemberState({ currentApplianceName: ApplianceNames.selector });
 }
 

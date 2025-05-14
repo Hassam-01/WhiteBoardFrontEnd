@@ -4,7 +4,8 @@ import React, { useCallback } from "react";
 import classNames from "classnames";
 import { MainPageLayoutItem, MainPageLayoutTreeItem } from "../types";
 import { useState } from "react";
-import { SVGDown, SVGUp } from "../../FlatIcons";
+import { SVGDown, SVGHomeOutlined, SVGUp } from "../../FlatIcons";
+import { useHistory } from "react-router-dom";
 
 export interface MainPageSubMenuProps {
     /** when an item is clicked */
@@ -102,6 +103,11 @@ export const MainPageSubMenu: React.FC<MainPageSubMenuProps> = ({
     onClick,
     activeKeys,
 }) => {
+    const history = useHistory();
+    const goHome = (): void => {
+        history.push("/"); // Adjust this path to your actual home route
+    };
+
     return (
         <div className={classNames("main-layout-sub-menu", !window.isElectron && "br-tl-bl-6")}>
             <ul>
@@ -114,6 +120,12 @@ export const MainPageSubMenu: React.FC<MainPageSubMenuProps> = ({
                     />
                 ))}
             </ul>
+            <div className="main-layout-sub-menu-item home-icon" onClick={goHome}>
+                <span className="main-layout-sub-menu-item-icon">
+                    <SVGHomeOutlined />
+                </span>
+                Home
+            </div>
         </div>
     );
 };

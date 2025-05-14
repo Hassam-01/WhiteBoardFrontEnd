@@ -3,8 +3,8 @@ import React from "react";
 import classNames from "classnames";
 import { MainPageLayoutItem } from "../types";
 import { MainPageNavAvatar, MainPageNavAvatarProps } from "../MainPageNavAvatar";
-import { Tabs } from "antd";
-import { MainPageHeader, MainPageHeaderProps } from "../MainPageHeader";
+// import { Tabs } from "antd";
+import { MainPageHeaderProps } from "../MainPageHeader";
 
 export interface MainPageNavHorizontalProps extends MainPageNavAvatarProps, MainPageHeaderProps {
     /** when an item is clicked */
@@ -27,17 +27,24 @@ export const MainPageNavHorizontal: React.FC<MainPageNavHorizontalProps> = ({
     userName,
     onClick,
     activeKeys,
-    leftMenu,
+    // leftMenu,
     rightMenu,
     popMenu,
-    onBackPreviousPage,
+    // onBackPreviousPage,
     generateAvatar,
-    title,
+    // title,
 }) => {
+    const navigateToHomePage = (): void => {
+        if (window.location.pathname === "/") {
+            window.location.href = "/";
+        } else {
+            window.history.pushState(null, "", "/");
+        }
+    };
     return (
         <div className="main-page-nav-horizontal-container">
             <div className="main-page-nav-horizontal-content">
-                <div className="main-page-nav-horizontal-left">
+                <div className="main-page-nav-horizontal-left" onClick={() => navigateToHomePage()}>
                     {/* {onBackPreviousPage ? (
                         <MainPageHeader title={title} onBackPreviousPage={onBackPreviousPage} />
                     ) : (
@@ -71,7 +78,7 @@ export const MainPageNavHorizontal: React.FC<MainPageNavHorizontalProps> = ({
                         ></Tabs>
                     )} */}
                     {/* later logo will be added here */}
-                    Collaborative WhiteBoard
+                    OneScreen Collab
                 </div>
                 <div className="main-page-nav-horizontal-right">
                     <div className="main-page-nav-horizontal-right-header">

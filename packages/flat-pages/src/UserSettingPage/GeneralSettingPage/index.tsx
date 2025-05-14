@@ -2,13 +2,13 @@ import type { CheckboxChangeEvent } from "antd/lib/checkbox";
 
 import "./index.less";
 
-import phoneSVG from "./icons/phone.svg";
+// import phoneSVG from "./icons/phone.svg";
 import emailSVG from "./icons/email.svg";
 import lockSVG from "./icons/lock.svg";
 
 import React, { useCallback, useContext, useEffect, useMemo, useState } from "react";
 import { FlatI18n, useLanguage, useTranslate } from "@netless/flat-i18n";
-import { Button, Checkbox, message, Modal, Radio } from "antd";
+import { Button, message, Modal, Radio } from "antd";
 import { observer } from "mobx-react-lite";
 import {
     FlatPrefersColorScheme,
@@ -96,7 +96,7 @@ export const GeneralSettingPage = observer(function GeneralSettingPage() {
     const [name, setName] = useState(globalStore.userName || "");
     const { bindings, refresh: refreshBindings } = useBindingList();
 
-    const phone = bindings?.meta?.phone || "";
+    // const phone = bindings?.meta?.phone || "";
     const email = bindings?.meta?.email || "";
 
     const [showPasswordModel, setShowPasswordModel] = useState(false);
@@ -279,7 +279,7 @@ export const GeneralSettingPage = observer(function GeneralSettingPage() {
                 <div className="general-setting-item">
                     <span className="general-setting-item-title">{t("user-account")}</span>
 
-                    <div>
+                    {/* <div>
                         {BindingField({
                             key: phone,
                             msg: t("set-binding-phone"),
@@ -294,7 +294,7 @@ export const GeneralSettingPage = observer(function GeneralSettingPage() {
                             handleShowModel: () => setShowPhoneModel(true),
                             unbind,
                         })}
-                    </div>
+                    </div> */}
                     <div>
                         {BindingField({
                             key: email,

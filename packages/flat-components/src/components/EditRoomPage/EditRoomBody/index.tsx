@@ -18,6 +18,7 @@ import { renderEndTimePicker } from "./renderEndTimePicker";
 import { renderPeriodicForm } from "./renderPeriodicForm";
 import { ClassPicker } from "../../HomePage/ClassPicker";
 import { PmiDesc, PmiExistTip } from "../../Pmi";
+import { on } from "events";
 
 export enum Region {
     CN_HZ = "cn-hz",
@@ -329,18 +330,18 @@ export const EditRoomBody: React.FC<EditRoomBodyProps> = ({
         }
     }
 
-    function onToggleIsPeriodic(e: CheckboxChangeEvent): void {
-        if (e.target.checked) {
-            const today: EditRoomFormValues["beginTime"] = form.getFieldValue("beginTime");
-            form.setFieldsValue({
-                periodic: {
-                    weeks: [getDay(today)],
-                    rate: 7,
-                    endTime: endOfDay(addWeeks(today, 6)),
-                },
-            });
-        }
-    }
+    // function onToggleIsPeriodic(e: CheckboxChangeEvent): void {
+    //     if (e.target.checked) {
+    //         const today: EditRoomFormValues["beginTime"] = form.getFieldValue("beginTime");
+    //         form.setFieldsValue({
+    //             periodic: {
+    //                 weeks: [getDay(today)],
+    //                 rate: 7,
+    //                 endTime: endOfDay(addWeeks(today, 6)),
+    //             },
+    //         });
+    //     }
+    // }
 
     function onSubmitForm(): void {
         if (!loading && isFormVetted) {
@@ -353,11 +354,15 @@ export const EditRoomBody: React.FC<EditRoomBodyProps> = ({
             Modal.confirm({
                 content: t("back-tips"),
                 onOk() {
-                    history.goBack();
+                    // history.goBack();
+                    onClose?.();
                 },
             });
         } else {
-            history.goBack();
+            // history.goBack();
+            if (onClose) {
+                onClose();
+            }
         }
     }
 

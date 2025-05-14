@@ -18,7 +18,7 @@ import { useTranslate } from "@netless/flat-i18n";
 import { routeConfig, RouteNameType } from "../../route-config";
 import { GlobalStoreContext } from "../StoreProvider";
 import { generateAvatar } from "../../utils/generate-avatar";
-import { FLAT_DOWNLOAD_URL } from "../../constants/process";
+import { Button, Form, Input, Modal } from "antd";
 
 export interface MainPageLayoutHorizontalContainerProps {
     subMenu?: MainPageLayoutTreeItem[];
@@ -38,6 +38,9 @@ export const MainPageLayoutHorizontalContainer = observer<MainPageLayoutHorizont
         onBackPreviousPage,
     }) {
         const t = useTranslate();
+        const [isFeedbackModalVisible, setFeedbackModalVisible] = React.useState(false);
+        const [feedbackForm] = Form.useForm();
+
         const leftMenu: MainPageLayoutItem[] = [
             {
                 key: routeConfig[RouteNameType.HomePage].path,
@@ -70,7 +73,7 @@ export const MainPageLayoutHorizontalContainer = observer<MainPageLayoutHorizont
                 key: "feedback",
                 icon: (): React.ReactNode => <SVGFeedback />,
                 title: t("feedback"),
-                route: process.env.FEEDBACK_URL,
+                // route: "",
             },
             {
                 key: "logout",
@@ -79,7 +82,12 @@ export const MainPageLayoutHorizontalContainer = observer<MainPageLayoutHorizont
                 route: routeConfig[RouteNameType.LoginPage].path,
             },
         ];
-
+        const handleFeedbackSubmit = (values: { feedback: string }): void => {
+            console.log("Feedback submitted:", values.feedback);
+            // TODO: Send feedback to your backend
+            setFeedbackModalVisible(false);
+            feedbackForm.resetFields();
+        };
         const location = useLocation();
 
         activeKeys ??= [location.pathname];
@@ -91,9 +99,11 @@ export const MainPageLayoutHorizontalContainer = observer<MainPageLayoutHorizont
         const onMenuItemClick = (mainPageLayoutItem: MainPageLayoutItem): void => {
             if (mainPageLayoutItem.key === "logout") {
                 globalStore.logout();
+            } else if (mainPageLayoutItem.key === "feedback") {
+                setFeedbackModalVisible(true); // Open feedback modal
+                return;
             }
-
-            if (mainPageLayoutItem.route.startsWith("/")) {
+            if (mainPageLayoutItem.route?.startsWith("/")) {
                 onRouteChange
                     ? onRouteChange(mainPageLayoutItem)
                     : history.push(mainPageLayoutItem.route);
@@ -103,22 +113,46 @@ export const MainPageLayoutHorizontalContainer = observer<MainPageLayoutHorizont
         };
 
         return (
-            <MainPageLayoutHorizontal
-                activeKeys={activeKeys}
-                avatarSrc={globalStore.userInfo?.avatar ?? ""}
-                generateAvatar={generateAvatar}
-                leftMenu={leftMenu}
-                popMenu={popMenu}
-                rightMenu={rightMenu}
-                subMenu={subMenu}
-                title={title}
-                userName={globalStore.userName ?? ""}
-                userUUID={globalStore.userUUID ?? ""}
-                onBackPreviousPage={onBackPreviousPage}
-                onClick={onMenuItemClick}
-            >
-                {children}
-            </MainPageLayoutHorizontal>
+            <>
+                <MainPageLayoutHorizontal
+                    activeKeys={activeKeys}
+                    avatarSrc={globalStore.userInfo?.avatar ?? ""}
+                    generateAvatar={generateAvatar}
+                    leftMenu={leftMenu}
+                    popMenu={popMenu}
+                    rightMenu={rightMenu}
+                    subMenu={subMenu}
+                    title={title}
+                    userName={globalStore.userName ?? ""}
+                    userUUID={globalStore.userUUID ?? ""}
+                    onBackPreviousPage={onBackPreviousPage}
+                    onClick={onMenuItemClick}
+                >
+                    {children}
+                </MainPageLayoutHorizontal>
+                <Modal
+                    footer={[
+                        <Button key="cancel" onClick={() => setFeedbackModalVisible(false)}>
+                            Cancel
+                        </Button>,
+                        <Button key="submit" type="primary" onClick={() => feedbackForm.submit()}>
+                            Submit
+                        </Button>,
+                    ]}
+                    open={isFeedbackModalVisible}
+                    title="Submit Feedback"
+                    onCancel={() => setFeedbackModalVisible(false)}
+                >
+                    <Form form={feedbackForm} onFinish={handleFeedbackSubmit}>
+                        <Form.Item
+                            name="feedback"
+                            rules={[{ required: true, message: "Please enter your feedback" }]}
+                        >
+                            <Input.TextArea placeholder="Your feedback..." rows={4} />
+                        </Form.Item>
+                    </Form>
+                </Modal>
+            </>
         );
     },
 );

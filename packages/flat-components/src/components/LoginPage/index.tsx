@@ -25,8 +25,7 @@ export const LoginPanel: React.FC<LoginPanelProps> = ({ children }) => {
                         <span>life together, in real time</span>
                     </p>
                     <p className="panel-cover-subheading">
-                        Sign up to schedule, host, and revisit
-                        <span>every creative session in one place.</span>
+                        Your Digital Whiteboard with big ideas!
                     </p>
                 </div>
                 <div className="login-panel-cover-illustration">

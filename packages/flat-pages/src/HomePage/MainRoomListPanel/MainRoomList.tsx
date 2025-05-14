@@ -23,6 +23,8 @@ import { joinRoomHandler } from "../../utils/join-room-handler";
 import { useTranslate } from "@netless/flat-i18n";
 import { FLAT_WEB_BASE_URL } from "../../constants/process";
 import { generateAvatar } from "../../utils/generate-avatar";
+import { ModifyRoomModal } from "../../../../flat-components/src/components/ModifyRoomModal";
+import { DetailRoomModal } from "../../../../flat-components/src/components/DetailRoomModal";
 
 export interface MainRoomListProps {
     roomStore: RoomStore;
@@ -40,6 +42,8 @@ export const MainRoomList = observer<MainRoomListProps>(function MainRoomList({
     const [cancelModalVisible, setCancelModalVisible] = useState(false);
     const [stopModalVisible, setStopModalVisible] = useState(false);
     const [inviteModalVisible, setInviteModalVisible] = useState(false);
+    const [detailsModalVisible, setDetailsModalVisible] = useState(false);
+    const [modifyModalVisible, setModifyModalVisible] = useState(false);
     const [removeHistoryVisible, setRemoveHistoryVisible] = useState(false);
     const [removeHistoryLoading, setRemoveHistoryLoading] = useState(false);
     const [currentRoom, setCurrentRoom] = useState<RoomItem | undefined>(undefined);
@@ -117,17 +121,21 @@ export const MainRoomList = observer<MainRoomListProps>(function MainRoomList({
                             onAction={key => {
                                 switch (key) {
                                     case "details": {
-                                        pushHistory(RouteNameType.RoomDetailPage, {
-                                            roomUUID: room.roomUUID,
-                                            periodicUUID: room.periodicUUID,
-                                        });
+                                        setCurrentRoom(room);
+                                        setDetailsModalVisible(true);
+                                        // pushHistory(RouteNameType.RoomDetailPage, {
+                                        //     roomUUID: room.roomUUID,
+                                        //     periodicUUID: room.periodicUUID,
+                                        // });
                                         break;
                                     }
                                     case "modify": {
-                                        pushHistory(RouteNameType.ModifyOrdinaryRoomPage, {
-                                            roomUUID: room.roomUUID,
-                                            periodicUUID: room.periodicUUID,
-                                        });
+                                        setCurrentRoom(room);
+                                        setModifyModalVisible(true);
+                                        // pushHistory(RouteNameType.ModifyOrdinaryRoomPage, {
+                                        //     roomUUID: room.roomUUID,
+                                        //     periodicUUID: room.periodicUUID,
+                                        // });
                                         break;
                                     }
                                     case "cancel": {
@@ -180,6 +188,31 @@ export const MainRoomList = observer<MainRoomListProps>(function MainRoomList({
             })}
             <RoomListAllLoaded />
             {currentRoom && (
+                <ModifyRoomModal
+                    baseUrl={FLAT_WEB_BASE_URL}
+                    isPmi={currentRoom.inviteCode === globalStore.pmi}
+                    periodicWeeks={periodicInfo?.periodic.weeks}
+                    room={currentRoom}
+                    userName={globalStore.userName ?? ""}
+                    visible={modifyModalVisible}
+                    onCancel={hideModifyModal}
+                    onCopy={onCopy}
+                />
+            )}
+            {currentRoom && (
+                <DetailRoomModal
+                    baseUrl={FLAT_WEB_BASE_URL}
+                    isPmi={currentRoom.inviteCode === globalStore.pmi}
+                    periodicWeeks={periodicInfo?.periodic.weeks}
+                    room={currentRoom}
+                    userName={globalStore.userName ?? ""}
+                    visible={detailsModalVisible}
+                    onCancel={hideDetailsModal}
+                    onCopy={onCopy}
+                />
+            )}
+
+            {currentRoom && (
                 <RemoveRoomModal
                     cancelModalVisible={cancelModalVisible}
                     isCreator={currentRoom.ownerUUID === globalStore.userUUID}
@@ -190,6 +223,7 @@ export const MainRoomList = observer<MainRoomListProps>(function MainRoomList({
                     onCancelRoom={removeRoomHandler}
                 />
             )}
+
             {currentRoom && (
                 <StopClassConfirmModal
                     loading={false}
@@ -237,7 +271,12 @@ export const MainRoomList = observer<MainRoomListProps>(function MainRoomList({
             window.open(`/replay/${roomType}/${roomUUID}/${ownerUUID}/`, "_blank");
         }
     }
-
+    function hideDetailsModal(): void {
+        setDetailsModalVisible(false);
+    }
+    function hideModifyModal(): void {
+        setModifyModalVisible(false);
+    }
     function hideCancelModal(): void {
         setCancelModalVisible(false);
     }

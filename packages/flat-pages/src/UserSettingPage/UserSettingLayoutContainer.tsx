@@ -2,7 +2,7 @@ import "./UserSettingLayoutContainer.less";
 
 import React, { useContext, useEffect } from "react";
 import { useTranslate } from "@netless/flat-i18n";
-import { SVGApps, SVGCircleInfoOutlined, SVGCode, SVGGeneral, SVGShortcut } from "flat-components";
+import { SVGCircleInfoOutlined, SVGGeneral, SVGShortcut } from "flat-components";
 import { routeConfig, RouteNameType } from "../route-config";
 import { useLoginCheck } from "../utils/use-login-check";
 import { PageStoreContext } from "../components/StoreProvider";
