@@ -1,5 +1,11 @@
 import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3";
 import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
+import {
+    AWS_S3_ACCESS_KEY_ID,
+    AWS_S3_BUCKET,
+    AWS_S3_REGION,
+    AWS_S3_SECRET_ACCESS_KEY,
+} from "../../constants/process";
 
 export class AWS3Client {
     private s3: S3Client;
@@ -7,13 +13,13 @@ export class AWS3Client {
     private region: string;
 
     public constructor() {
-        this.region = "eu-north-1";
-        this.bucket = "cbw-os";
+        this.region = AWS_S3_REGION;
+        this.bucket = AWS_S3_BUCKET;
         this.s3 = new S3Client({
-            region: "eu-north-1",
+            region: AWS_S3_REGION,
             credentials: {
-                accessKeyId: "xxxxxxxx",
-                secretAccessKey: "xxxxxxxx",
+                accessKeyId: AWS_S3_ACCESS_KEY_ID,
+                secretAccessKey: AWS_S3_SECRET_ACCESS_KEY,
             },
         });
     }
