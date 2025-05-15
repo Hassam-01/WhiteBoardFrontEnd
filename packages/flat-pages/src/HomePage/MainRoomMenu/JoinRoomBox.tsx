@@ -2,10 +2,10 @@ import "./JoinRoomBox.less";
 
 import React, { KeyboardEvent, useContext, useEffect, useRef, useState } from "react";
 import { observer } from "mobx-react-lite";
-import { Button, Input, Modal, Checkbox, Form, InputRef, Dropdown, Menu } from "antd";
+import { Button, Input, Modal, Form, InputRef } from "antd";
 import { useTranslate } from "@netless/flat-i18n";
-import { HomePageHeroButton, SVGChevronDown, formatInviteCode } from "flat-components";
-import { GlobalStoreContext, PreferencesStoreContext } from "../../components/StoreProvider";
+// import { formatInviteCode } from "flat-components";
+import { PreferencesStoreContext } from "../../components/StoreProvider";
 import { useSafePromise } from "../../utils/hooks/lifecycle";
 import { SVGJoinIllustration } from "../../../../flat-components/src/components/FlatIcons/icons/SVGJoinIllustration";
 interface JoinRoomFormValues {
@@ -17,23 +17,16 @@ interface JoinRoomFormValues {
 export interface JoinRoomBoxProps {
     onJoinRoom: (roomUUID: string) => Promise<void>;
 }
-
-const ROOM_UUID_RE =
-    /(?:[A-Z]{2}-)?(?:[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}|00000000-0000-0000-0000-000000000000)/i;
-
-const INVITE_CODE_RE = /[0-9]{3,4} [0-9]{3} [0-9]{4}/;
-
 export const JoinRoomBox = observer<JoinRoomBoxProps>(function JoinRoomBox({ onJoinRoom }) {
     const t = useTranslate();
     const sp = useSafePromise();
     const preferencesStore = useContext(PreferencesStoreContext);
-    const globalStore = useContext(GlobalStoreContext);
     const [form] = Form.useForm<JoinRoomFormValues>();
 
     const [isLoading, setLoading] = useState(false);
     const [isShowModal, showModal] = useState(false);
     const [isFormValidated, setIsFormValidated] = useState(false);
-    const [dropdown, showDropdown] = useState(false);
+    // const [dropdown, showDropdown] = useState(false);
     const roomTitleInputRef = useRef<InputRef>(null);
 
     useEffect(() => {
@@ -241,9 +234,9 @@ export const JoinRoomBox = observer<JoinRoomBoxProps>(function JoinRoomBox({ onJ
         preferencesStore.updateAutoCameraOn(values.autoCameraOn);
     }
 
-    function selectRoomFromHistory(uuid: string): void {
-        form.setFieldValue("roomUUID", formatInviteCode("", uuid));
-        showDropdown(false);
-        void form.validateFields();
-    }
+    // function selectRoomFromHistory(uuid: string): void {
+    //     form.setFieldValue("roomUUID", formatInviteCode("", uuid));
+    //     showDropdown(false);
+    //     void form.validateFields();
+    // }
 });

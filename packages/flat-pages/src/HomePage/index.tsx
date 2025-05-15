@@ -73,7 +73,7 @@ export const HomePage = observer(function HomePage() {
     }, [refreshRooms, isLogin, globalStore.requestRefreshRooms]);
     const [isHome, setHome] = useState(true);
     return (
-        <div>
+        <div className="homepage-layout">
             {isHome && (
                 <div className="homepage-layout-left-illustration">
                     <SVGHomeLeftIllustration />

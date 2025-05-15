@@ -6,7 +6,7 @@ import { SVGGeoGebra } from "../CustomIcons/GeoGebra";
 import { SVGMindMap } from "../CustomIcons/MindMap";
 
 import { SVGPresets } from "../CustomIcons/Presets";
-import { SVGSelectorApp } from "../CustomIcons/Selector";
+// import { SVGSelectorApp } from "../CustomIcons/Selector";
 import { SVGStopWatch } from "../CustomIcons/StopWatch";
 import { SVGSaveAnnotation } from "../CustomIcons/SaveAnnotations";
 import { FlatServices } from "@netless/flat-services";
