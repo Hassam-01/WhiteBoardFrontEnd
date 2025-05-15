@@ -56,7 +56,7 @@ export class GlobalStore {
      */
     public isShowRecordHintTips = true;
     public isShowGuide = false;
-    public isTurnOffDeviceTest = false;
+    public isTurnOffDeviceTest = true;
     public userInfo: UserInfo | null = null;
     public pmi: string | null = null;
     public pmiRoomList: PmiRoom[] | null = [];

@@ -50,7 +50,7 @@ export const ScheduleRoomBox = React.memo<{}>(function ScheduleRoomBox() {
                     Schedule
                 </button>
             </div>
-            {isShowModal && <div className="schedule-room-box-modal-shade" />}
+            {/* {isShowModal && <div className="schedule-room-box-modal-shade" />} */}
             <div className="schedule-room-box-modal">
                 {isShowModal && <UserScheduleModal onClose={closeModal} />}
             </div>
