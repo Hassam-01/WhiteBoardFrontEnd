@@ -5,11 +5,11 @@ import { FlatIconProps } from "../types";
 export const SVGPresets: React.FC<FlatIconProps> = ({ active, className = "", ...restProps }) => {
     return (
         <svg
-            className={`${className}  ${active ? "is-active" : ""}`}
+            className={`svg-responsive-29  ${className}  ${active ? "is-active" : ""}`}
             fill="none"
-            height="30"
+            // height="30"
             viewBox="0 0 31 30"
-            width="31"
+            // width="31"
             xmlns="http://www.w3.org/2000/svg"
             {...restProps}
         >

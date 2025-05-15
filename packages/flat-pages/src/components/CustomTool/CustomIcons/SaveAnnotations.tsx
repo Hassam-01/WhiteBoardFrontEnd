@@ -8,11 +8,11 @@ export const SVGSaveAnnotation: React.FC<FlatIconProps> = ({
 }) => {
     return (
         <svg
-            className={`${className} flat-icon ${active ? "is-active" : ""}`}
+            className={`svg-responsive-29 ${className} flat-icon ${active ? "is-active" : ""}`}
             fill="none"
-            height="25"
+            // height="25"
             viewBox="0 0 20 25"
-            width="20"
+            // width="20"
             xmlns="http://www.w3.org/2000/svg"
             {...restProps}
         >

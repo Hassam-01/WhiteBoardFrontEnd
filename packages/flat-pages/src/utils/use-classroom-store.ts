@@ -11,7 +11,6 @@ export type useClassRoomStoreConfig = Omit<
 >;
 
 export function useClassroomStore(config: useClassRoomStoreConfig): ClassroomStore | undefined {
-    console.log("config on enter: ", config);
     const [classroomStore, setClassroomStore] = useState<ClassroomStore>();
 
     const pushHistory = usePushHistory();

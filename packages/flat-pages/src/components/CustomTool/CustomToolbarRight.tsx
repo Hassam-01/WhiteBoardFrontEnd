@@ -107,25 +107,21 @@ const CustomToolbarRight: React.FC<CustomToolbarRightProps> = ({ whiteboardStore
                 <SVGWhiteboardAdd />
                 <span className="page-preview-label">Add</span>
             </div>
-            <div
-                className={`toolbar-right-item-box ${prevDisabled ? "disabled" : ""}`}
-                onClick={handlePrevPage}
-            >
-                <SVGPrevPage />
-                <span className="page-preview-label">Previous</span>
-            </div>
-            <div className="toolbar-right-item-box" onClick={handlePagePreview}>
-                <span className="page-number">
-                    {pageNumber}/{totalPages}
-                </span>
-                <span className="page-preview-label">Page</span>
-            </div>
-            <div
-                className={`toolbar-right-item-box ${nextDisabled ? "disabled" : ""}`}
-                onClick={handleNextPage}
-            >
-                <SVGNextPage />
-                <span className="page-preview-label">Next</span>
+            <div className="toolbar-right-page-control">
+                <div className={` ${prevDisabled ? "disabled" : ""}`} onClick={handlePrevPage}>
+                    <SVGPrevPage />
+                    {/* <span className="page-preview-label">Previous</span> */}
+                </div>
+                <div className="toolbar-right-item-box" onClick={handlePagePreview}>
+                    <span className="page-number">
+                        {pageNumber}/{totalPages}
+                    </span>
+                    <span className="page-preview-label">Page</span>
+                </div>
+                <div className={` ${nextDisabled ? "disabled" : ""}`} onClick={handleNextPage}>
+                    <SVGNextPage />
+                    {/* <span className="page-preview-label">Next</span> */}
+                </div>
             </div>
             {showAnnotations && (
                 <div ref={annotationsRef} className="annotation-images-container">

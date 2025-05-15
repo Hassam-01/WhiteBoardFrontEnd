@@ -6,20 +6,20 @@ import React, {
     useRef,
     useState,
     KeyboardEvent,
-    useCallback,
+    // useCallback,
     useMemo,
 } from "react";
 import {
-    ClassPicker,
+    // ClassPicker,
     // HomePageHeroButton,
     // HomePageHeroButton,
-    PmiDesc,
+    // PmiDesc,
     // PmiExistTip,
     Region,
     errorTips,
-    formatInviteCode,
+    // formatInviteCode,
 } from "flat-components";
-import { Input, Modal, Checkbox, Form, InputRef, message, Button, Switch } from "antd";
+import { Input, Modal, Form, InputRef, Button, Switch } from "antd";
 // import { MoreOutlined } from "@ant-design/icons";
 import { useTranslate } from "@netless/flat-i18n";
 import { RoomType } from "@netless/flat-server-api";
@@ -27,13 +27,13 @@ import { observer } from "mobx-react-lite";
 
 import { PreferencesStoreContext, GlobalStoreContext } from "../../components/StoreProvider";
 import { useSafePromise } from "../../utils/hooks/lifecycle";
-import { FLAT_WEB_BASE_URL } from "../../constants/process";
+// import { FLAT_WEB_BASE_URL } from "../../constants/process";
 
 import { SVGBeginIllustration } from "../../../../flat-components/src/components/FlatIcons/icons/SVGBeginIllustration";
 // import { MoreOutlined } from "@ant-design/icons";
 interface CreateRoomFormValues {
     roomTitle: string;
-    roomType: RoomType;
+    roomType: RoomType.BigClass;
     autoMicOn: boolean;
     autoCameraOn: boolean;
     pmi?: boolean;
@@ -66,7 +66,7 @@ export const CreateRoomBox = observer<CreateRoomBoxProps>(function CreateRoomBox
     // @TODO: need to remove region from preferences store
     const [roomRegion] = useState<Region>(preferencesStore.getRegion());
 
-    const [classType, setClassType] = useState<RoomType>(RoomType.BigClass);
+    // const [classType, setClassType] = useState<RoomType>(RoomType.BigClass);
     const roomTitleInputRef = useRef<InputRef>(null);
 
     const defaultValues: CreateRoomFormValues = {
@@ -224,8 +224,8 @@ export const CreateRoomBox = observer<CreateRoomBoxProps>(function CreateRoomBox
                     {/* <Form.Item label={t("type")} name="roomType" valuePropName="type"> */}
                     {/* replace the form.item below with the one above this comment line for using Class picker */}
                     <Form.Item noStyle name="roomType">
-                        <input type="hidden" />
-                        <ClassPicker value={classType} onChange={e => setClassType(RoomType[e])} />
+                        {/* <input type="hidden" /> */}
+                        {/* <ClassPicker value={classType} onChange={e => setClassType(RoomType[e])} /> */}
                     </Form.Item>
                     {/* <Form.Item label={t("join-options")}> */}
                     <Form.Item>

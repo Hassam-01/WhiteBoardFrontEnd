@@ -88,7 +88,7 @@ const MoreApps: React.FC<MoreProps> = ({ app }) => {
                 <SVGSaveAnnotation />
                 <span className="toolbar-apps-label">Save Annotations</span>
             </div>
-            <div
+            {/* <div
                 className="toolbar-apps-box"
                 onClick={() =>
                     app?.manager.addApp({ kind: "Selector", options: { title: "Selector" } })
@@ -96,7 +96,7 @@ const MoreApps: React.FC<MoreProps> = ({ app }) => {
             >
                 <SVGSelectorApp />
                 <span className="toolbar-apps-label">Selector</span>
-            </div>
+            </div> */}
             <div
                 className="toolbar-apps-box"
                 onClick={() =>

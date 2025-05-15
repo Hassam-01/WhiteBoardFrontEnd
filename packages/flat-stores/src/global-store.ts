@@ -147,12 +147,9 @@ export class GlobalStore {
     }
 
     public constructor() {
-        console.log("set flat auth token 001", this.userInfo?.token);
         autoPersistStore({ storeLSName: "GlobalStore", store: this, version: LS_VERSION });
-        console.log("set flat auth token 002", this);
         autorun(() => {
             if (this.userInfo?.token) {
-                console.log("set flat auth token", this.userInfo.token);
                 setFlatAuthToken(this.userInfo.token);
             }
         });
@@ -354,9 +351,7 @@ export class GlobalStore {
     }
 }
 
-console.log("globalStore1");
 export const globalStore = new GlobalStore();
-console.log("globalStore", globalStore);
 if (process.env.NODE_ENV !== "production") {
     (window as any).globalStore = globalStore;
 }

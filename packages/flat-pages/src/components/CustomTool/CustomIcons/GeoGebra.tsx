@@ -4,10 +4,10 @@ import { FlatIconProps } from "../types";
 export const SVGGeoGebra: React.FC<FlatIconProps> = ({ active, className = "", ...restProps }) => {
     return (
         <svg
-            className={`${className} flat-icon ${active ? "is-active" : ""}`}
+            className={`svg-responsive-29  ${className} flat-icon ${active ? "is-active" : ""}`}
             fill="none"
-            width="30"
-            height="30"
+            // width="30"
+            // height="30"
             viewBox="0 0 30 30"
             xmlns="http://www.w3.org/2000/svg"
             {...restProps}

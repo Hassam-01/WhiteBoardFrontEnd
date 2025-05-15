@@ -4,11 +4,11 @@ import { FlatIconProps } from "../types";
 export const SVGDice: React.FC<FlatIconProps> = ({ active, className = "", ...restProps }) => {
     return (
         <svg
-            className={`${className} flat-icon ${active ? "is-active" : ""}`}
+            className={`svg-responsive-29 ${className} flat-icon ${active ? "is-active" : ""}`}
             fill="none"
-            height="28"
+            // height="28"
             viewBox="0 0 32 28"
-            width="32"
+            // width="32"
             xmlns="http://www.w3.org/2000/svg"
             {...restProps}
         >
@@ -21,21 +21,21 @@ export const SVGDice: React.FC<FlatIconProps> = ({ active, className = "", ...re
                 x="15.752"
                 y="11.25"
             />
-            <ellipse cx="24.1141" cy="20.0904" rx="1.25469" ry="1.25447" fill="#FEF7FF" />
+            <ellipse cx="24.1141" cy="20.0904" fill="#FEF7FF" rx="1.25469" ry="1.25447" />
             <mask
+                height="28"
                 id="mask0_818_1051"
                 maskUnits="userSpaceOnUse"
                 style={{ maskType: "alpha" }}
+                width="29"
                 x="0"
                 y="0"
-                width="29"
-                height="28"
             >
                 <rect
-                    width="19.48"
+                    fill="#D9D9D9"
                     height="19.4809"
                     transform="matrix(0.667796 -0.744345 0.744603 0.667507 0.75 14.5)"
-                    fill="#D9D9D9"
+                    width="19.48"
                 />
             </mask>
             <g mask="url(#mask0_818_1051)">

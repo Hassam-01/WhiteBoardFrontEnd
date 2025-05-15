@@ -1,10 +1,31 @@
 .toolbar-right {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    width: 100%;
+    // justify-content: space-between;
+    // justify-self: center;
+    // width: 90%;
+    width: fit-content;
     height: 48px;
-    
+    // gap: 10px;
+    // gap: 1rem;
+
+}
+
+.toolbar-right-page-control {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%; // Ensures it takes the full height of the parent for vertical centering
+    // border: 2px solid red;
+    gap: 10px;
+}
+
+.toolbar-right-nav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 1.5rem;
+    height: 58px;
 }
 
 .toolbar-right-item {
@@ -21,21 +42,25 @@
     align-items: center;
     justify-content: end;
     border-radius: 11px;
-    padding: 4px 8px;
+    // padding: 4px 8px;
     height: 58px;
-    gap: 0.5vh;
+    // gap: 0.5vh;
+    // border: 2px solid red;
+
     &:hover {
         background-color: rgba(111, 51, 147, 0.1);
     }
 
 }
+
 .page-preview-label {
     display: block;
-    width: 60px; 
+    width: 60px;
     text-align: center;
     font-size: 11px;
     margin-top: 4px;
 }
+
 .page-number {
     color: #6F3393;
     font-size: 13px;

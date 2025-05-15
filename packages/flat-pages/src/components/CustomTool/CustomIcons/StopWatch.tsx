@@ -4,11 +4,11 @@ import { FlatIconProps } from "../types";
 export const SVGStopWatch: React.FC<FlatIconProps> = ({ active, className = "", ...restProps }) => {
     return (
         <svg
-            className={`${className} flat-icon ${active ? "is-active" : ""}`}
+            className={`svg-responsive-29 ${className} flat-icon ${active ? "is-active" : ""}`}
             fill="none"
-            height="27"
+            // height="27"
             viewBox="0 0 24 27"
-            width="24"
+            // width="24"
             xmlns="http://www.w3.org/2000/svg"
             {...restProps}
         >
