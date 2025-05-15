@@ -6,6 +6,8 @@ import { differenceInCalendarDays, format } from "date-fns/fp";
 import { RoomInfo, Week } from "../../types/room";
 import { formatInviteCode, getWeekNames } from "../../utils/room";
 import { useLanguage, useTranslate } from "@netless/flat-i18n";
+import { EditRoomBody } from "../EditRoomPage";
+
 
 const completeTimeFormat = /* @__PURE__ */ format("yyyy-MM-dd HH:mm");
 const onlySuffixTimeFormat = /* @__PURE__ */ format("HH:mm");
@@ -86,30 +88,13 @@ export const ModifyRoomModal: React.FC<ModifyRoomModalProps> = ({
             onCancel={onCancel}
             onOk={onCopyClicked}
         >
-            <div className="invite-modal-header">
-                <span>{t(isPmi ? "pmi-invite-title" : "invite-title", { userName })}</span>
-                <span>{t("join-and-book-by-room-uuid")}</span>
-            </div>
-            <div className="invite-modal-content">
-                <div className="invite-modal-content-item">
-                    <span>{t("room-theme")}</span>
-                    <span className="invite-modal-content-title">{title}</span>
-                </div>
-                <div className="invite-modal-content-item">
-                    <span>{t("room-uuid")}</span>
-                    <span>{formatInviteCode(uuid, inviteCode)}</span>
-                </div>
-                {formattedTimeRange && (
-                    <div className="invite-modal-content-item">
-                        <span>{t("begin-time")}</span>
-                        <span>{formattedTimeRange}</span>
-                    </div>
-                )}
-                <div className="invite-modal-content-item">
-                    <span>{t("join-link")}</span>
-                    <span>{joinLink}</span>
-                </div>
-            </div>
+          {/* <EditRoomBody
+            room={room}
+            isPmi={isPmi}
+            isSelfPmi={isSelfPmi}
+            periodicWeeks={periodicWeeks}
+            userName={userName}
+          /> */}
         </Modal>
     );
 };

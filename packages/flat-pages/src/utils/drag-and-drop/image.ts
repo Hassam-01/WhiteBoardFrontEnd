@@ -12,7 +12,7 @@ import {
     uploadTempPhotoStart,
 } from "@netless/flat-server-api";
 // import { fi } from "date-fns/locale";
-import { AWS3Client } from "./aws-s3-client";
+// import { AWS3Client } from "./aws-s3-client";
 
 const ImageFileTypes = [
     "image/png",
@@ -67,9 +67,9 @@ export async function onDropImage(
     }
 
     // const fileURL = `${ticket.ossDomain}/${ticket.ossFilePath}`;
-    const fileURLAWS = await new AWS3Client().uploadFile(file, ticket.ossFilePath);
-    // const fileURL = "https://i.ibb.co/mrHrGs6f/chirayu-trivedi-tw-OIx6-I35tk-unsplash.jpg";
-    const fileURL = fileURLAWS;
+    // const fileURLAWS = await new AWS3Client().uploadFile(file, ticket.ossFilePath);
+    const fileURL = "https://i.ibb.co/mrHrGs6f/chirayu-trivedi-tw-OIx6-I35tk-unsplash.jpg";
+    // const fileURL = fileURLAWS;
     const formData = new FormData();
     const encodedFileName = encodeURIComponent(file.name);
     formData.append("key", ticket.ossFilePath);

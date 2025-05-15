@@ -21,7 +21,7 @@ import { PmiDesc, PmiExistTip } from "../../Pmi";
 import { on } from "events";
 
 export enum Region {
-    CN_HZ = "cn-hz",
+    CN_HZ = "sg",
     US_SV = "us-sv",
     SG = "sg",
     IN_MUM = "in-mum",

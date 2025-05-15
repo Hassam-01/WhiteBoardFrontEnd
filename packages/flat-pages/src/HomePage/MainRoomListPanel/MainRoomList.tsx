@@ -123,10 +123,10 @@ export const MainRoomList = observer<MainRoomListProps>(function MainRoomList({
                                     case "details": {
                                         setCurrentRoom(room);
                                         setDetailsModalVisible(true);
-                                        // pushHistory(RouteNameType.RoomDetailPage, {
-                                        //     roomUUID: room.roomUUID,
-                                        //     periodicUUID: room.periodicUUID,
-                                        // });
+                                        pushHistory(RouteNameType.RoomDetailPage, {
+                                            roomUUID: room.roomUUID,
+                                            periodicUUID: room.periodicUUID,
+                                        });
                                         break;
                                     }
                                     case "modify": {
