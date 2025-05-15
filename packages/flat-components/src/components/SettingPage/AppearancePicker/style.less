@@ -1,10 +1,10 @@
 .appearance-picker-container {
-    > .ant-radio-group {
-        > .ant-radio-wrapper {
+    >.ant-radio-group {
+        >.ant-radio-wrapper {
             border-radius: 4px;
             padding: 4px;
 
-            > span {
+            >span {
                 padding: 0;
             }
 
@@ -27,7 +27,7 @@
             &:hover,
             &:active {
                 &::after {
-                    border: 2px solid var(--primary);
+                    border: 2px solid #6f3393;
                 }
             }
         }
@@ -43,15 +43,30 @@
     flex-direction: column;
     align-items: center;
 
-    > span {
+    >span {
         padding-top: 8px;
     }
 }
 
 .flat-color-scheme-dark {
     .appearance-picker-option {
-        > span {
+        >span {
             color: var(--text);
+        }
+    }
+
+    .appearance-picker-container {
+        >.ant-radio-group {
+            >.ant-radio-wrapper {
+
+                &.ant-radio-wrapper-checked,
+                &:hover,
+                &:active {
+                    &::after {
+                        border: 2px solid #595397;
+                    }
+                }
+            }
         }
     }
 }

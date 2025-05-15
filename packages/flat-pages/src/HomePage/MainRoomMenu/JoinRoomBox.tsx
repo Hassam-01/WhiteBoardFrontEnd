@@ -228,8 +228,8 @@ export const JoinRoomBox = observer<JoinRoomBoxProps>(function JoinRoomBox({ onJ
     }
 
     function formValidateStatus(): void {
-        setIsFormValidated(form.getFieldsError().every(field => field.errors.length <= 0));
         const values = form.getFieldsValue();
+        setIsFormValidated(form.getFieldsError().every(field => field.errors.length <= 0));
         preferencesStore.updateAutoMicOn(values.autoMicOn);
         preferencesStore.updateAutoCameraOn(values.autoCameraOn);
     }

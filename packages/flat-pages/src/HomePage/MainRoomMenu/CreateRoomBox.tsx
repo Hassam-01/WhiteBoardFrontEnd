@@ -129,7 +129,9 @@ export const CreateRoomBox = observer<CreateRoomBoxProps>(function CreateRoomBox
     };
 
     return (
-        <>
+        <div className="create-room-box-container-outer">
+            {/* <HomePageHeroButton type="begin" onClick={handleCreateRoom}>
+                {t("home-page-hero-button-type.begin")}
             {/* <HomePageHeroButton type="begin" onClick={handleCreateRoom}>
                 {!!pmi && (
                     <Dropdown
@@ -276,7 +278,7 @@ export const CreateRoomBox = observer<CreateRoomBoxProps>(function CreateRoomBox
                     </Form.Item>
                 </Form>
             </Modal>
-        </>
+        </div>
     );
 
     // function pmiCheckbox({

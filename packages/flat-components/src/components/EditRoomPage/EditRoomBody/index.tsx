@@ -1,24 +1,24 @@
 import "./style.less";
-import cnSVG from "./icons/cn.svg";
+// import cnSVG from "./icons/cn.svg";
 import inSVG from "./icons/in.svg";
 import gbSVG from "./icons/gb.svg";
 import usSVG from "./icons/us.svg";
 import sgSVG from "./icons/sg.svg";
 
 import { useLanguage, useTranslate } from "@netless/flat-i18n";
-import Checkbox, { CheckboxChangeEvent } from "antd/lib/checkbox";
+import Checkbox from "antd/lib/checkbox";
 import React, { useMemo, useRef, useState } from "react";
-import { addWeeks, endOfDay, getDay } from "date-fns";
-import { Button, Form, Input, Modal } from "antd";
+import { addWeeks, getDay } from "date-fns";
+import { Button, Form, Input, Modal, Switch } from "antd";
 import { useHistory } from "react-router-dom";
 
 import { PeriodicEndType, RoomType, Week } from "../../../types/room";
 import { renderBeginTimePicker } from "./renderBeginTimePicker";
 import { renderEndTimePicker } from "./renderEndTimePicker";
 import { renderPeriodicForm } from "./renderPeriodicForm";
-import { ClassPicker } from "../../HomePage/ClassPicker";
+// import { ClassPicker } from "../../HomePage/ClassPicker";
 import { PmiDesc, PmiExistTip } from "../../Pmi";
-import { on } from "events";
+// import { on } from "events";
 
 export enum Region {
     CN_HZ = "sg",
@@ -37,7 +37,7 @@ export const regions: Region[] = [
 ];
 
 export const RegionSVG: Record<Region, string> = {
-    [Region.CN_HZ]: cnSVG,
+    // [Region.CN_HZ]: cnSVG,
     [Region.IN_MUM]: inSVG,
     [Region.GB_LON]: gbSVG,
     [Region.US_SV]: usSVG,
@@ -195,21 +195,25 @@ export const EditRoomBody: React.FC<EditRoomBodyProps> = ({
                         {updateAutoPmiOn && (
                             <Form.Item
                                 className="edit-room-form-item no-margin pmi"
+                                // label={}
                                 name="pmi"
                                 valuePropName="checked"
                             >
-                                <div title={t("periodic-cannot-use-pmi")}>
-                                    <Checkbox
+                                <div
+                                    className="periodic-cannot-use-pmi"
+                                    title={t("periodic-cannot-use-pmi")}
+                                >
+                                    <Switch
                                         checked={enablePmi && autoPmiOn}
+                                        className="periodic-cannot-use-pmi-switch"
                                         disabled={pmiRoomExist || !enablePmi}
-                                        onClick={() => updateAutoPmiOn(!autoPmiOn)}
-                                    >
-                                        <PmiDesc
-                                            className="edit-room-cycle"
-                                            pmi={pmi!}
-                                            text={t("turn-on-the-pmi")}
-                                        />
-                                    </Checkbox>
+                                        onChange={checked => updateAutoPmiOn?.(checked)}
+                                    />
+                                    <PmiDesc
+                                        className="edit-room-cycle"
+                                        pmi={pmi!}
+                                        text={t("turn-on-the-pmi")}
+                                    />
                                     {pmiRoomExist && <PmiExistTip />}
                                 </div>
                             </Form.Item>

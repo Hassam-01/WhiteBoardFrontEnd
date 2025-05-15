@@ -158,6 +158,18 @@
 .edit-room-under {
     display: flex;
     justify-content: flex-end;
+
+    .edit-room-ok {
+        background-color: #6F3393 !important;
+        color: #ffffff !important;
+
+        &:hover {
+            background-color: #703393c1 !important;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.05);
+            color: #ffffff !important;
+        }
+    }
+
 }
 
 .edit-room-cancel {
@@ -212,6 +224,10 @@
     margin-right: -11px;
 }
 
+// .ant-btn .ant-btn-default .edit-room-ok {
+//     background-color: #6F3393;
+// }
+
 .flat-color-scheme-dark {
     .edit-room-body {
         background-color: var(--grey-10);
@@ -234,7 +250,27 @@
     .edit-room-heading {
         color: #CAC4D0;
     }
+
+    .periodic-cannot-use-pmi-switch {
+
+        &.ant-switch-checked {
+            background-color: #595397 !important;
+        }
+    }
 }
+
+.periodic-cannot-use-pmi {
+    display: flex;
+    gap: 4px;
+}
+
+.periodic-cannot-use-pmi-switch {
+
+    &.ant-switch-checked {
+        background-color: #6f3393 !important;
+    }
+}
+
 
 .edit-room-time {
     display: flex;

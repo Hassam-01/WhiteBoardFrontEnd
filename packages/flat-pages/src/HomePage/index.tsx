@@ -113,7 +113,7 @@ export const HomePage = observer(function HomePage() {
                                 Collaborative Write
                             </h1>
                             <p className="homepage-layout-main-menu-subheading">
-                                Write, collaborate and Innovate together!
+                                Write, Collaborate and Innovate together!
                             </p>
                         </div>
                         <MainRoomMenu />
