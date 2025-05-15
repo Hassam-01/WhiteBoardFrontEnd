@@ -24,7 +24,6 @@ import { useTranslate } from "@netless/flat-i18n";
 import { FLAT_WEB_BASE_URL } from "../../constants/process";
 import { generateAvatar } from "../../utils/generate-avatar";
 import { ModifyRoomModal } from "../../../../flat-components/src/components/ModifyRoomModal";
-import { DetailRoomModal } from "../../../../flat-components/src/components/DetailRoomModal";
 
 export interface MainRoomListProps {
     roomStore: RoomStore;
@@ -42,7 +41,6 @@ export const MainRoomList = observer<MainRoomListProps>(function MainRoomList({
     const [cancelModalVisible, setCancelModalVisible] = useState(false);
     const [stopModalVisible, setStopModalVisible] = useState(false);
     const [inviteModalVisible, setInviteModalVisible] = useState(false);
-    const [detailsModalVisible, setDetailsModalVisible] = useState(false);
     const [modifyModalVisible, setModifyModalVisible] = useState(false);
     const [removeHistoryVisible, setRemoveHistoryVisible] = useState(false);
     const [removeHistoryLoading, setRemoveHistoryLoading] = useState(false);
@@ -120,15 +118,6 @@ export const MainRoomList = observer<MainRoomListProps>(function MainRoomList({
                             title={room.title!}
                             onAction={key => {
                                 switch (key) {
-                                    case "details": {
-                                        setCurrentRoom(room);
-                                        setDetailsModalVisible(true);
-                                        pushHistory(RouteNameType.RoomDetailPage, {
-                                            roomUUID: room.roomUUID,
-                                            periodicUUID: room.periodicUUID,
-                                        });
-                                        break;
-                                    }
                                     case "modify": {
                                         setCurrentRoom(room);
                                         setModifyModalVisible(true);
@@ -189,29 +178,11 @@ export const MainRoomList = observer<MainRoomListProps>(function MainRoomList({
             <RoomListAllLoaded />
             {currentRoom && (
                 <ModifyRoomModal
-                    baseUrl={FLAT_WEB_BASE_URL}
-                    isPmi={currentRoom.inviteCode === globalStore.pmi}
-                    periodicWeeks={periodicInfo?.periodic.weeks}
                     room={currentRoom}
-                    userName={globalStore.userName ?? ""}
                     visible={modifyModalVisible}
                     onCancel={hideModifyModal}
-                    onCopy={onCopy}
                 />
             )}
-            {currentRoom && (
-                <DetailRoomModal
-                    baseUrl={FLAT_WEB_BASE_URL}
-                    isPmi={currentRoom.inviteCode === globalStore.pmi}
-                    periodicWeeks={periodicInfo?.periodic.weeks}
-                    room={currentRoom}
-                    userName={globalStore.userName ?? ""}
-                    visible={detailsModalVisible}
-                    onCancel={hideDetailsModal}
-                    onCopy={onCopy}
-                />
-            )}
-
             {currentRoom && (
                 <RemoveRoomModal
                     cancelModalVisible={cancelModalVisible}
@@ -271,9 +242,7 @@ export const MainRoomList = observer<MainRoomListProps>(function MainRoomList({
             window.open(`/replay/${roomType}/${roomUUID}/${ownerUUID}/`, "_blank");
         }
     }
-    function hideDetailsModal(): void {
-        setDetailsModalVisible(false);
-    }
+
     function hideModifyModal(): void {
         setModifyModalVisible(false);
     }

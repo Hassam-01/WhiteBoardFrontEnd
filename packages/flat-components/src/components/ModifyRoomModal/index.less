@@ -1,4 +1,4 @@
-.invite-modal {
+.modify-modal {
     .ant-modal-content {
         border-radius: 8px;
     }
@@ -10,7 +10,15 @@
     }
 }
 
-.invite-modal-header {
+.modify-modal {
+
+    .ant-modal-footer,
+    .ant-modal-close {
+        display: none;
+    }
+}
+
+.modify-modal-header {
     margin-top: -5px;
     width: 100%;
 
@@ -34,11 +42,11 @@
     }
 }
 
-.invite-modal-content {
+.modify-modal-content {
     margin-top: 23px;
 }
 
-.invite-modal-content-item {
+.modify-modal-content-item {
     display: flex;
 
     span {
@@ -62,7 +70,7 @@
     }
 }
 
-.invite-modal-content-title {
+.modify-modal-content-title {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -70,7 +78,7 @@
 }
 
 .flat-color-scheme-dark {
-    .invite-modal-header {
+    .modify-modal-header {
         >span {
             &:first-of-type {
                 margin-bottom: 8px;
@@ -87,14 +95,17 @@
         }
     }
 }
-.ant-btn-primary{
-    &:hover{
+
+.ant-btn-primary {
+    &:hover {
         background-color: #82c341a0;
     }
+
     border-color: transparent;
 }
-.ant-btn-default{
-    &:hover{
+
+.ant-btn-default {
+    &:hover {
         color: #6f3393;
         border-color: #6f3393;
     }

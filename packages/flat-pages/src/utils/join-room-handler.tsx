@@ -4,16 +4,7 @@ import { FLAT_REGION, RequestErrorCode, RoomType } from "@netless/flat-server-ap
 import { errorTips, message, Modal } from "flat-components";
 import { FlatI18n } from "@netless/flat-i18n";
 import React from "react";
-import {
-    PRIVACY_URL_CN_CN,
-    PRIVACY_URL_CN_EN,
-    PRIVACY_URL_EN_CN,
-    PRIVACY_URL_EN_EN,
-    SERVICE_URL_CN_CN,
-    SERVICE_URL_CN_EN,
-    SERVICE_URL_EN_CN,
-    SERVICE_URL_EN_EN,
-} from "../constants/process";
+import { SERVICE_URL_EN_EN } from "../constants/process";
 const { confirm } = Modal;
 
 export enum Region {
@@ -34,26 +25,18 @@ export const joinRoomHandler = async (
             const language = FlatI18n.getInstance().language;
             // const privacyURL = language.startsWith("zh") ? PRIVACY_URL_CN : PRIVACY_URL;
             // const serviceURL = language.startsWith("zh") ? SERVICE_URL_CN : SERVICE_URL;
-            const privacyURL =
-                FLAT_REGION === "CN"
-                    ? language.startsWith("zh")
-                        ? PRIVACY_URL_CN_CN
-                        : PRIVACY_URL_CN_EN
-                    : language.startsWith("zh")
-                      ? PRIVACY_URL_EN_CN
-                      : PRIVACY_URL_EN_EN;
             const serviceURL =
                 FLAT_REGION === "CN"
                     ? language.startsWith("zh")
-                        ? SERVICE_URL_CN_CN
-                        : SERVICE_URL_CN_EN
+                        ? SERVICE_URL_EN_EN
+                        : SERVICE_URL_EN_EN
                     : language.startsWith("zh")
-                      ? SERVICE_URL_EN_CN
+                      ? SERVICE_URL_EN_EN
                       : SERVICE_URL_EN_EN;
 
             const context = FlatI18n.t("cross-region-auth.desc", {
                 serviceAgreement: `<a rel='noreferrer' target='_blank' href='${serviceURL}'>《${FlatI18n.t("cross-region-auth.serviceAgreement")}》</a>`,
-                privacyPolicy: `<a rel='noreferrer' target='_blank' href='${privacyURL}'>《${FlatI18n.t("cross-region-auth.privacyPolicy")}》</a>`,
+                privacyPolicy: `<a rel='noreferrer' target='_blank' href='${serviceURL}'>《${FlatI18n.t("cross-region-auth.privacyPolicy")}》</a>`,
             });
             confirm({
                 title: (

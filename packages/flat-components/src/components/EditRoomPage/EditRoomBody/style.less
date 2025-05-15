@@ -1,8 +1,9 @@
 .edit-room-form {
+
     &,
     input,
     .ant-select,
-    .ant-picker-input > input {
+    .ant-picker-input>input {
         color: var(--text);
     }
 
@@ -11,7 +12,7 @@
     }
 
     .edit-room-form-label,
-    .ant-form-item-label > label {
+    .ant-form-item-label>label {
         color: var(--text-strong);
     }
 
@@ -22,13 +23,18 @@
     .ant-input-number-input {
         border-radius: 4px !important;
     }
+
     .ant-input {
         border-radius: 8px;
-        &.ant-input:focus, &.ant-input:hover {
+
+        &.ant-input:focus,
+        &.ant-input:hover {
             border: 1px solid var(--Amethyst, rgba(111, 51, 147, 1));
         }
+
         box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.05);
     }
+
     .ant-picker {
         margin-bottom: 10px;
         width: 200px;
@@ -41,8 +47,10 @@
         &.ant-picker:hover {
             border-color: var(--Amethyst, rgba(111, 51, 147, 1));
         }
+
         box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.05);
     }
+
     .ant-picker-input {
         display: flex;
         flex-direction: row-reverse;
@@ -50,11 +58,12 @@
         font-size: 11px;
         font-weight: 500;
     }
+
     .edit-room-form-item.no-margin {
         margin-bottom: 0;
     }
 
-    .edit-room-form-item.pmi .ant-checkbox + span {
+    .edit-room-form-item.pmi .ant-checkbox+span {
         padding-right: 0;
     }
 }
@@ -119,6 +128,7 @@
     overflow: visible;
     background-color: #fff;
     border-radius: 8px;
+
     .ant-row {
         margin-left: 0 !important;
         margin-right: 0 !important;
@@ -160,13 +170,13 @@
     background-color: #f6f6f6;
     font-size: 12px;
 
-    > div {
+    >div {
         display: flex;
         justify-content: space-between;
         line-height: 24px;
     }
 
-    > div + div {
+    >div+div {
         margin-top: 4px;
     }
 }
@@ -215,14 +225,17 @@
     .edit-room-cycle {
         color: var(--text);
     }
-    .ant-btn.edit-room-cancel{
+
+    .ant-btn.edit-room-cancel {
         color: #CAC4D0;
         border-color: #CAC4D0;
     }
-    .edit-room-heading{
+
+    .edit-room-heading {
         color: #CAC4D0;
     }
 }
+
 .edit-room-time {
     display: flex;
     justify-content: space-between;
@@ -230,46 +243,55 @@
     // margin-bottom: px;
 }
 
-.edit-room-header{
+.edit-room-header {
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 8px;
 }
-.edit-room-heading{
+
+.edit-room-heading {
     color: #6F3393;
     font-size: 16px;
     font-weight: 700;
 }
-.edit-room-close{
+
+.edit-room-close {
     color: #49454F;
     font-size: 16px;
     font-weight: 700;
     cursor: pointer;
 }
-.ant-btn.edit-room-ok{
+
+.ant-btn.edit-room-ok {
     background-color: #8cc63f;
     color: #ffffff;
     border: none;
-    &:hover{
+
+    &:hover {
         background-color: #82C341;
         box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.05);
         border: none;
     }
 
 }
-.ant-btn.edit-room-cancel{
+
+.ant-btn.edit-room-cancel {
     color: #6F3393;
     border-color: #6F3393;
 }
-.pmi-text, .pmi-id{
+
+.pmi-text,
+.pmi-id {
     font-size: 14px;
     font-weight: 500;
 }
-.pmi-text{
+
+.pmi-text {
     color: #79747E;
 }
-.pmi-id{
+
+.pmi-id {
     color: #CAC4D0;
 }

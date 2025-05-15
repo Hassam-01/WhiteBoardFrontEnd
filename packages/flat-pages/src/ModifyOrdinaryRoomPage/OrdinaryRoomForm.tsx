@@ -1,7 +1,6 @@
 import { message } from "antd";
 import React, { useEffect, useState } from "react";
 import { observer } from "mobx-react-lite";
-import { useHistory } from "react-router-dom";
 import {
     EditRoomFormInitialValues,
     EditRoomFormValues,
@@ -15,12 +14,15 @@ import { useSafePromise } from "../utils/hooks/lifecycle";
 
 export interface OrdinaryRoomFormProps {
     roomUUID: string;
+    onClose?: () => void;
 }
 
-export const OrdinaryRoomForm = observer<OrdinaryRoomFormProps>(function RoomForm({ roomUUID }) {
+export const OrdinaryRoomForm = observer<OrdinaryRoomFormProps>(function RoomForm({
+    roomUUID,
+    onClose,
+}) {
     const [isLoading, setLoading] = useState(false);
 
-    const history = useHistory();
     const sp = useSafePromise();
     const t = useTranslate();
 
@@ -41,7 +43,8 @@ export const OrdinaryRoomForm = observer<OrdinaryRoomFormProps>(function RoomFor
             .catch(e => {
                 console.error(e);
                 errorTips(e);
-                history.goBack();
+                // history.goBack();
+                onClose?.();
             });
         // Only listen to roomUUID
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -56,6 +59,7 @@ export const OrdinaryRoomForm = observer<OrdinaryRoomFormProps>(function RoomFor
             initialValues={initialValues}
             loading={isLoading}
             type="ordinary"
+            onClose={onClose}
             onSubmit={editOrdinaryRoom}
         />
     );
@@ -74,7 +78,8 @@ export const OrdinaryRoomForm = observer<OrdinaryRoomFormProps>(function RoomFor
                 }),
             );
             void message.success(t("edit-success"));
-            history.goBack();
+            // history.goBack();
+            onClose?.();
         } catch (e) {
             console.error(e);
             errorTips(e);

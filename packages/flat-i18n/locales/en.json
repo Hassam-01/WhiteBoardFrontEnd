@@ -125,7 +125,7 @@
       "en": "English"
     }
   },
-  "home-page-AI-teacher-class":{
+  "home-page-AI-teacher-class": {
     "icon": {
       "TurnOnWhiteboard": "Open the whiteboard",
       "TurnOffWhiteboard": "Close the whiteboard"
@@ -474,7 +474,7 @@
   "enter-email-invalid": "Please enter valid email address",
   "forgot": "Forgot?",
   "also-login-with": "You can also login directly by",
-  "seconds-to-resend": "{{seconds}} seconds to resend",
+  "seconds-to-resend": "Resend ({{seconds}})s ",
   "register-or-login": "Register or login",
   "reset-password": "Reset password",
   "reset-failed": "Reset failed",
@@ -817,8 +817,8 @@
   "mirror-mode": "Mirror Mode",
   "edit-success": "Updated successfully",
   "cross-region-auth": {
-    "title":"Cross-border data exit authorization",
-    "desc":"Please note that you are joining a room created by Agora Flat Overseas users. We will strictly comply with applicable laws and regulations to conduct data exit security assessment, and adopt reasonable physical isolation and security protection measures to ensure that your data is only used under your authorization. See the {{serviceAgreement}} and {{privacyPolicy}} for details",
+    "title": "Cross-border data exit authorization",
+    "desc": "Please note that you are joining a room created by Agora Flat Overseas users. We will strictly comply with applicable laws and regulations to conduct data exit security assessment, and adopt reasonable physical isolation and security protection measures to ensure that your data is only used under your authorization. See the {{serviceAgreement}} and {{privacyPolicy}} for details",
     "serviceAgreement": "service agreement",
     "privacyPolicy": "Privacy Policy",
     "agree": "agree",

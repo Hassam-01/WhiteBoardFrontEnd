@@ -20,6 +20,6 @@ export const SERVICE_URL_CN_CN = "https://www.flat.apprtc.cn/service.html";
 export const SERVICE_URL_CN_EN = "https://www.flat.apprtc.cn/en/service.html";
 
 export const SERVICE_URL_EN_CN = "https://flat.agora.io/zh/service.html";
-export const SERVICE_URL_EN_EN = "https://flat.agora.io/service.html";
+export const SERVICE_URL_EN_EN = "https://www.onescreensolutions.com/en/accounts/privacypolicy";
 
 export const FLAT_WEB_BASE_URL = `https://${process.env.FLAT_WEB_DOMAIN}`;

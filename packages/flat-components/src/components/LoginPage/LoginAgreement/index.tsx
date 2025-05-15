@@ -14,7 +14,7 @@ export interface LoginAgreementProps {
 export const LoginAgreement: React.FC<LoginAgreementProps> = ({
     checked,
     onChange,
-    privacyURL,
+    // privacyURL,
     serviceURL,
 }) => {
     const t = useTranslate();
@@ -23,10 +23,10 @@ export const LoginAgreement: React.FC<LoginAgreementProps> = ({
         <div className="login-agreement">
             <Checkbox checked={checked} onChange={ev => onChange(ev.target.checked)}>
                 {t("have-read-and-agree")}{" "}
-                <a href={privacyURL} rel="noreferrer" target="_blank">
+                {/* <a href={privacyURL} rel="noreferrer" target="_blank">
                     {t("privacy-agreement")}
                 </a>{" "}
-                {t("and")}{" "}
+                {t("and")}{" "} */}
                 <a href={serviceURL} rel="noreferrer" target="_blank">
                     {t("service-policy")}
                 </a>

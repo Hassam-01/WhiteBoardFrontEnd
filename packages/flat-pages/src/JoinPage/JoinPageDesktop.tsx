@@ -26,7 +26,6 @@ export default function JoinPageDesktop({
     avatar: avatarSrc,
     userUUID,
     roomUUID,
-    privacyURL,
     serviceURL,
     joinRoom,
 }: JoinPageDesktopProps): React.ReactElement {
@@ -103,10 +102,10 @@ export default function JoinPageDesktop({
                 </div>
             </div>
             <div className="join-page-footer-container">
-                <a href={privacyURL} rel="noreferrer" target="_blank">
+                {/* <a href={privacyURL} rel="noreferrer" target="_blank">
                     {t("privacy-agreement")}
                 </a>
-                <span>｜</span>
+                <span>｜</span> */}
                 <a href={serviceURL} rel="noreferrer" target="_blank">
                     {t("service-policy")}
                 </a>
