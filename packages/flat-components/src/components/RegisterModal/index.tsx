@@ -194,7 +194,7 @@ export const RegisterModal: React.FC<RegisterProps> = ({
 
                     <LoginAgreement
                         checked={agreed}
-                        privacyURL={privacyURL}
+                        privacyURL={serviceURL}
                         serviceURL={serviceURL}
                         onChange={() => {
                             setAgreed(!agreed);

@@ -76,13 +76,13 @@ export const UsersPanel = /* @__PURE__ */ observer<UsersPanelProps>(function Use
                 <table className="users-panel-list">
                     <thead>
                         <tr>
-                            <th>
+                            <th colSpan={2}>
                                 {t("members")} ({users.length})
                             </th>
                             <th>{t("staging")}</th>
                             <th>{t("whiteboard-access")}</th>
                             {/* <th>{t("camera")}</th> */}
-                            <th>{t("microphone")}</th>
+                            {/* <th>{t("microphone")}</th> */}
                             <th>
                                 {t("raised-hand")} ({users.filter(user => user.isRaiseHand).length})
                             </th>

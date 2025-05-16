@@ -5,6 +5,7 @@ import { MainPageLayoutItem } from "../types";
 import { MainPageNavAvatar, MainPageNavAvatarProps } from "../MainPageNavAvatar";
 // import { Tabs } from "antd";
 import { MainPageHeaderProps } from "../MainPageHeader";
+import SVGCollabIcon from "../../../../../flat-components/src/components/FlatIcons/icons/SVGCollabIcon";
 
 export interface MainPageNavHorizontalProps extends MainPageNavAvatarProps, MainPageHeaderProps {
     /** when an item is clicked */
@@ -45,6 +46,9 @@ export const MainPageNavHorizontal: React.FC<MainPageNavHorizontalProps> = ({
         <div className="main-page-nav-horizontal-container">
             <div className="main-page-nav-horizontal-content">
                 <div className="main-page-nav-horizontal-left" onClick={() => navigateToHomePage()}>
+                    <div className="collab-icon">
+                        <SVGCollabIcon />
+                    </div>
                     {/* {onBackPreviousPage ? (
                         <MainPageHeader title={title} onBackPreviousPage={onBackPreviousPage} />
                     ) : (
@@ -78,7 +82,7 @@ export const MainPageNavHorizontal: React.FC<MainPageNavHorizontalProps> = ({
                         ></Tabs>
                     )} */}
                     {/* later logo will be added here */}
-                    OneScreen Collab
+                    Collab
                 </div>
                 <div className="main-page-nav-horizontal-right">
                     <div className="main-page-nav-horizontal-right-header">

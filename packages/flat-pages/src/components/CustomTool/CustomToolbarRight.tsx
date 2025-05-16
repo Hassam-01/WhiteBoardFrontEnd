@@ -108,7 +108,10 @@ const CustomToolbarRight: React.FC<CustomToolbarRightProps> = ({ whiteboardStore
                 <span className="page-preview-label">Add</span>
             </div>
             <div className="toolbar-right-page-control">
-                <div className={` ${prevDisabled ? "disabled" : ""}`} onClick={handlePrevPage}>
+                <div
+                    className={`page-navigation ${prevDisabled ? "disabled" : ""}`}
+                    onClick={handlePrevPage}
+                >
                     <SVGPrevPage />
                     {/* <span className="page-preview-label">Previous</span> */}
                 </div>
@@ -118,7 +121,10 @@ const CustomToolbarRight: React.FC<CustomToolbarRightProps> = ({ whiteboardStore
                     </span>
                     <span className="page-preview-label">Page</span>
                 </div>
-                <div className={` ${nextDisabled ? "disabled" : ""}`} onClick={handleNextPage}>
+                <div
+                    className={` page-navigation ${nextDisabled ? "disabled" : ""}`}
+                    onClick={handleNextPage}
+                >
                     <SVGNextPage />
                     {/* <span className="page-preview-label">Next</span> */}
                 </div>

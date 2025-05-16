@@ -8,6 +8,7 @@ import { useTranslate } from "@netless/flat-i18n";
 import { PreferencesStoreContext } from "../../components/StoreProvider";
 import { useSafePromise } from "../../utils/hooks/lifecycle";
 import { SVGJoinIllustration } from "../../../../flat-components/src/components/FlatIcons/icons/SVGJoinIllustration";
+import { useWatch } from "antd/lib/form/Form";
 interface JoinRoomFormValues {
     roomUUID: string;
     autoCameraOn: boolean;
@@ -50,7 +51,11 @@ export const JoinRoomBox = observer<JoinRoomBoxProps>(function JoinRoomBox({ onJ
         autoCameraOn: preferencesStore.autoCameraOn,
         autoMicOn: preferencesStore.autoMicOn,
     };
-
+    const roomUUID = useWatch("roomUUID", form);
+    useEffect(() => {
+        const hasNoErrors = form.getFieldsError().every(field => field.errors.length <= 0);
+        setIsFormValidated(hasNoErrors);
+    }, [roomUUID, form]);
     return (
         <>
             <div className="join-room-box">
@@ -70,7 +75,9 @@ export const JoinRoomBox = observer<JoinRoomBoxProps>(function JoinRoomBox({ onJ
                     </Button>,
                     <Button
                         key="submit"
-                        disabled={!isFormValidated || form.getFieldValue("roomUUID").trim() === ""}
+                        disabled={
+                            !isFormValidated || (form.getFieldValue("roomUUID") || "").trim() === ""
+                        }
                         loading={isLoading}
                         type="primary"
                         onClick={handleOk}

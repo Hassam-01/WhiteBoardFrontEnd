@@ -11,8 +11,8 @@ export const SVGMainPageHome: React.FC<FlatIconProps> = ({
         <svg
             className={`${className} purple-homeSVG flat-icon ${active ? "is-active" : ""}`}
             fill="none"
-            height="19"
-            viewBox="0 0 17 19"
+            height="21"
+            viewBox="0 0 19 21"
             width="17"
             xmlns="http://www.w3.org/2000/svg"
             {...restProps}

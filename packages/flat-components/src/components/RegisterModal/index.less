@@ -1,5 +1,5 @@
 .register-content {
-    top: 40%;
+    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     display: flex;
@@ -7,13 +7,18 @@
     max-height: 50%;
     flex-direction: column;
 
+    @media (min-width: 1280px) {
+        top: 40%
+    }
+
     .register-width-limiter {
         width: 100%;
 
-        > div {
+        >div {
             margin-bottom: 16px;
         }
     }
+
 
     .ant-input-affix-wrapper {
         border-color: rgba(111, 51, 147, 0.7) !important;

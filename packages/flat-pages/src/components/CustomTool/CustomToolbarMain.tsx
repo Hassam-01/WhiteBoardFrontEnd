@@ -174,72 +174,13 @@ const CustomToolbarMain: React.FC<{ whiteboardStore: WhiteboardStore }> = ({ whi
             }
         }
     };
-    // const uploadImageOnView = async (file: CloudFile): Promise<void> => {
-    //     const maxWidth = window.innerWidth * 0.6;
-
-    //     let width: number;
-    //     let height: number;
-
-    //     if (file.fileURL) {
-    //         ({ width, height } = await new Promise<{ width: number; height: number }>(resolve => {
-    //             const img = new Image();
-    //             img.onload = () => resolve(img);
-    //             img.onerror = () =>
-    //                 resolve({ width: window.innerWidth, height: window.innerHeight });
-    //             img.src = file.fileURL;
-    //         }));
-    //     } else {
-    //         ({ innerWidth: width, innerHeight: height } = window);
-    //     }
-
-    //     let scale = 1;
-    //     if (width > maxWidth) {
-    //         scale = maxWidth / width;
-    //     }
-
-    //     const uuid = uuidv4();
-    //     // let { centerX, centerY } = app?.manager.cameraState;
-    //     const centerX = Math.floor(window.innerWidth / 2);
-    //     const centerY = Math.floor(window.innerHeight / 2);
-    //     width *= scale;
-    //     height *= scale;
-    //     app?.manager.mainView.insertImage({
-    //         uuid,
-    //         centerX,
-    //         centerY,
-    //         width: Math.floor(width),
-    //         height: Math.floor(height),
-    //         locked: false,
-    //     });
-
-    //     app?.manager.mainView.completeImageUpload(uuid, file.fileURL);
-    // };
-    // const uploadImageOnView = async (fileURL: string): Promise<void> => {
-    //     const fileService = await FlatServices.getInstance().requestService("file");
-    //     console.log(createCloudFile({ fileName: `${Date.now()}.png`, fileURL }));
-    //     if (fileService) {
-    //         console.log("test1");
-    //         fileService.insert(createCloudFile({ fileName: `${Date.now()}.png`, fileURL }));
-    //         console.log("test2");
-    //     }
-    // };
-
     const uploadImageOnView = async (file: File): Promise<void> => {
         const { room, windowManager } = whiteboardStore;
         if (!room || !windowManager) {
             return;
         }
         const { centerX, centerY } = windowManager.camera;
-        console.log(
-            "before dropiamge:",
-            file,
-            centerX,
-            centerY,
-            room,
-            whiteboardStore.cloudStorageStore,
-        );
         await onDropImage(file, centerX, centerY, room, whiteboardStore.cloudStorageStore);
-        console.log("after dropiamge:");
     };
     const handleSelectImage = (): void => {
         // select image from local browser default option

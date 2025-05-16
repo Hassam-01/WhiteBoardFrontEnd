@@ -120,6 +120,7 @@ export * from "./icons/SVGToDown";
 export * from "./icons/SVGToLeft";
 export * from "./icons/SVGToRight";
 export * from "./icons/SVGToUp";
+export * from "./icons/SVGBackSetting";
 export * from "./icons/SVGToolbarFullscreen";
 export * from "./icons/SVGUndo";
 export * from "./icons/SVGUp";

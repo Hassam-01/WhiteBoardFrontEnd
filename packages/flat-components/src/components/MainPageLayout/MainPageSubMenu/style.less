@@ -2,7 +2,11 @@
     width: 240px;
     border-right: solid 1px #dbe1ea;
     background-color: #fff;
-    height: 95%;
+    height: 100%;
+
+    @media (max-width: 1280px) {
+        height: 85%;
+    }
 
     ul {
         display: none;
@@ -42,9 +46,11 @@
         vertical-align: text-top;
     }
 }
-.home-icon{
+
+.home-icon {
     bottom: 1rem;
 }
+
 .main-layout-sub-menu-item {
     position: relative;
     display: flex;
@@ -62,8 +68,22 @@
     }
 
     &.is-active {
-        color: var(--blue-6);
+        color: #6f3393;
         background-color: var(--blue-1);
+    }
+}
+
+.main-layout-sub-menu-item-icon {
+    width: 24px;
+    height: 24px;
+    margin-right: 8px;
+    display: flex;
+    justify-content: center;
+
+    svg {
+        width: 22px;
+        height: 22px;
+        display: block;
     }
 }
 
@@ -96,7 +116,7 @@
         }
 
         &.is-active {
-            color: var(--blue-7);
+            color: #595397;
             background-color: var(--grey-11);
         }
     }

@@ -1321,7 +1321,7 @@ export class ClassroomStore {
     };
 
     private assertStageNotFull(showWarning = true): boolean {
-        const limit = this.roomType === RoomType.SmallClass ? 16 : 1;
+        const limit = this.roomType === RoomType.SmallClass ? 1 : 16;
         if (this.onStageUserUUIDs.length < limit) {
             return true;
         }

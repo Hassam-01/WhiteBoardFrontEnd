@@ -241,7 +241,6 @@ export async function getPrivacy(props: {
     serviceURL: string;
 }): Promise<PrivacyAgreementData | undefined> {
     const { privacyURL, serviceURL } = props;
-    // 仅中国地区,language为zh的情况下,使用中文隐私协议
     const isZh = serviceURL.indexOf("apprtc.cn") > -1 && privacyURL.indexOf("/en") === -1;
     if (FLAT_AGREEMENT_URL) {
         const url = isZh
@@ -300,11 +299,11 @@ export async function requestAgreement({
         Modal.confirm({
             content: (
                 <div>
-                    {t("have-read-and-agree")}{" "}
-                    <a href={privacyURL} rel="noreferrer" target="_blank">
+                    {t("confirm-modal-text-signup")}{" "}
+                    {/* <a href={privacyURL} rel="noreferrer" target="_blank">
                         {t("privacy-agreement")}
-                    </a>{" "}
-                    {t("and")}{" "}
+                    </a>{" "} */}
+                    {/* {t("and")}{" "} */}
                     <a href={serviceURL} rel="noreferrer" target="_blank">
                         {t("service-policy")}
                     </a>

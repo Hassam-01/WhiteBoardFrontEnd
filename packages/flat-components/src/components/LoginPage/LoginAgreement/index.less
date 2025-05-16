@@ -3,8 +3,9 @@
     font-size: 14px;
     line-height: 24px;
     margin-bottom: 16px;
+    width: 110%;
 
-    .ant-checkbox + span {
+    .ant-checkbox+span {
         user-select: none;
         -webkit-user-select: none;
     }
@@ -24,7 +25,7 @@
         border-color: #6f3393; // border color when checked
     }
 
-    .ant-checkbox-input:focus + .ant-checkbox-inner {
+    .ant-checkbox-input:focus+.ant-checkbox-inner {
         border-color: #6f3393; // focus border color
         box-shadow: 0 0 0 2px rgba(111, 51, 147, 0.2); // optional focus ring
     }
@@ -36,14 +37,15 @@
 
 .flat-color-scheme-dark {
     .login-agreement {
-        a{
+        a {
             color: #fff;
         }
+
         .ant-checkbox-inner {
             border-color: #fff; // custom border color
             background-color: transparent; // default background when unchecked
         }
-        
+
         .ant-checkbox-checked .ant-checkbox-inner {
             background-color: #fff; // fill color when checked
             border-color: #fff; // border color when checked
@@ -53,12 +55,12 @@
             border-color: rgba(89, 83, 151, 1); // color of the check mark
             font-weight: bold; // make it bold
         }
-        
-        .ant-checkbox-input:focus + .ant-checkbox-inner {
+
+        .ant-checkbox-input:focus+.ant-checkbox-inner {
             border-color: #fff; // focus border color
             box-shadow: 0 0 0 2px rgba(111, 51, 147, 0.2); // optional focus ring
         }
-        
+
         .ant-checkbox:hover .ant-checkbox-inner {
             border-color: #fff; // hover border color
         }

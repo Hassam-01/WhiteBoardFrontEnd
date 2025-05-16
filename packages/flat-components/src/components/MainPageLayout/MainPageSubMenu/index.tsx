@@ -4,8 +4,9 @@ import React, { useCallback } from "react";
 import classNames from "classnames";
 import { MainPageLayoutItem, MainPageLayoutTreeItem } from "../types";
 import { useState } from "react";
-import { SVGDown, SVGHomeOutlined, SVGUp } from "../../FlatIcons";
+import { SVGDown, SVGBackSetting, SVGUp } from "../../FlatIcons";
 import { useHistory } from "react-router-dom";
+// import SVGBackSetting from "src/components/FlatIcons/icons/SVGBackSetting";
 
 export interface MainPageSubMenuProps {
     /** when an item is clicked */
@@ -122,9 +123,9 @@ export const MainPageSubMenu: React.FC<MainPageSubMenuProps> = ({
             </ul>
             <div className="main-layout-sub-menu-item home-icon" onClick={goHome}>
                 <span className="main-layout-sub-menu-item-icon">
-                    <SVGHomeOutlined />
+                    <SVGBackSetting />
                 </span>
-                Home
+                Back
             </div>
         </div>
     );

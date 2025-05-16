@@ -66,7 +66,6 @@ export async function onDropImage(
 
     // const fileURL = `${ticket.ossDomain}/${ticket.ossFilePath}`;
     const fileURLAWS = await uploadFileToS3(file, ticket.ossFilePath);
-    // const fileURL = "https://i.ibb.co/mrHrGs6f/chirayu-trivedi-tw-OIx6-I35tk-unsplash.jpg";
     const fileURL = fileURLAWS;
     const formData = new FormData();
     const encodedFileName = encodeURIComponent(file.name);

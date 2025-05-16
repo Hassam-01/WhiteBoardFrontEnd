@@ -9,7 +9,11 @@ import { ActiveTabType, MainRoomListPanel } from "./MainRoomListPanel";
 import { MainRoomHistoryPanel } from "./MainRoomHistoryPanel";
 import { useLoginCheck } from "../utils/use-login-check";
 import { SVGMainPageHome } from "../../../flat-components/src/components/FlatIcons/icons/SVGMainPageHome";
+import SVGMainPageHomeOutline, {
+    SVGMainPageHomeFilled,
+} from "../../../flat-components/src/components/FlatIcons/icons/SVGMainPageHomeFilled";
 import { SVGMyLibrary } from "../../../flat-components/src/components/FlatIcons/icons/SVGMyLibrary";
+import { SVGMyLibraryFilled } from "../../../flat-components/src/components/FlatIcons/icons/SVGMyLibraryFilled";
 import { SVGHomeFooterIllustration } from "../../../flat-components/src/components/FlatIcons/icons/SVGHomeFooterIllustration";
 import { SVGHomeLeftIllustration } from "../../../flat-components/src/components/FlatIcons/icons/SVGHomeLeftIllustration";
 import {
@@ -89,14 +93,14 @@ export const HomePage = observer(function HomePage() {
                     className={`homepage-layout-horizontal-header-button ${isHome ? "active" : ""}`}
                     onClick={() => setHome(true)}
                 >
-                    <SVGMainPageHome />
+                    {isHome ? <SVGMainPageHome /> : <SVGMainPageHomeOutline />}
                     Home
                 </div>
                 <div
                     className={`homepage-layout-horizontal-header-button ${isHome ? "" : "active"}`}
                     onClick={() => setHome(false)}
                 >
-                    <SVGMyLibrary />
+                    {isHome ? <SVGMyLibrary /> : <SVGMyLibraryFilled />}
                     Library
                 </div>
                 <div
@@ -109,9 +113,7 @@ export const HomePage = observer(function HomePage() {
                 {isHome ? (
                     <div className="homepage-layout-main-menu">
                         <div>
-                            <h1 className="homepage-layout-main-menu-heading">
-                                Collaborative Write
-                            </h1>
+                            <h1 className="homepage-layout-main-menu-heading">OneScreen Collab</h1>
                             <p className="homepage-layout-main-menu-subheading">
                                 Write, Collaborate and Innovate together!
                             </p>

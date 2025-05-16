@@ -1,11 +1,11 @@
 import { RouteNameType } from "./routes";
 import { roomStore, globalStore } from "@netless/flat-stores";
-import { FLAT_REGION, RequestErrorCode, RoomType } from "@netless/flat-server-api";
-import { errorTips, message, Modal } from "flat-components";
+import { RequestErrorCode, RoomType } from "@netless/flat-server-api";
+import { errorTips, message } from "flat-components";
 import { FlatI18n } from "@netless/flat-i18n";
-import React from "react";
-import { SERVICE_URL_EN_EN } from "../constants/process";
-const { confirm } = Modal;
+// import React from "react";
+// import { SERVICE_URL_EN_EN } from "../constants/process";
+// const { confirm } = Modal;
 
 export enum Region {
     CN_HZ = "CN",
@@ -19,62 +19,62 @@ export const joinRoomHandler = async (
     pushHistory: (routeName: any, data?: any) => void,
 ): Promise<void> => {
     const formatRoomUUID = roomUUID.replace(/\s+/g, "");
-    const serverRegion = globalStore.serverRegionConfig?.server.region;
-    const promise = await new Promise<boolean>(resolve => {
-        if (serverRegion && checkCrossRegionAuth(formatRoomUUID, serverRegion)) {
-            const language = FlatI18n.getInstance().language;
-            // const privacyURL = language.startsWith("zh") ? PRIVACY_URL_CN : PRIVACY_URL;
-            // const serviceURL = language.startsWith("zh") ? SERVICE_URL_CN : SERVICE_URL;
-            const serviceURL =
-                FLAT_REGION === "CN"
-                    ? language.startsWith("zh")
-                        ? SERVICE_URL_EN_EN
-                        : SERVICE_URL_EN_EN
-                    : language.startsWith("zh")
-                      ? SERVICE_URL_EN_EN
-                      : SERVICE_URL_EN_EN;
+    // const serverRegion = globalStore.serverRegionConfig?.server.region;
+    // const promise = await new Promise<boolean>(resolve => {
+    //     if (serverRegion && checkCrossRegionAuth(formatRoomUUID, serverRegion)) {
+    //         const language = FlatI18n.getInstance().language;
+    //         // const privacyURL = language.startsWith("zh") ? PRIVACY_URL_CN : PRIVACY_URL;
+    //         // const serviceURL = language.startsWith("zh") ? SERVICE_URL_CN : SERVICE_URL;
+    //         const serviceURL =
+    //             FLAT_REGION === "CN"
+    //                 ? language.startsWith("zh")
+    //                     ? SERVICE_URL_EN_EN
+    //                     : SERVICE_URL_EN_EN
+    //                 : language.startsWith("zh")
+    //                   ? SERVICE_URL_EN_EN
+    //                   : SERVICE_URL_EN_EN;
 
-            const context = FlatI18n.t("cross-region-auth.desc", {
-                serviceAgreement: `<a rel='noreferrer' target='_blank' href='${serviceURL}'>《${FlatI18n.t("cross-region-auth.serviceAgreement")}》</a>`,
-                privacyPolicy: `<a rel='noreferrer' target='_blank' href='${serviceURL}'>《${FlatI18n.t("cross-region-auth.privacyPolicy")}》</a>`,
-            });
-            confirm({
-                title: (
-                    <div
-                        style={{
-                            borderBottom: "1px solid #EEEEEE",
-                            textAlign: "center",
-                            lineHeight: "30px",
-                        }}
-                    >
-                        {FlatI18n.t("cross-region-auth.title")}
-                    </div>
-                ),
-                closable: true,
-                icon: null,
-                content: (
-                    <div
-                        dangerouslySetInnerHTML={{
-                            __html: context,
-                        }}
-                    ></div>
-                ),
-                okText: FlatI18n.t("cross-region-auth.agree"),
-                cancelText: FlatI18n.t("cross-region-auth.disagree"),
-                onOk() {
-                    resolve(true);
-                },
-                onCancel() {
-                    resolve(false);
-                },
-            });
-        } else {
-            resolve(true);
-        }
-    });
-    if (!promise) {
-        return;
-    }
+    //         const context = FlatI18n.t("cross-region-auth.desc", {
+    //             serviceAgreement: `<a rel='noreferrer' target='_blank' href='${serviceURL}'>《${FlatI18n.t("cross-region-auth.serviceAgreement")}》</a>`,
+    //             privacyPolicy: `<a rel='noreferrer' target='_blank' href='${serviceURL}'>《${FlatI18n.t("cross-region-auth.privacyPolicy")}》</a>`,
+    //         });
+    //         confirm({
+    //             title: (
+    //                 <div
+    //                     style={{
+    //                         borderBottom: "1px solid #EEEEEE",
+    //                         textAlign: "center",
+    //                         lineHeight: "30px",
+    //                     }}
+    //                 >
+    //                     {FlatI18n.t("cross-region-auth.title")}
+    //                 </div>
+    //             ),
+    //             closable: true,
+    //             icon: null,
+    //             content: (
+    //                 <div
+    //                     dangerouslySetInnerHTML={{
+    //                         __html: context,
+    //                     }}
+    //                 ></div>
+    //             ),
+    //             okText: FlatI18n.t("cross-region-auth.agree"),
+    //             cancelText: FlatI18n.t("cross-region-auth.disagree"),
+    //             onOk() {
+    //                 resolve(true);
+    //             },
+    //             onCancel() {
+    //                 resolve(false);
+    //             },
+    //         });
+    //     } else {
+    //         resolve(true);
+    //     }
+    // });
+    // if (!promise) {
+    //     return;
+    // }
     try {
         const roomInfo = roomStore.rooms.get(formatRoomUUID);
         const periodicUUID = roomInfo?.periodicUUID;

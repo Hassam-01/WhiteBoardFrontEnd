@@ -20,16 +20,13 @@ export const LoginPanel: React.FC<LoginPanelProps> = ({ children }) => {
         <div className="login-panel-container">
             <div className="login-panel-cover">
                 <div className="login-panel-cover-text">
-                    <p className="panel-cover-heading">
-                        Bring your team&apos;s ideas to
-                        <span>life together, in real time</span>
-                    </p>
+                    <p className="panel-cover-heading">OneScreen Collab</p>
                     <p className="panel-cover-subheading">
                         Your Digital Whiteboard with big ideas!
                     </p>
                 </div>
                 <div className="login-panel-cover-illustration">
-                    <SVGLoginIllustration style={{ maxWidth: "90%", height: "auto" }} />
+                    <SVGLoginIllustration style={{ maxWidth: "80%", height: "auto" }} />
                 </div>
             </div>
 

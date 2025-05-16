@@ -14,7 +14,7 @@ export interface FlatThemeProviderProps
 }
 
 export const FlatThemeProvider: FC<FlatThemeProviderProps> = ({
-    prefersColorScheme = "light",
+    prefersColorScheme = "auto",
     className,
     ...restProps
 }) => {
@@ -38,7 +38,7 @@ export interface FlatThemeBodyProviderProps {
 }
 
 export const FlatThemeBodyProvider: FC<FlatThemeBodyProviderProps> = ({
-    prefersColorScheme = "light",
+    prefersColorScheme = "auto",
     children,
 }) => {
     const darkMode = useDarkMode(prefersColorScheme);

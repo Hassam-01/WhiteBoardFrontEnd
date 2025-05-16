@@ -3,6 +3,7 @@
     padding: 0;
 
 }
+
 .reset-page-with-email-or-phone .ant-input-affix-wrapper,
 .login-with-email .ant-input-affix-wrapper {
     border-color: rgba(111, 51, 147, 0.7) !important;
@@ -14,17 +15,20 @@
         box-shadow: 0 0 0 2px rgba(160, 32, 240, 0.2);
     }
 }
+
 .login-big-button.ant-btn-link {
     color: rgba(111, 51, 147, 0.7); // change text color
     font-weight: 500;
 }
 
-.login-with-email, .reset-page-with-email-or-phone {
+.login-with-email,
+.reset-page-with-email-or-phone {
 
     display: flex;
     max-width: 50%;
     max-height: 50%;
     flex-direction: column;
+
     .login-width-limiter {
         width: 100%;
     }
@@ -33,7 +37,8 @@
         margin-bottom: 16px;
     }
 }
-.login-with-email{
+
+.login-with-email {
     left: 50%;
     transform: translate(50%, 40%);
 
@@ -58,6 +63,12 @@
     margin-bottom: 8px;
 }
 
+.login-big-button {
+    width: 60%; // or any desired fixed width
+    margin: 0 auto; // centers the button horizontally
+    display: block; // required for margin auto to work
+}
+
 .login-with-email-btn-wrapper {
     display: flex;
     justify-content: flex-end;
@@ -66,38 +77,45 @@
         padding: 0;
     }
 }
-.login-big-button.login-with-resetting-btn{
+
+.login-big-button.login-with-resetting-btn {
     background-color: rgba(111, 51, 147, 0.7) !important;
     border-color: rgba(111, 51, 147, 0.7) !important;
     color: white !important;
-        &:hover {
-            background-color: rgba(196, 127, 238, 1) !important;
+
+    &:hover {
+        background-color: rgba(196, 127, 238, 1) !important;
         border-color: rgba(196, 127, 238, 1) !important;
-        } 
+    }
+
     &:disabled {
         background-color: #ccc !important;
         border-color: #ccc !important;
     }
 }
-.flat-color-scheme-dark{
+
+.flat-color-scheme-dark {
     .login-with-email-btn-wrapper .ant-btn-link {
         color: rgba(230, 224, 233, 1); // change text color
         padding: 0;
-    
+
     }
+
     .reset-page-with-email-or-phone .ant-input-affix-wrapper,
     .login-with-email .ant-input-affix-wrapper {
         border-color: rgba(230, 224, 233, 1) !important;
-    
+
         &:focus-within {
             border-color: rgba(230, 224, 233, 1) !important;
             box-shadow: 0 0 0 2px rgba(160, 32, 240, 0.2);
         }
     }
+
     .login-big-button.ant-btn-link {
         color: rgba(230, 224, 233, 1); // change text color
     }
-    .login-big-button.login-with-resetting-btn{
+
+    .login-big-button.login-with-resetting-btn {
         background-color: rgba(89, 83, 151, 1) !important;
         border-color: rgba(89, 83, 151, 1) !important;
 
@@ -105,24 +123,26 @@
             &:hover {
                 background-color: rgba(105, 100, 159, 1) !important;
                 border-color: rgba(105, 100, 159, 1) !important;
-            }        }
+            }
+        }
     }
+
     .login-with-email-login-btn.ant-btn-primary {
         background-color: rgba(89, 83, 151, 1) !important;
         border-color: rgba(89, 83, 151, 1) !important;
         color: white !important;
-    
+
         &:hover {
             background-color: rgba(105, 100, 159, 1) !important;
             border-color: rgba(105, 100, 159, 1) !important;
         }
-    
+
         &:disabled {
             background-color: #ccc !important;
             border-color: #ccc !important;
         }
     }
-    
+
 }
 
 .login-with-email-login-btn.ant-btn-primary {

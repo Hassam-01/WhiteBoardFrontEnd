@@ -9,11 +9,11 @@ export const SVGHomeLeftIllustration: React.FC<FlatIconProps> = ({
 }) => {
     return (
         <svg
-            className={`${className} purple-6F3393 flat-icon ${active ? "is-active" : ""}`}
+            className={`${className} svg-responsive-home-illustration purple-6F3393 flat-icon ${active ? "is-active" : ""}`}
             fill="none"
-            height="390"
+            // height="390"
             viewBox="0 0 323 539"
-            width="190"
+            // width="210"
             xmlns="http://www.w3.org/2000/svg"
             {...restProps}
         >
