@@ -13,6 +13,7 @@ export const COOKIE_DOMAIN = CURRENT_SERVER_DOMAIN
 export const FLAT_SERVER_BASE_URL = `http://${CURRENT_SERVER_DOMAIN}`;
 
 export const FLAT_SERVER_BASE_URL_V1 = `http://${CURRENT_SERVER_DOMAIN}/v1`;
+export const FLAT_SERVER_BASE_URL_AWS = `http://${CURRENT_SERVER_DOMAIN}`;
 export const FLAT_SERVER_BASE_URL_V2 = `http://${CURRENT_SERVER_DOMAIN}/v2`;
 
 export const FLAT_SERVER_LOGIN = {
