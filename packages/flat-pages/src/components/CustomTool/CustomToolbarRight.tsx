@@ -45,7 +45,6 @@ const CustomToolbarRight: React.FC<CustomToolbarRightProps> = ({ whiteboardStore
     useEffect(() => {
         app = FastboardSingleton.getFastboardApp();
         if (!app) {
-            console.log("app", app);
             return;
         }
 
@@ -56,7 +55,6 @@ const CustomToolbarRight: React.FC<CustomToolbarRightProps> = ({ whiteboardStore
         const currentPage =
             (typeof app?.pageIndex.value === "number" ? app.pageIndex.value : 0) + 1;
         const total = typeof app?.pageLength.value === "number" ? app.pageLength.value : 0;
-        console.log("total pages", total);
         setPageNumber(currentPage);
         setTotalPages(total);
         setPrevDisabled(disable || total === 0 || currentPage <= 1);
@@ -64,7 +62,6 @@ const CustomToolbarRight: React.FC<CustomToolbarRightProps> = ({ whiteboardStore
     }, [app?.pageIndex.value, app?.pageLength.value, app?.phase?.value, updateTrigger]);
 
     const handleAddPage = (): void => {
-        console.log("clicked add page", app?.pageLength);
         app?.addPage();
         setUpdateTrigger(prev => prev + 1);
     };

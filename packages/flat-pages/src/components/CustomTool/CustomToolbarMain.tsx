@@ -103,9 +103,15 @@ const CustomToolbarMain: React.FC<{ whiteboardStore: WhiteboardStore }> = ({ whi
     }, [activePopup, popupPosition]);
 
     useEffect(() => {
-        // setCurrentAppliance(app?.memberState.value.currentApplianceName as ApplianceNames | null);
         function handleClickOutside(event: MouseEvent): void {
-            if (toolbarRef.current && !toolbarRef.current.contains(event.target as Node)) {
+            const popupElement = document.querySelector(".popup");
+
+            if (
+                // toolbarElement &&
+                // !toolbarElement.contains(event.target as Node) &&
+                popupElement &&
+                !popupElement.contains(event.target as Node)
+            ) {
                 setActivePopup(null);
             }
         }

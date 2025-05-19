@@ -53,7 +53,6 @@ export const BigClassPage = withClassroomStore<BigClassPageProps>(
         // const isRealtimeSideOpen = !whiteboardStore.isRightSideClose;
 
         useEffect(() => {
-            console.log("BigClassPage render useeffect: ", classroomStore.roomUUID);
             if (classroomStore.isCreator && classroomStore.roomStatus === RoomStatus.Idle) {
                 void classroomStore.startClass();
             }

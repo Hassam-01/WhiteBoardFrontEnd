@@ -25,7 +25,6 @@ export function useLoginCheck(): boolean {
 
             try {
                 const result = await loginCheck();
-                console.log("Login check result:", result);
                 globalStore.updateUserInfo(result);
                 globalStore.updateLastLoginCheck(Date.now());
                 saveJWTToken(result.token);

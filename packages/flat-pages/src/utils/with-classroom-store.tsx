@@ -23,7 +23,6 @@ export const withClassroomStore = <P extends {}>(
                     | RouteNameType.AIPage
                 >
             >();
-        console.log("params", params, { ...params });
         const classroomStore = useClassroomStore({ ...params, isAIClass });
 
         const isReady =
