@@ -75,8 +75,6 @@ web_modules/
 .yarn-integrity
 
 # dotenv environment variables file
-.env.test
-.env.local
 .env.*.local
 
 # parcel-bundler cache (https://parceljs.org/)
@@ -193,3 +191,6 @@ build/
 
 agoraAddonlog.txt
 .yarnrc
+config.bat
+temp_auto_push.bat
+temp_interactive_push.bat
