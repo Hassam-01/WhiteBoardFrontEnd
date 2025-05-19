@@ -230,7 +230,8 @@ export const MainRoomList = observer<MainRoomListProps>(function MainRoomList({
         if (globalStore.isTurnOffDeviceTest || window.isElectron) {
             await joinRoomHandler(roomUUID, pushHistory);
         } else {
-            pushHistory(RouteNameType.DevicesTestPage, { roomUUID });
+            // pushHistory(RouteNameType.DevicesTestPage, { roomUUID });
+            await joinRoomHandler(roomUUID, pushHistory);
         }
     }
 
