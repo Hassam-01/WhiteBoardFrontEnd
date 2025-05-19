@@ -29,6 +29,7 @@ export const JoinPage = observer(function JoinPage() {
     useEffect(() => pageStore.configure(), []);
 
     useEffect(() => {
+        joinRoom();
         async function checkLogin(): Promise<void> {
             const token = globalStore.userInfo?.token;
             if (token) {
@@ -51,7 +52,9 @@ export const JoinPage = observer(function JoinPage() {
             if (window.isElectron) {
                 await joinRoomHandler(roomUUID, pushHistory);
             } else {
-                pushHistory(RouteNameType.DevicesTestPage, { roomUUID });
+                // pushHistory(RouteNameType.BigClassPage);
+                await joinRoomHandler(roomUUID, pushHistory);
+                // pushHistory(RouteNameType.DevicesTestPage, { roomUUID });
             }
         } else {
             sessionStorage.setItem("roomUUID", roomUUID);

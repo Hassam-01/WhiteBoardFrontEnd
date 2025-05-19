@@ -38,7 +38,7 @@ export const AppRouteContainer = observer<AppRouteContainerProps>(function AppRo
     }, [ipcStore, lastLocation?.pathname, location.pathname]);
 
     useIsomorphicLayoutEffect(() => {
-        const compName = Comp.displayName || Comp.name;
+        const compName = "Collab";
         document.title =
             title + (process.env.NODE_ENV === "development" && compName ? ` (${compName})` : "");
         ipcAsyncByMainWindow("set-title", {
