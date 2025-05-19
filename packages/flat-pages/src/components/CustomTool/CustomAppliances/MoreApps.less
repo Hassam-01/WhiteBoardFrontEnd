@@ -1,13 +1,15 @@
-.toolbar-apps-container{
+.toolbar-apps-container {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     row-gap: 20px;
 }
+
 .toolbar-apps {
     height: 30px;
     width: 30px;
-    
+
 }
+
 .toolbar-apps-box {
     display: flex;
     flex-direction: column;
@@ -15,18 +17,21 @@
     justify-content: center;
     gap: 3px;
     padding: 4px 2px;
+
     &:hover {
         background-color: #e1e1e1;
         border-radius: 11px;
     }
 }
-.toolbar-apps-label{
+
+.toolbar-apps-label {
     font-size: 11px;
     font-family: 500;
 }
-.flat-color-scheme-dark{
-    .toolbar-apps-box{
-        &:hover{
+
+.flat-color-scheme-dark {
+    .toolbar-apps-box {
+        &:hover {
             background-color: #e1e1e144;
         }
     }

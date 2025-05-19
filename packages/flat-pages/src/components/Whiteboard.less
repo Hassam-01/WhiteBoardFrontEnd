@@ -35,14 +35,31 @@
         }
     }
 
+    .hide-toolbar {
+        position: absolute;
+        // top: 0;
+        bottom: 5vh;
+        left: 1vh;
+        z-index: 10000;
+        width: 4vh;
+        height: 4vh;
+        border-radius: 50%;
+        background-color: rgba(0, 0, 0, 0.01);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+    }
+
     // Compact toolbar styles
     .custom-toolbar {
         position: absolute;
         bottom: 2vh;
-        left: 1vw;
+        left: 2vw;
         right: 1vw;
         height: 10vh;
-        z-index: 3;
+        z-index: 1;
         display: flex;
         justify-content: space-between;
         align-items: center;

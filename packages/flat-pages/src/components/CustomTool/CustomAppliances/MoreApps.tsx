@@ -72,18 +72,16 @@ const MoreApps: React.FC<MoreProps> = ({ app }) => {
                 onClick={() => {
                     // console.log("MindMap");
                     (window as any).define = undefined;
-                    console.log((window as any).define);
                     app?.manager.addApp({ kind: "MindMap", options: { title: "MindMap" } });
-                    console.log("1", (window as any).define);
                 }}
             >
                 <SVGMindMap />
                 <span className="toolbar-apps-label">MindMap</span>
             </div>
-            <div className="toolbar-apps-box" onClick={() => handleEmitEvent("insertPresets")}>
+            {/* <div className="toolbar-apps-box" onClick={() => handleEmitEvent("insertPresets")}>
                 <SVGPresets />
                 <span className="toolbar-apps-label">Presets</span>
-            </div>
+            </div> */}
             <div className="toolbar-apps-box" onClick={() => handleEmitEvent("exportAnnotations")}>
                 <SVGSaveAnnotation />
                 <span className="toolbar-apps-label">Save Annotations</span>

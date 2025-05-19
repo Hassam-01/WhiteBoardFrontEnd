@@ -33,7 +33,7 @@ const Popup: React.FC<PopupProps> = ({ children, position, isMore }) => {
                 position: "fixed",
                 zIndex: 100,
                 top: position.bottom,
-                left: position.left,
+                left: isMore ? position.left + 70 : position.left,
             }}
         >
             {children}

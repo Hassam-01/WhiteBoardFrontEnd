@@ -8,13 +8,15 @@ import {
     DarkModeContext,
     PresetsModal,
     RaiseHand,
-    RaisingHand,
+    // RaisingHand,
     // RaisingHand,
     SaveAnnotationModal,
     SaveAnnotationModalProps,
-    SVGMicrophone,
-    SVGMicrophoneMute,
+    // SVGMicrophone,
+    // SVGMicrophoneMute,
 } from "flat-components";
+import { SVGToolBarHide } from "../../../flat-components/src/components/FlatIcons/icons/SVGToolbarHide";
+import { SVGToolBarExpand } from "../../../flat-components/src/components/FlatIcons/icons/SVGToolbarExpand";
 import { FlatI18nTFunction, useTranslate } from "@netless/flat-i18n";
 import { observer } from "mobx-react-lite";
 import { message } from "antd";
@@ -61,6 +63,7 @@ export const Whiteboard = observer<WhiteboardProps>(function Whiteboard({
     const [maxPage, setMaxPage] = useState(Infinity);
     const [showPage, setShowPage] = useState(false);
     const [tipsVisible, setTipsVisible] = useState(false);
+    const [isToolbarHidden, setToolbarHidden] = useState(false);
 
     const isReconnecting = phase === RoomPhase.Reconnecting;
     const handRaisingCount = classRoomStore.users.handRaisingJoiners.length;
@@ -273,15 +276,14 @@ export const Whiteboard = observer<WhiteboardProps>(function Whiteboard({
                             />
                         </div>
                     )} */}
-                    <div className="mic-container">
-                        {/* // remove the default style of button */}
+                    {/* <div className="mic-container">
                         <button
                             style={{ border: "none", background: "transparent" }}
                             onClick={() => handleMute()}
                         >
                             {muted ? <SVGMicrophoneMute /> : <SVGMicrophone />}
                         </button>
-                    </div>
+                    </div> */}
                     <div
                         className={classNames("whiteboard-scroll-page", {
                             "is-active": showPage,
@@ -289,7 +291,7 @@ export const Whiteboard = observer<WhiteboardProps>(function Whiteboard({
                     >
                         {renderScrollPage(t, page, maxPage)}
                     </div>
-                    {!classRoomStore.isAIRoom && (
+                    {!classRoomStore.isAIRoom && !isToolbarHidden && (
                         <div className="custom-toolbar">
                             <div className="custom-toolbar-left-bar">
                                 <CustomToolbarLeft />
@@ -302,6 +304,19 @@ export const Whiteboard = observer<WhiteboardProps>(function Whiteboard({
                             </div>
                         </div>
                     )}
+
+                    {!classRoomStore.isAIRoom && (
+                        <div
+                            className={classNames("hide-toolbar", { "is-hidden": isToolbarHidden })}
+                            onClick={() => setToolbarHidden(!isToolbarHidden)}
+                        >
+                            {isToolbarHidden ? <SVGToolBarExpand /> : <SVGToolBarHide />}
+                        </div>
+                    )}
+                    {/* <div className="hide-toolbar" onClick={() => setToolbarHidden(true)}>
+                        Hide
+                    </div> */}
+
                     {!classRoomStore.isAIRoom && (
                         <div
                             className={classNames("hand-raising-panel", {
